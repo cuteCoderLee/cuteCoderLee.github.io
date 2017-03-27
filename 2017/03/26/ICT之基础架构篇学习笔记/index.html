@@ -87,24 +87,21 @@
 
 
 
-<meta name="description" content="服务器类型按CPU数量：一路服务器 双路服务器 多路服务器按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intelunix服务器（小型机） x86服务器按应用：数据库 web 文件等
-服务器硬件构成CPU 内存 硬盘（三大件）
-服务器技术架构scale-up纵向 高性能交易类scale-out横向 数量取胜 高并发性能 低成本 高密度hyper-conve">
+<meta name="description" content="服务器类型按CPU数量：一路服务器 双路服务器 多路服务器按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intelunix服务器（小型机） x86服务器按应用：数据库 web 文件等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ICT之基础架构篇学习笔记">
 <meta property="og:url" content="http://cuteCoderLee.github.io/2017/03/26/ICT之基础架构篇学习笔记/index.html">
 <meta property="og:site_name" content="lilililing">
-<meta property="og:description" content="服务器类型按CPU数量：一路服务器 双路服务器 多路服务器按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intelunix服务器（小型机） x86服务器按应用：数据库 web 文件等
-服务器硬件构成CPU 内存 硬盘（三大件）
-服务器技术架构scale-up纵向 高性能交易类scale-out横向 数量取胜 高并发性能 低成本 高密度hyper-conve">
+<meta property="og:description" content="服务器类型按CPU数量：一路服务器 双路服务器 多路服务器按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intelunix服务器（小型机） x86服务器按应用：数据库 web 文件等">
 <meta property="og:image" content="http://on8z3w9l6.bkt.clouddn.com/%E4%BA%91%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84.png">
 <meta property="og:image" content="http://on8z3w9l6.bkt.clouddn.com/%E4%B8%AD%E9%97%B4%E4%BB%B6.png">
-<meta property="og:updated_time" content="2017-03-27T02:52:50.815Z">
+<meta property="og:image" content="http://on8z3w9l6.bkt.clouddn.com/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="http://on8z3w9l6.bkt.clouddn.com/ext2.png">
+<meta property="og:image" content="http://on8z3w9l6.bkt.clouddn.com/%E6%8C%82%E8%BD%BD.png">
+<meta property="og:updated_time" content="2017-03-27T03:04:08.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ICT之基础架构篇学习笔记">
-<meta name="twitter:description" content="服务器类型按CPU数量：一路服务器 双路服务器 多路服务器按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intelunix服务器（小型机） x86服务器按应用：数据库 web 文件等
-服务器硬件构成CPU 内存 硬盘（三大件）
-服务器技术架构scale-up纵向 高性能交易类scale-out横向 数量取胜 高并发性能 低成本 高密度hyper-conve">
+<meta name="twitter:description" content="服务器类型按CPU数量：一路服务器 双路服务器 多路服务器按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intelunix服务器（小型机） x86服务器按应用：数据库 web 文件等">
 <meta name="twitter:image" content="http://on8z3w9l6.bkt.clouddn.com/%E4%BA%91%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84.png">
 
 
@@ -340,20 +337,25 @@
       
 
       
-        <h1 id="服务器类型"><a href="#服务器类型" class="headerlink" title="服务器类型"></a>服务器类型</h1><p>按CPU数量：一路服务器 双路服务器 多路服务器<br>按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intel<br>unix服务器（小型机） x86服务器<br>按应用：数据库 web 文件等</p>
+        <h1 id="服务器类型"><a href="#服务器类型" class="headerlink" title="服务器类型"></a>服务器类型</h1><p>按CPU数量：一路服务器 双路服务器 多路服务器<br>按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intel<br>unix服务器（小型机） x86服务器<br>按应用：数据库 web 文件等<br><a id="more"></a></p>
 <h1 id="服务器硬件构成"><a href="#服务器硬件构成" class="headerlink" title="服务器硬件构成"></a>服务器硬件构成</h1><p>CPU 内存 硬盘（三大件）</p>
 <h1 id="服务器技术架构"><a href="#服务器技术架构" class="headerlink" title="服务器技术架构"></a>服务器技术架构</h1><p>scale-up纵向 高性能交易类<br>scale-out横向 数量取胜 高并发性能 低成本 高密度<br>hyper-converged 数据分析 数据库整合， 整体集成与优化设计</p>
 <h2 id="业务软件在服务器上的部署"><a href="#业务软件在服务器上的部署" class="headerlink" title="业务软件在服务器上的部署"></a>业务软件在服务器上的部署</h2><p>C/S架构 两层<br>B/S架构 三层  </p>
 <h1 id="服务器上层软件架构"><a href="#服务器上层软件架构" class="headerlink" title="服务器上层软件架构"></a>服务器上层软件架构</h1><p>操作系统：unix（AIX Solaris HP-un11） x86（Linux windows） 云计算平台（VMware FusionSphere Kvm)<br>数据库  中间件 业务应用<br><img src="http://on8z3w9l6.bkt.clouddn.com/%E4%BA%91%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84.png" alt="架构与中间件"><br><img src="http://on8z3w9l6.bkt.clouddn.com/%E4%B8%AD%E9%97%B4%E4%BB%B6.png" alt=""></p>
-<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><p>硬件 内核（kernel） 外壳（shell：用户与内核间的命令解释器） 应用程序<br>picture–<br>sh csh ksh<br>特点：<br><em>多任务（cpu时间分片分给不同进程)  
-</em>多用户（同时）<br><em>管道（前一个程序的输出作为后一个程序的输入）      
-</em>shell解释型高级语言，强大<br><em>安全保护机制   
-</em>稳定<br><em>用户界面：常用命令行界面，提供图形界面  
-</em>网络支持：TCP/IP协议<br>*移植性好  </p>
-<h2 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h2><p>UID：/etc/passwd（7个字段 root：x:0:0:root:/root:/bin/bash)<br>GID：/etc/group (root:x:0:)<br>用户查询： <code>id</code> <code>finger</code>（用户属性）<br>新增用户： <code>useradd[参数][用户名]</code><br>设置密码：<code>passwd</code><br>修改属性：<code>usermod[用户名] -d -g</code><br>新增用户组：<code>groupadd</code><br>删除用户组：<code>groupdel</code><br>修改用户组：<code>groupmod[-g -n][用户组名]</code><br>图片888888</p>
-<h2 id="文件和目录管理"><a href="#文件和目录管理" class="headerlink" title="文件和目录管理"></a>文件和目录管理</h2><p>绝对路径  <code>/</code><br>相对路径：<code>.</code>当前目录  <code>..</code>上一级目录<br>显示当前目录：<code>pwd</code><br>变更： <code>cd</code> 没有任何参数，回到当前用户的家目录<br>新增：<code>mkdir[-m 存取模式（掩码）][-p建立其所有不存在的父目录] dirname</code><br>删除：<code>rmdir[-p] dirname</code> 空目录,对其父目录具有写权限<br>复制：<code>cp</code>源文件 目标<br>移动：<code>mv</code><br>删除：<code>rm[-ir]文件或目录</code>提示<br>查找：<code>find[路径][参数]</code> -name -user<br>查看文件内容：cat（直接查看不翻页） more（翻页） less head tail</p>
-<h2 id="文件系统管理"><a href="#文件系统管理" class="headerlink" title="文件系统管理"></a>文件系统管理</h2><p>存储和组织计算机数据的方法<br>传统型文件系统：无日志，先写入数据，再写入元数据；ext2<br>日志型文件系统：先写入日志记录文件；ext3 ReiserFS<br>索引式：文件属性与内容存放在不同区块<br>非索引式：只有block；FAT（windows）<br>图片ext2<br>挂载：将文件系统与目录树关联</p>
-<h2 id="LVM配置"><a href="#LVM配置" class="headerlink" title="LVM配置"></a>LVM配置</h2><h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>查看网口配置：<code>ifconfig</code><br>修改网口配置：<code>ifconfig 网口 [参数]</code><br>路由<br>侦测网络：<code>ping[-c]目的网址</code>网络是否可达连接速度等<br><code>traceroute&lt;地址或主机名&gt;</code><br>配置网络服务：</p>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><p>硬件 内核（kernel） 外壳（shell：用户与内核间的命令解释器） 应用程序<br>sh csh ksh<br>特点：  </p>
+<ul>
+<li>多任务（cpu时间分片分给不同进程)  </li>
+<li>多用户（同时)  </li>
+<li>管道（前一个程序的输出作为后一个程序的输入）      </li>
+<li>shell解释型高级语言，强大     </li>
+<li>安全保护机制   </li>
+<li>稳定  </li>
+<li>用户界面：常用命令行界面，提供图形界面  </li>
+<li>网络支持：TCP/IP协议   </li>
+<li>移植性好  <h2 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h2>UID：/etc/passwd（7个字段 root：x:0:0:root:/root:/bin/bash)<br>GID：/etc/group (root:x:0:)<br>用户查询： <code>id</code> <code>finger</code>（用户属性）<br>新增用户： <code>useradd[参数][用户名]</code><br>设置密码：<code>passwd</code><br>修改属性：<code>usermod[用户名] -d -g</code><br>新增用户组：<code>groupadd</code><br>删除用户组：<code>groupdel</code><br>修改用户组：<code>groupmod[-g -n][用户组名]</code><br><img src="http://on8z3w9l6.bkt.clouddn.com/linux%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.png" alt=""><h2 id="文件和目录管理"><a href="#文件和目录管理" class="headerlink" title="文件和目录管理"></a>文件和目录管理</h2>绝对路径  <code>/</code><br>相对路径：<code>.</code>当前目录  <code>..</code>上一级目录<br>显示当前目录：<code>pwd</code><br>变更： <code>cd</code> 没有任何参数，回到当前用户的家目录<br>新增：<code>mkdir[-m 存取模式（掩码）][-p建立其所有不存在的父目录] dirname</code><br>删除：<code>rmdir[-p] dirname</code> 空目录,对其父目录具有写权限<br>复制：<code>cp</code>源文件 目标<br>移动：<code>mv</code><br>删除：<code>rm[-ir]文件或目录</code>提示<br>查找：<code>find[路径][参数]</code> -name -user<br>查看文件内容：cat（直接查看不翻页） more（翻页） less head tail<h2 id="文件系统管理"><a href="#文件系统管理" class="headerlink" title="文件系统管理"></a>文件系统管理</h2>存储和组织计算机数据的方法<br>传统型文件系统：无日志，先写入数据，再写入元数据；ext2<br>日志型文件系统：先写入日志记录文件；ext3 ReiserFS<br>索引式：文件属性与内容存放在不同区块<br>非索引式：只有block；FAT（windows）<br><img src="http://on8z3w9l6.bkt.clouddn.com/ext2.png" alt="ext2"><br>挂载：将文件系统与目录树关联<br><img src="http://on8z3w9l6.bkt.clouddn.com/%E6%8C%82%E8%BD%BD.png" alt=""></li>
+</ul>
+<h2 id="LVM配置"><a href="#LVM配置" class="headerlink" title="LVM配置"></a>LVM配置</h2><p>待补充</p>
+<h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>查看网口配置：<code>ifconfig</code><br>修改网口配置：<code>ifconfig 网口 [参数]</code><br>路由<br>侦测网络：<code>ping[-c]目的网址</code>网络是否可达连接速度等<br><code>traceroute&lt;地址或主机名&gt;</code><br>配置网络服务：</p>
 <h2 id="进程与任务管理"><a href="#进程与任务管理" class="headerlink" title="进程与任务管理"></a>进程与任务管理</h2><p>进程管理：程序 进程 守护进程 用户进程</p>
 <p>任务管理：任务 前台 后台<br><code>&amp;</code>将任务放入后台  <code>jobs</code>查看当前shell的后台任务<br><code>ctrl+z</code> 将任务放入后台并暂停<br><code>fg %[jobid]</code>放到前台  <code>bg</code>后台</p>
 <h2 id="系统监控"><a href="#系统监控" class="headerlink" title="系统监控"></a>系统监控</h2><p>是否正常运行: 启动信息 <code>dmesg | less</code> /var/log/boot.msg<br>系统硬件信息：cat/proc/…  <code>hwinfo --</code>disk cpu memory <code>fdisk [-l]</code><br><code>iostat</code> <code>lspci[-v -vv]</code><br>系统和进程：<code>top</code>动态 <code>ps</code>静态 <code>uptime</code>运行时间等 <code>uname</code>系统版本相关<code>netstat</code><br>用户登录信息：who[-h -m] w[-u] finger[-s -l]长短格式 last[参数] lastlog</p>

@@ -336,26 +336,14 @@
 
       
         
-          
-            <h1 id="服务器类型"><a href="#服务器类型" class="headerlink" title="服务器类型"></a>服务器类型</h1><p>按CPU数量：一路服务器 双路服务器 多路服务器<br>按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intel<br>unix服务器（小型机） x86服务器<br>按应用：数据库 web 文件等</p>
-<h1 id="服务器硬件构成"><a href="#服务器硬件构成" class="headerlink" title="服务器硬件构成"></a>服务器硬件构成</h1><p>CPU 内存 硬盘（三大件）</p>
-<h1 id="服务器技术架构"><a href="#服务器技术架构" class="headerlink" title="服务器技术架构"></a>服务器技术架构</h1><p>scale-up纵向 高性能交易类<br>scale-out横向 数量取胜 高并发性能 低成本 高密度<br>hyper-converged 数据分析 数据库整合， 整体集成与优化设计</p>
-<h2 id="业务软件在服务器上的部署"><a href="#业务软件在服务器上的部署" class="headerlink" title="业务软件在服务器上的部署"></a>业务软件在服务器上的部署</h2><p>C/S架构 两层<br>B/S架构 三层  </p>
-<h1 id="服务器上层软件架构"><a href="#服务器上层软件架构" class="headerlink" title="服务器上层软件架构"></a>服务器上层软件架构</h1><p>操作系统：unix（AIX Solaris HP-un11） x86（Linux windows） 云计算平台（VMware FusionSphere Kvm)<br>数据库  中间件 业务应用<br><img src="http://on8z3w9l6.bkt.clouddn.com/%E4%BA%91%E8%AE%A1%E7%AE%97%E6%9E%B6%E6%9E%84.png" alt="架构与中间件"><br><img src="http://on8z3w9l6.bkt.clouddn.com/%E4%B8%AD%E9%97%B4%E4%BB%B6.png" alt=""></p>
-<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><p>硬件 内核（kernel） 外壳（shell：用户与内核间的命令解释器） 应用程序<br>picture–<br>sh csh ksh<br>特点：<br><em>多任务（cpu时间分片分给不同进程)  
-</em>多用户（同时）<br><em>管道（前一个程序的输出作为后一个程序的输入）      
-</em>shell解释型高级语言，强大<br><em>安全保护机制   
-</em>稳定<br><em>用户界面：常用命令行界面，提供图形界面  
-</em>网络支持：TCP/IP协议<br>*移植性好  </p>
-<h2 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h2><p>UID：/etc/passwd（7个字段 root：x:0:0:root:/root:/bin/bash)<br>GID：/etc/group (root:x:0:)<br>用户查询： <code>id</code> <code>finger</code>（用户属性）<br>新增用户： <code>useradd[参数][用户名]</code><br>设置密码：<code>passwd</code><br>修改属性：<code>usermod[用户名] -d -g</code><br>新增用户组：<code>groupadd</code><br>删除用户组：<code>groupdel</code><br>修改用户组：<code>groupmod[-g -n][用户组名]</code><br>图片888888</p>
-<h2 id="文件和目录管理"><a href="#文件和目录管理" class="headerlink" title="文件和目录管理"></a>文件和目录管理</h2><p>绝对路径  <code>/</code><br>相对路径：<code>.</code>当前目录  <code>..</code>上一级目录<br>显示当前目录：<code>pwd</code><br>变更： <code>cd</code> 没有任何参数，回到当前用户的家目录<br>新增：<code>mkdir[-m 存取模式（掩码）][-p建立其所有不存在的父目录] dirname</code><br>删除：<code>rmdir[-p] dirname</code> 空目录,对其父目录具有写权限<br>复制：<code>cp</code>源文件 目标<br>移动：<code>mv</code><br>删除：<code>rm[-ir]文件或目录</code>提示<br>查找：<code>find[路径][参数]</code> -name -user<br>查看文件内容：cat（直接查看不翻页） more（翻页） less head tail</p>
-<h2 id="文件系统管理"><a href="#文件系统管理" class="headerlink" title="文件系统管理"></a>文件系统管理</h2><p>存储和组织计算机数据的方法<br>传统型文件系统：无日志，先写入数据，再写入元数据；ext2<br>日志型文件系统：先写入日志记录文件；ext3 ReiserFS<br>索引式：文件属性与内容存放在不同区块<br>非索引式：只有block；FAT（windows）<br>图片ext2<br>挂载：将文件系统与目录树关联</p>
-<h2 id="LVM配置"><a href="#LVM配置" class="headerlink" title="LVM配置"></a>LVM配置</h2><h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>查看网口配置：<code>ifconfig</code><br>修改网口配置：<code>ifconfig 网口 [参数]</code><br>路由<br>侦测网络：<code>ping[-c]目的网址</code>网络是否可达连接速度等<br><code>traceroute&lt;地址或主机名&gt;</code><br>配置网络服务：</p>
-<h2 id="进程与任务管理"><a href="#进程与任务管理" class="headerlink" title="进程与任务管理"></a>进程与任务管理</h2><p>进程管理：程序 进程 守护进程 用户进程</p>
-<p>任务管理：任务 前台 后台<br><code>&amp;</code>将任务放入后台  <code>jobs</code>查看当前shell的后台任务<br><code>ctrl+z</code> 将任务放入后台并暂停<br><code>fg %[jobid]</code>放到前台  <code>bg</code>后台</p>
-<h2 id="系统监控"><a href="#系统监控" class="headerlink" title="系统监控"></a>系统监控</h2><p>是否正常运行: 启动信息 <code>dmesg | less</code> /var/log/boot.msg<br>系统硬件信息：cat/proc/…  <code>hwinfo --</code>disk cpu memory <code>fdisk [-l]</code><br><code>iostat</code> <code>lspci[-v -vv]</code><br>系统和进程：<code>top</code>动态 <code>ps</code>静态 <code>uptime</code>运行时间等 <code>uname</code>系统版本相关<code>netstat</code><br>用户登录信息：who[-h -m] w[-u] finger[-s -l]长短格式 last[参数] lastlog</p>
-
-          
+          <h1 id="服务器类型"><a href="#服务器类型" class="headerlink" title="服务器类型"></a>服务器类型</h1><p>按CPU数量：一路服务器 双路服务器 多路服务器<br>按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intel<br>unix服务器（小型机） x86服务器<br>按应用：数据库 web 文件等<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/26/ICT之基础架构篇学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -483,16 +471,14 @@
 
       
         
-          
-            <p>Q:浏览器作为PC端上网的入口，是我们日常使用最频繁的软件之一；但你知道一个网页经历了怎样的过程才能呈现在我们面前吗？请尽可能详细地描述一下从输入网站地址，到页面呈现在我们面前这一过程都发生了什么。（提示：越详细越好，可以从DNS，HTTP,<br>TCP/IP, web服务器，HTML/CSS/JS等方面展开，并针对某一项做深入描述。）<br>A:</p>
-<p>Q:浏览器页面有哪三层构成，分别是什么，作用是什么?<br>A:构成：结构层、表示层、行为层<br>分别是：HTML、CSS、JavaScript<br>作用：HTML实现页面结构，CSS完成页面的表现与风格，JavaScript实现一些客户端的功能与业务。</p>
-<p>Q:你做的网页在哪些流览器测试过,这些浏览器的内核分别是什么?<br>A: a、 IE: trident 内核<br>b、 Firefox ： gecko 内核<br>c、 Safari:webkit 内核<br>d、 Opera: 以前是 presto 内核， Opera 现已改用 Google Chrome 的 Blink 内核<br>e、 Chrome:Blink( 基于 webkit ， Google 与 Opera Software 共同开发 )<br>浏览器内核主要分成两部分：渲染引擎(layout engineer或 Rendering Engine) 和 JS 引擎。<br>渲染引擎：负责取得网页的内容（HTML、 XML 、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。<br>JS引擎：解析和执行 javascript 来实现网页的动态效果。JS引擎越来越独立，内核倾向于指渲染引擎。</p>
-<p>Q:每个HTML头部的声明，有什么作用？<br>A：Doctype，在文档的最头部，告诉浏览器按照何种规范（HTML或Xhtml规范）解析页面.</p>
-<p>Q:对HTML5的理解和认识。<br>A:</p>
-<p>Q:SVG<br>A：</p>
-<p>Q:title与h3的区别、b与strong的区别、i与em的区别？<br>A:title属性没有明确意义只表示是个标题， H1 则表示层次明确的标题，对页面信息的抓取也有很大的影响；<br>strong是标明重点内容，有语气加强的含义，使用阅读设备阅读网络时 <strong>  会重读，而 <b> 是展示强调内容。<br>i内容展示为斜体， em 表示强调的文本；<br>Physical Style Elements – 自然样式标签<br>b, i, u, s, pre<br>Semantic Style Elements – 语义样式标签<br>strong, em, ins, del, code<br>应该准确使用语义样式标签, 但不能滥用 , 如果不能确定时首选使用自然样式标签。</b></strong></p>
-
-          
+          <p>Q:浏览器作为PC端上网的入口，是我们日常使用最频繁的软件之一；但你知道一个网页经历了怎样的过程才能呈现在我们面前吗？请尽可能详细地描述一下从输入网站地址，到页面呈现在我们面前这一过程都发生了什么。（提示：越详细越好，可以从DNS，HTTP,<br>TCP/IP, web服务器，HTML/CSS/JS等方面展开，并针对某一项做深入描述。）<br>A:<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/24/校招准备之前端刷题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
