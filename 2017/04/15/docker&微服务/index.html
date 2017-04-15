@@ -1,0 +1,872 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Dockerdocker发展历程1.容器和Docker容器（container）：在linux中，容器技术是一种进程隔离的技术，应用可以运行在每个相互隔离的容器中。容器与虚拟机的区别：在容器中，各个应用共用一个kernelDocker：Docker是一家公司，在13年之前公司名叫 dotCloud，Docker仅仅是一个容器管理的产品。在13年，将Docker开源，Docker风靡全球，公司也更名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lilililing">
+<meta property="og:url" content="http://cuteCoderLee.github.io/2017/04/15/docker&微服务/index.html">
+<meta property="og:site_name" content="lilililing">
+<meta property="og:description" content="Dockerdocker发展历程1.容器和Docker容器（container）：在linux中，容器技术是一种进程隔离的技术，应用可以运行在每个相互隔离的容器中。容器与虚拟机的区别：在容器中，各个应用共用一个kernelDocker：Docker是一家公司，在13年之前公司名叫 dotCloud，Docker仅仅是一个容器管理的产品。在13年，将Docker开源，Docker风靡全球，公司也更名">
+<meta property="og:updated_time" content="2017-04-15T12:55:20.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lilililing">
+<meta name="twitter:description" content="Dockerdocker发展历程1.容器和Docker容器（container）：在linux中，容器技术是一种进程隔离的技术，应用可以运行在每个相互隔离的容器中。容器与虚拟机的区别：在容器中，各个应用共用一个kernelDocker：Docker是一家公司，在13年之前公司名叫 dotCloud，Docker仅仅是一个容器管理的产品。在13年，将Docker开源，Docker风靡全球，公司也更名">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/04/15/docker&微服务/"/>
+
+
+
+
+
+  <title>  | lilililing </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lilililing</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/docker&微服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/docker&微服务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/docker&微服务/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><h4 id="docker发展历程"><a href="#docker发展历程" class="headerlink" title="docker发展历程"></a>docker发展历程</h4><p><strong>1.容器和Docker</strong><br><strong>容器（container）：</strong>在linux中，容器技术是一种进程隔离的技术，应用可以运行在每个相互隔离的容器中。<br><strong>容器与虚拟机的区别：</strong>在容器中，各个应用共用一个kernel<br><strong>Docker：</strong>Docker是一家公司，在13年之前公司名叫 dotCloud，Docker仅仅是一个容器管理的产品。在13年，将Docker开源，Docker风靡全球，公司也更名为Docker。<br><strong>2.容器技术的演进</strong><br>1979年，有了容器技术的雏形，root技术的引进开启了进程隔离技术<br>2000年，FreeBSD Jails将计算机分为多个独立的小型计算系统。<br>2006年，谷歌 Process Containers技术，在进程隔离的基础上，进行了计算资源的限制<br>2008年<strong>，LXC，作为第一个完整的容器管理工具</strong><br>2013年，LMCTFY实现了linux应用程序的程序化，成为<strong>libcontainer</strong>的重要组成部分。<br>2013年，Docker最初使用的是LXC，后来被替换成libcontainer<br><strong>3. Docker技术的迅猛发展</strong><br>在开源之后迎来迅猛的发展，在现在也保持着迅猛的发展势头<br><strong>4. Docker技术发展迅猛的原因总结：</strong><br><strong>应用架构正在发生变革—微服务化</strong><br>在互联网时代，为了实现应用更快的开发迭代和更好的弹性伸缩，互联网应用不再采用传统的3层架构，而是采用微服务的方式，实现软件系统的松耦合，跨部门开发。<br><strong>基础架构系统也在发生变革—虚拟化、混合云</strong><br>从硬件服务器到虚拟机到企业私有云，从本地数据中心到灾备数据中心再到公有云。<br><strong>容器技术的作用</strong><br>一次封装，多次部署，随时迁移，不需要关注底层环境<br><strong>Docker定义的标准+服务应用</strong></p>
+<ul>
+<li>基础设施标准化（Docker Engine）：有了Docker Engine，可将Docker容器跑起来</li>
+<li>应用交付的标准化（Docker Image）:提供了一套应用快速打包为轻量级Docker Image的方法，开发人员在代码完成之后，可以将其打包为镜像；</li>
+<li>运维管理的标准化（Docker container）:运维人员不在需要将应用准备系统、运行环境、组件和基础软件包,容器时代，应用都运行在一个个的Docker container中。标准运维将关注容器，而不是复杂的系统环境。</li>
+<li>分发部署标准化（Docker Registry）：指的是<strong>容器化之后</strong>不同版本的应用镜像都存储在镜像仓库中。</li>
+</ul>
+<h4 id="容器技术精髓剖析"><a href="#容器技术精髓剖析" class="headerlink" title="容器技术精髓剖析"></a>容器技术精髓剖析</h4><p>1.namespace技术</p>
+<p><strong>namespace</strong>包含了六项隔离：</p>
+<ul>
+<li><strong>UTS</strong> ——独立的主机名与域名</li>
+<li><strong>IPC</strong> ——通信（信号量、消息队列和共享内容）</li>
+<li><strong>PID</strong> ——进程编号，通过PID技术，同个主机上的不同容器可以有相同的PID进程</li>
+<li><strong>Network</strong> ——网络设备、网络栈、端口、路由</li>
+<li><strong>Mount</strong> ——让容器拥有自己的文件系统</li>
+<li><strong>User</strong> ——用户和用户组，实现用户权限的隔离</li>
+</ul>
+<p>2.cgroups技术</p>
+<p>通过<strong>cgroups</strong>可以为容器设定系统资源的配额，包括CPU、内存、I/O等等。对于不同的系统资源，cgroups提供了统一的接口，对资源进行控制和统计。<br>限制的具体方式不尽相同，实际的流程很复杂。</p>
+<p>3.其他相关linux kernel技术</p>
+<p>-<strong>selinux和apparmor</strong>：增强对容器的访问控制<br>-<strong>capabilities</strong>：将超级用户root的权限分割成各种不同的capability权限，从而更严格地控制容器的权限。<br>-<strong>netlink</strong>：完成Docker的网络环境配置和创建<br>这些技术从安全、隔离、防火墙、访问等方面为容器的成熟落地打下了坚实的基础。</p>
+<p>4.lxc 和libcontainer（容器管理技术）</p>
+<p><strong>lxc</strong>是第一个完整意义上的容器管理技术。通过lxc可以方便的创建、启动和停止一个容器，还可以通过lxc来操纵容器中的应用，也可以查看容器的运行状态。<br>Docker的出现把lxc的复杂的使用方式简化为自己的一套体系。Docker后来开发了原生的libcontainer代替了lxc。</p>
+<p>libcontainer实际上反向定义了一组接口标准。</p>
+<ul>
+<li><strong>反向定义</strong>：libcontainer并不是为了调用底层的Linux Kernel技术而设计的，而是Linux Kernel技术符合了定义出来的libcontainer标准，Docker引擎才能运行起来。如果此后还有新技术符合这套标准，Docker引擎还是可以正常运行。<br>这样的设计思路为Docker的跨平台实现和全面化应用带来了可能。</li>
+</ul>
+<p>5.Docker技术原理</p>
+<p><strong>Docker构造：</strong></p>
+<p><strong>Client-Server</strong><br>Docker结构装好了Docker工具之后，也就同时装好了Client端和Server端。<br>Client端可以是Docker命令行工具，也可以是GitHub上开源的图形化工具（Kitematic UI）。通过Client工具可以发起创建、管理容器的指令到Server端。</p>
+<p><strong>Docker Daemon</strong></p>
+<p>Docker Daemon通过libcontainer、lxc管理技术来完成容器管理操作。<br>Docker Daemon的三个重要组件：</p>
+<ul>
+<li><strong>exec driver</strong>：存储了容器定义的配置信息，libcontainer拿到配置信息以后调用底层的namespace、cgroups等技术来完成容器的创建和管理。</li>
+<li><strong>network driver</strong>：完成容器网络环境的配置，包括了容器的IP地址、端口、防火墙策略，以及与主机的端口映射等。</li>
+<li><strong>graph driver</strong>: 负责对容器镜像的管理。</li>
+</ul>
+<h4 id="Docker核心技术"><a href="#Docker核心技术" class="headerlink" title="Docker核心技术"></a>Docker核心技术</h4><p>1.容器与虚拟机对比</p>
+<p>虚拟机和容器的结构对比</p>
+<p><strong>虚拟机</strong>下，是硬件→操作系统→Hypervisor→虚拟机操作系统→配置虚拟机依赖环境→安装App<br><strong>容器</strong>下，是硬件→操作系统→Docker Engine→运行所需要的依赖环境→安装App<br><strong>容器的运行不需要安装虚拟机的操作系统，是比虚拟机更加轻量的虚拟化技术。</strong><br>Docker和虚拟机对比的详细信息</p>
+<p>Docker容器共用一个Kernel，而虚拟机使用自己操作系统的Kernel→<strong>虚拟机拥有比Docker更好的隔离性。</strong></p>
+<p><strong>Docker有更多的优势</strong>：</p>
+<ul>
+<li>虚拟机操作系统的存在，占用了更多的计算资源；</li>
+<li>空间占用上，虚拟机是GB级，Docker可以小至几MB；</li>
+<li>Docker的启动时间更快（毫秒级）；</li>
+<li>Docker有更强的快速扩展能力、跨平台迁移能力</li>
+</ul>
+<p>2.Docker的重要概念：容器、镜像、仓库</p>
+<p><strong>容器</strong>：与虚拟机一样都是承载相关应用的载体</p>
+<p><strong>镜像</strong>：当容器安装了特定的应用之后，就可以将其打包成镜像。需要应用的时候，将镜像下载下来，就可以快速运行起来。</p>
+<p><strong>仓库</strong>：存储镜像的地方。</p>
+<p>3.Docker容器的使用</p>
+<p>3种状态：running、stopped、paused；与虚拟机的运行、关机、挂起相似。</p>
+<p>4.Docker镜像</p>
+<p>当把镜像下载到本地之后，可以使用Docker run的命令，启动一个基于这个镜像的容器。对容器修改之后，可以将其commit回去，生成一个新版本的镜像。</p>
+<p><strong>镜像的层级结构</strong></p>
+<p>Docker镜像是一种层级结构的文件系统，最上层往往是可写的，存储了已经运行的容器的修改信息当对容器进行kill的时候，修改信息就会被删掉。当容器被commit成镜像的时候，这些修改信息也会保存成新的层级。<strong>镜像的生成除了使用commit之外，还可以使用Dockerfile（更标准、更常用）。这种方式生成出来的镜像更加干净、透明。</strong></p>
+<p>5.Docker仓库</p>
+<p><strong>Dockerhub和私有仓库</strong></p>
+<p>Dockerhub是Docker的官方仓库，存放着各种官方的标准镜像。可以使用pull命令直接从Dockerhub中下载镜像到本地进行使用。</p>
+<p>还可以构建自己的镜像仓库，用于存放常用的镜像以及企业自定义的应用镜像。可以从私有仓库中下载、上传镜像。</p>
+<p>6.Docker核心技术–build，ship，run</p>
+<p>Docker的主要操作</p>
+<p>首先利用Dockerfile将代码组建成为一个镜像，然后将镜像上传到企业自定义的镜像仓库中。当我们需要镜像的时候，可以从<strong>任何地方</strong>连接到镜像仓库中，将镜像下载到本地（ship，我理解的），然后一键将其Run起来。<br>这就是”Build once, run everywhere”：一次构建，任何地方都能运行。</p>
+<p>7.Docker数据卷</p>
+<p>容器一旦关闭，修改信息就会丢失，这对于一些有状态的应用来说往往是不可接受的。<br>解决办法：可以通过<strong>给容器挂载文件目录或者存储</strong>来解决，从而可以存储容器运行中的一些数据。这样，当容器崩溃，重新启动容器的时候，依然可以访问之前容器存储下来的一些数据。这种方式也可以解决一些主机和容器之间的数据访问。</p>
+<p>8.Docker网络</p>
+<p>实现容器之间的通信、容器与外部之间的通信。<br>四种模式：</p>
+<ul>
+<li><strong>Bridged</strong>：表示容器可以与主机上的容器，主机外部进行通信</li>
+<li><strong>Host</strong>：表示容器只能与主机通信</li>
+<li><strong>Container</strong>：表示容器只能与容器通信</li>
+<li><strong>None</strong>：没有网络连接</li>
+</ul>
+<p>比较常用的是Bridged模式。主机会生成一个Docker网桥，每个容器可以拥有自己的虚拟网卡，容器网卡通过网桥连接到主机的物理网卡，与外部进行通信。</p>
+<h4 id="Docker平台架构"><a href="#Docker平台架构" class="headerlink" title="Docker平台架构"></a>Docker平台架构</h4><p><strong>1.容器编排（orchestration）</strong><br>这里的编排泛指广义的编排，用于管理容器下面的主机，管理容器以及日期之间的逻辑关系，即为我们所知的应用架构。</p>
+<ul>
+<li><strong>集群管理：</strong>【<strong>关键词：</strong>配置管理、资源视图、节点增删、高可用】</li>
+<li>容器调度：<strong>【关键词：容器部署、调度策略、互斥】</strong></li>
+<li>故障恢复：【关键词：主机检查、容器检查】</li>
+<li>应用编排：应用是一个个细微的容器来组成，每一个容器之间具有一定的逻辑关系，我们需要使用简单明了的编排语句将这些容器关联起来，比如容器之间的端口访问，容器的启动顺序等，从而实现整个应用的逻辑架构。</li>
+</ul>
+<p><strong>2.编排主流的3大工具</strong></p>
+<ul>
+<li>Swarm: Docker  2014年发布 内置于Docker，和compose一起使用</li>
+<li>Mesos: Apache  2007年发布 一般会结合marathon、Zookeeper一起使用 </li>
+<li>Kubernetes: Google 2014年发布 结合<strong>集群管理工具Etcd</strong>一起使用</li>
+</ul>
+<p><strong>3.负载均衡和服务发现</strong></p>
+<p><strong>负载均衡：</strong>请求到达负载均衡器之后，负载均衡器平均的分配到后面的容器上。</p>
+<p>常用的负载均衡的技术：<strong>haproxy,LVS,F5,Nginx</strong></p>
+<p><strong>服务发现</strong>：服务发现会自动将容器的配置信息上传至配置中心（config center），包含了容器的IP、端口、对外的域名等。</p>
+<p>常用的服务发现的技术：Etcd,Zookeeper,Consul负载均衡器周期性的从配置中心获取配置信息，并且将容器加入到相关的负载均衡访问架构中<br><strong>4.日志管理</strong><br><strong>日志：</strong>包含主机、编排工具、日志、容器、容器中的应用等等相关的日志<br><strong>对日志处理平台的要求：</strong>集中化、海量存储、灵活过滤、快速查询、伸缩性架构、高可用、强大的UI<br><strong>日志管理软件：</strong> <strong>ELK</strong>  </p>
+<p>ELK包含了<strong>3个组件:</strong><br>Logstash，用于收集各种各样的日志<br>ElasticSearch:主要用于存储和搜索日志<br>Kbana:用于界面展示的管理工具</p>
+<p><strong>5.Docker监控</strong><br>包括 主机 镜像 容器 应用等维度进行监控<br>并构建相关的告警,跟踪，监控等监控流程体系，即<strong>WANT原则</strong><br><strong>(Watching(监控)</strong>、<strong>Answer（响应）</strong>、<strong>Notify（通知）</strong>、<strong>Track（跟踪）</strong>，总结起来就是WANT)<br>常用的监控工具：Zabbix, Nagios, cAdvisor, Datadog, Scout等<br><strong>6.Docker平台架构</strong><br><strong>截图</strong><br><strong>平台层：</strong>底层需要对计算，网络，存储等资源进行管理，结合容器引擎和容器编排的工具实现对容器化应用的落地<br><strong>能力层：</strong>需要实现容器化应用的弹性架构，负载均衡等等，需要实现平台的统一监控和统一的日志管理，需要有严格的权限体系实现对用户、租户的管理，需要结合当前的<strong>DevOps理念</strong>来实现对应用的持续交付和版本控制<br><strong>最上层：</strong>平台还需提供应用的Web UI和功能齐全的API服务</p>
+<p><strong>7.Docker平台技术体系</strong><br><strong>Orchestration(编排): </strong>Swarm, Kubernetes, Mesos<br><strong>Cluster Management(集群管理):</strong> Etcd, Zookeeper, Haproxy<br><strong>CI/CD(持续集成):</strong> Jenkins, GitLab, Registry<br><strong>Database(数据库):</strong> redis, MySQL, mongoDB<br><strong>ELK&amp;CMDB(日志和配置管理):</strong> Logstash, Chef, puppet<br><strong>Monitor(监控):</strong> ZABBIX, Nagios, sysdig</p>
+<h4 id="Docker三大编排工具"><a href="#Docker三大编排工具" class="headerlink" title="Docker三大编排工具"></a>Docker三大编排工具</h4><p><strong><u>1.Mesos</u></strong></p>
+<p>两个重要角色，<u>slave</u>：安装在集群节点上；<u>master</u>：集群的管理节点；slave将节点的资源使用情况周期性地报告给master节点。</p>
+<p><strong>最小单元是容器</strong></p>
+<p>Mesos配合架构的FrameWork进行资源调度，过程如下：</p>
+<p>【有图】</p>
+<p>1）master将计算机节点的资源使用情况周期性地报告给FrameWork Scheduler</p>
+<p>2）FrameWork Scheduler进行调配后，下发部署的任务给集群节点 </p>
+<p>3）节点上的FrameWork Executor获取任务进行容器的部署</p>
+<p>4）节点将部署结果反馈给master</p>
+<p>5）master将更新主机资源的状态给FrameWork Scheduler</p>
+<ul>
+<li><strong>Mesos + Marathon + Zookeeper</strong>构建Docker平台</li>
+</ul>
+<p>Marathon是可以调用Docker引擎的FrameWork，可以将容器按照一定的调度策略部署到合适的主机上；</p>
+<p>Zookeeper管理Marathon和Mesos，保证节点的高可用性，即当master节点宕机后，可以快速选取新的master节点，而不影响逻辑架构。其本身是一个分布式的高可用架构。</p>
+<p><strong><u>2.Kubernetes</u></strong>（谷歌的开源容器管理项目）</p>
+<p>mesos中最小单元是容器，Kubernetes中最小单元是<strong><u>Pod</u></strong>，容器被封装在Pod中，一个Pod中可以存放一个或多个容器。<u>同一个Pod中，容器可以直接访问另一个容器；存储目录挂载到一个容器下，同一个Pod中的另一个容器也可以访问这个存储。</u></p>
+<p><strong>Pod的设计目的是：将需要紧密联系的Docker容器放置在一个独立的空间内（Pod）。</strong></p>
+<p><strong>整体架构</strong></p>
+<ul>
+<li>部署Kubernetes前，先部署Etcd作为集群的管理工具。</li>
+</ul>
+<p>Kubernetes的两个重要角色：minion（普通节点） master（管理节点）</p>
+<ul>
+<li>minion节点上的Kubernetes结合Etcd 和cAdvisor将节点信息汇总到master节点中；</li>
+<li>master节点中schduler使用一定的调度策略将Pod调度到minion节点上；使用replication controller控制Pod的数量和伸缩；使用service来分配Pod的ip和处理负载均衡；master提供了统一的访问接入口，可以通过外部或者commands对Kubernetes进行管理</li>
+<li>通过Kubernetes各个组件的配合，可以实现容器的资源调度、部署启动、服务发现、运行监控、错误处理、扩容缩容</li>
+</ul>
+<p><strong><u>3.Swarm</u></strong>（Docker公司的容器集群管理工具）</p>
+<p>Docker1.12 版本之后，Swarm已经封装进Docker引擎。装好Docker之后无需单独安装Swarm.</p>
+<p>Swarm的两个重要角色 manager node 和worker node</p>
+<p>自带服务发现功能，可以做到manager node的高可用性，其内置的负载均衡技术 使用LVS，同时依然支持其他服务发现的工具(Etcd等)</p>
+<p><strong><u>4.三大平台对比</u></strong></p>
+<p>【表格截图】</p>
+<h4 id="Docker生态圈及企业应用案例"><a href="#Docker生态圈及企业应用案例" class="headerlink" title="Docker生态圈及企业应用案例"></a>Docker生态圈及企业应用案例</h4><p><strong>1.应用场景：快速交付与CICO</strong><br>企业应用的开发上线流程一般是：代码、构建编译、测试、发布、部署<br>遇到的问题：可能因为环境的问题导致上线延迟，测试不通过等。<br><strong>快速交付：</strong>Docker，通过Docker可以大大的提高环境交付的质量和速度，开发人员写好代码之后，交付的不在是一大堆的部署文档，而是一个个的镜像存储到镜像仓库中。在测试环境、预生产环境以及生产环境将镜像仓库中的镜像拉取出来即可。保证部署出来的所有应用都是标准的、统一的。即为实现了应用的<strong>快速交付。</strong><br><strong>CICD：</strong>持续集成和持续部署（Constant Integration Constant Deployment）当我们的代码更新时，开发人员可以构建一个新的镜像版本到镜像仓库中，运维人员可以快速的将我们的镜像应用到测试环境、预生产环境以及生产环境。甚至可以通过gen case实现整个更新的自动化，从而实现了持续集成持续部署，实现了应用开发环境的快速迭代。<br><strong>2.应用场景：云间迁移</strong><br>应用容器化之后，对底层环境的要求将大大的降低，应用可以实现从本地数据中心到AWS（亚马逊云），阿里云、公有云等迁移<br><strong>3.应用场景：弹性扩展</strong><br>企业应用容器化之后，应用的扩展就是拉取镜像部署更多容器的简单过程，可以部署相关的监控系统，当发现应用访问慢或者是资源紧张的时候，在弹性扩展的策略下，应用会自动增加相应的容器实例，从而减轻应用访问的压力。当集群中的主机资源不足的时候，还可以使用IaaS接口，自动的增加主机的数量，以便于创建更多的Docker容器。<br><strong>4.应用案例：</strong>平安Padis平台，京东618（基于openstack和Docker）、天猫双十一<br><strong>5.Docker巨大生态势能</strong><br>从安全架构领域，操作系统领域、网络、存储、安全、安全、监控、日志等方面，越来越多的公司卷入到Docker的发展潮流当中。<br><strong>6.基于Docker的产品：</strong>红帽openshift、阿里云容器服务、Azure容器服务、网易蜂巢、道客云、有容云、希云、时速云等</p>
+<h3 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h3><h4 id="单体架构到微服务架构演进"><a href="#单体架构到微服务架构演进" class="headerlink" title="单体架构到微服务架构演进"></a>单体架构到微服务架构演进</h4><p>1.Monolithic单体式架构解析<br>Monolithic单体式架构指的是尽管是模块化逻辑，但是最终还是会打包并且部署为一个<strong>单一应用</strong>，具体的格式依赖于具体的语言和框架，例如，部分java应用会被大包围WAR格式，部署在Tomcat上或者JIT上，而另外一些java应用会被打包为自包含的jar格式，同样，Reals和node.js会被打包为层级目录。</p>
+<p>2.Monolithic单体式架构的优缺点<br>优点：开发工具IDE和其他工具都擅长开发一个简单应用，这类应用也很易于调试和部署。只需要把打包应用拷贝到服务器端，通过在负载均衡器后端运行多个拷贝，就可以轻松实现多个扩展<br>缺点：单体式架构一旦随着时间的推移，逐渐的变大，敏捷开发和部署举步维艰。任何单个开发者都很难搞懂它。修正bug和正确的添加新功能变得非常困难且很耗时。</p>
+<p>3.Monolithic单体式架构面临的挑战<br>随着市场变化快用户需求变化快、用户访问量增加的同时，单块架构应用的维护成本、人员的培养成本、缺陷修复成本、技术架构演进的成本、系统扩展成本等都在增加。单块架构的曾经的优势已逐渐不在适应互联网时代的快速变化。<br>4.微服务架构模式倡导的做法<br>Microservice微服务架构是一种架构模式，提倡将Monolithic单体式架构应用分为一系列小的服务，服务之间相互协调，相互配合，为用户提供服务。<strong>每个服务运行于其独立的进程中</strong>，服务之间采用轻量级的协议进行通信，每个服务都围绕着具体业务进行构建，并能够独立部署。<br>微服务架构的优点：每个服务能够内聚，代码容易理解，开发效率高，服务之间可以独立部署，使得持续部署成为可能，容易针对每个服务组件开发团队，容错性也大大提高。<br>5.向微服务架构演进的推荐顺序<br>先规划，然后是中间件和数据库，最后是服务和应用</p>
+<h4 id="基于Docker的微服务应用架构设计"><a href="#基于Docker的微服务应用架构设计" class="headerlink" title="基于Docker的微服务应用架构设计"></a>基于Docker的微服务应用架构设计</h4><p>设计模式—-“<strong>12-factor</strong>”</p>
+<p>为构建如下SaaS应用提供了方法论：使用标准化流程自动配置，从而使得新的开发者花费最少的成本加入这个项目，与操作系统间尽可能划清界限，在各个系统中提供最大的可移植性，适合部署在现在的云计算平台，从而在服务器和 系统管理方面节省资源；</p>
+<p>将<strong>开发环境与可生产环境的差异降至最低</strong>，并使用持续交付实现敏捷开发，可以在工具、架构、开发流程不发生明显变化的前提下实施扩展。</p>
+<ul>
+<li><p><strong>基准代码</strong></p>
+<p>基准代码与应用间总是保持一一对应关系：一旦有多个基准代码，就不能称之为一个应用，而是一个分布式系统。分布式系统中的每一个组件都是一个应用，每个应用可以使用12-factor进行开发。</p>
+<p><strong>多个应用共享一份基准代码是有悖12-factor原则的，解决方案是将基准代码拆分为独立的类库，然后使用依赖管理策略去使用管理</strong>。</p>
+</li>
+<li><p><strong>（显式声明）依赖关系</strong></p>
+<p>应用程序不会隐式依赖系统级的类库，一定是通过依赖清单，确切地声明所有依赖项。</p>
+<p>此外，在运行过程中通过依赖项隔离工具确保程序不会调用系统中存在但清单中未声明的依赖项。该做法统一应用到生产和开发环境中。</p>
+</li>
+<li><p><strong>配置（config）</strong></p>
+<p>推荐<strong>将应用的配置存储在环境变量</strong>中，环境变量可以方便地在部署之间做修改，而不改动一行代码；与配置文件不同，将其嵌入代码库的概率微乎其微；与传统的解决配置问题的机制如java的属性配置文件相比，环境变量与语言和系统无关。</p>
+</li>
+<li><p><strong>后端服务</strong></p>
+<p>12-factor不会区别对待本地或第三方服务，对应用程序而言，两者都是附加资源。</p>
+<p>12-factor应用支持任意部署，如在不改动代码的情况下，将本地的mysql数据库换成第三方服务（如亚马逊）</p>
+</li>
+</ul>
+<h4 id="基于容器的微服务架构剖析"><a href="#基于容器的微服务架构剖析" class="headerlink" title="基于容器的微服务架构剖析"></a>基于容器的微服务架构剖析</h4><ol>
+<li>Docker本质<br>Docker是一个微容器，一个云计算的微pass容器，类似jvm(Java Virtual Machine，Java虚拟机),比其更加强大，<strong>直接基于Linux内核</strong>；<br>比VM虚拟机更加轻量，能够在Linux、云计算、IS等平台上直接运行，带着你的应用无缝的移植到各种运行环境。<br><strong>Docker本质是一个允许创建镜像，并让镜像的实例运行在容器中的软件。</strong><br>所谓镜像往往包含了很多步骤，就像虚拟机的模板一样。</li>
+<li>Docker流行因素<br>依赖设计做的不到位，最后只能在运行阶段依靠docker这样的微容器松耦合，Docker的细粒度松耦合能用一个docker 容器装载一个场景功能。也就是按照功能角色分类。<br>每个Docker里面装一个服务或应用，一个服务器上可以运行多个Docker。系统级的服务比如Mysql数据库、memcash缓存</li>
+<li>集群分布微服务<br>业务应用系统可以应用微服务进行分类，每个Docker中运行一个微服务，</li>
+<li>Docker对传统Paas平台的挑战<br>Docker比java ee服务器更强的地方在于，Docker基于Linux内核，可以装载各种语言应用，是一种崭新的PaaS微平台。</li>
+<li>Docker的安全性<br>Docker利用容器将资源进行有效隔离。与Linux操作系统和hypervisor有相同的安全运行管理和配置管理级别。</li>
+</ol>
+<h4 id="微服务云架构管理"><a href="#微服务云架构管理" class="headerlink" title="微服务云架构管理"></a>微服务云架构管理</h4><ol>
+<li>微服务简化<br>微服务架构带来了诸多优势，构建、部署、维护分布式的微服务系统并不容易。而<strong>容器所提供的的轻量级面向应用的虚拟化运行环境为微服务提供了理想的载体</strong>。<br>基于容器技术的云服务将极大的简化容器化微服务创建、集成、部署、运维的整个流程，从而推动微服务在云端的大规模实践。</li>
+<li>微服务创建<br>假设用户的微服务程序，存储于GitHub等代码托管服务中，用户可以将这个代码仓库构建成容器镜像，并保存在镜像仓库中，用户可以将这个微服务一键部署到容器云平台。<br>云平台提供了持续集成的功能，用户可以选择是否使用。每当微服务的代码有变化时，就构建一个新的容器镜像以便以后部署使用。</li>
+<li><strong>微服务集成</strong><br>用户可以自由组合、复用数以万计的容器化微服务，像搭积木一样轻松集成应用；<br>比如，用户需要一个通用的Mysql数据库服务，无需构建镜像，可以直接在镜像仓库中选择适合的数据库服务镜像，并与其微服务链接起来；</li>
+<li>微服务部署<br>微服务由于组件数量众多，云端部署成为实践上的一个难点<br>容器云平台容器为应用发布的载体，用户不必指定传统部署方式中的繁琐的步骤，只需提供容器镜像和简单的容器配置，平台会将整个部署流程自动化。</li>
+<li>微服务运维<br>微服务由于独立进程众多，部署后的运维、管理成为实践的另一个难点；<br>容器云平台完全屏蔽<strong>底层云主机和基础架构运维</strong>，让用户专注于应用；<br>通过容器编排，自动恢复，自动扩展，监控日志，等高级应用生命周期服务，实现容器化微服务的智能托管；进一步帮助用户降低运维成本。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/15/云计算/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/15/NFV/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/15/docker&微服务/"
+           data-title="" data-url="http://cuteCoderLee.github.io/2017/04/15/docker&微服务/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG"
+               alt="liling" />
+          <p class="site-author-name" itemprop="name">liling</p>
+           
+              <p class="site-description motion-element" itemprop="description">做一个有趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cuteCoderLee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker"><span class="nav-number">1.</span> <span class="nav-text">Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#docker发展历程"><span class="nav-number">1.1.</span> <span class="nav-text">docker发展历程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器技术精髓剖析"><span class="nav-number">1.2.</span> <span class="nav-text">容器技术精髓剖析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker核心技术"><span class="nav-number">1.3.</span> <span class="nav-text">Docker核心技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker平台架构"><span class="nav-number">1.4.</span> <span class="nav-text">Docker平台架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker三大编排工具"><span class="nav-number">1.5.</span> <span class="nav-text">Docker三大编排工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker生态圈及企业应用案例"><span class="nav-number">1.6.</span> <span class="nav-text">Docker生态圈及企业应用案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务"><span class="nav-number">2.</span> <span class="nav-text">微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单体架构到微服务架构演进"><span class="nav-number">2.1.</span> <span class="nav-text">单体架构到微服务架构演进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于Docker的微服务应用架构设计"><span class="nav-number">2.2.</span> <span class="nav-text">基于Docker的微服务应用架构设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于容器的微服务架构剖析"><span class="nav-number">2.3.</span> <span class="nav-text">基于容器的微服务架构剖析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#微服务云架构管理"><span class="nav-number">2.4.</span> <span class="nav-text">微服务云架构管理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liling</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cuteCoderLee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

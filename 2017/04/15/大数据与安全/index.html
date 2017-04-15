@@ -1,0 +1,867 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="大数据概述大数据通常用来形容过一个公司创造的大量非结构化和半结构化数据，主要四个维度（volume velocity variety value）。
+大数据定义：指无法在可承受范围的时间内用硬软件进行捕捉、管理和处理的数据集合，需要新处理模式才能使该数据集合称为具有更强决策力、洞察力和流程优化等能力的海量、多样化信息资产。
+分类：
+结构化数据；可以存储在数据库中，可以用二维表来逻辑表达实现的数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lilililing">
+<meta property="og:url" content="http://cuteCoderLee.github.io/2017/04/15/大数据与安全/index.html">
+<meta property="og:site_name" content="lilililing">
+<meta property="og:description" content="大数据概述大数据通常用来形容过一个公司创造的大量非结构化和半结构化数据，主要四个维度（volume velocity variety value）。
+大数据定义：指无法在可承受范围的时间内用硬软件进行捕捉、管理和处理的数据集合，需要新处理模式才能使该数据集合称为具有更强决策力、洞察力和流程优化等能力的海量、多样化信息资产。
+分类：
+结构化数据；可以存储在数据库中，可以用二维表来逻辑表达实现的数据">
+<meta property="og:updated_time" content="2017-04-15T08:00:22.862Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lilililing">
+<meta name="twitter:description" content="大数据概述大数据通常用来形容过一个公司创造的大量非结构化和半结构化数据，主要四个维度（volume velocity variety value）。
+大数据定义：指无法在可承受范围的时间内用硬软件进行捕捉、管理和处理的数据集合，需要新处理模式才能使该数据集合称为具有更强决策力、洞察力和流程优化等能力的海量、多样化信息资产。
+分类：
+结构化数据；可以存储在数据库中，可以用二维表来逻辑表达实现的数据">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/04/15/大数据与安全/"/>
+
+
+
+
+
+  <title>  | lilililing </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lilililing</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/大数据与安全/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/大数据与安全/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/大数据与安全/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="大数据概述"><a href="#大数据概述" class="headerlink" title="大数据概述"></a>大数据概述</h3><p>大数据通常用来形容过一个公司创造的大量非结构化和半结构化数据，主要四个维度（volume velocity variety value）。</p>
+<p>大数据定义：指无法在可承受范围的时间内用硬软件进行捕捉、管理和处理的数据集合，需要新处理模式才能使该数据集合称为具有更强决策力、洞察力和流程优化等能力的海量、多样化信息资产。</p>
+<p><strong>分类：</strong></p>
+<p>结构化数据；可以存储在数据库中，可以用二维表来逻辑表达实现的数据</p>
+<p>半结构化数据；介于结构化与半结构化之间的数据，如HTML文档</p>
+<p>非结构化数据；不方便用数据库二维表表达的数据，包括所有格式的办公文档，文本图片，XML，HTML，各类报表音频、视频、图像等</p>
+<p><strong>大数据带来的挑战：</strong>（1）网络架构：传统网络架构对南北向（纵向）的网络流量需求支持良好，但不适配大数据应用对东西流量的需求，为了满足东西向流量（横向）的需求，要对传统网络架构进行重构。</p>
+<p>（2）数据中心：传统数据中心里计算存储等各个子系统相互独立，用于大数据处理的数据中心需要更高的资源利用率，同时访问压力大，需要使用虚拟化、云计算等技术为这些子系统进行拉通整合。</p>
+<p>（3）数据仓库：不适应非结构化数据和半结构数据的处理需求。</p>
+<p><strong>大数据与云计算的关系：</strong></p>
+<p>云计算是底层平台，大数据是应用。</p>
+<p>云计算作为底层平台，整合了计算、存储、网络等资源，同时提供基础架构资源弹性伸缩能力。</p>
+<p>大数据在云计算平台的支撑下，调度下层资源进行数据源加载，计算和最终结果输出等动作。</p>
+<p>CRM BI BOSS</p>
+<h3 id="电信大数据应用"><a href="#电信大数据应用" class="headerlink" title="电信大数据应用"></a>电信大数据应用</h3><p>1.大数据给电信行业的机会与挑战</p>
+<p>挑战1：电信行业生产圈的信息产业遇到了革命性的变化。运营商相关业务的发展更加依赖数据，如传统的语音 窄宽 带宽数据以及超宽带 数字经济等相关业务的数据数据量越来越大。</p>
+<p>挑战2：OTT 虚拟运营商的介入。使得运营商竞争环境更加的复杂和激烈</p>
+<p>挑战3：客户消费模式的改变。需要大数据分析深入洞察用户的需求，进行定制化的服务，改善客户体验</p>
+<p>挑战4：提升精细化的管理水平。以数据为中心的运营支撑一体化、精细化成为必然趋势，数据将成为企业的核心资产。</p>
+<ol>
+<li>电信行业大数据典型商业需求</li>
+</ol>
+<p>大数据的总体目标是构建统一的数据采集与整合能力，大数据分析处理能力，计算及数据服务能力，大数据应用能力和互联网化得数据开放能力，支撑业务创新与商业成功。</p>
+<p>（1） <strong>延长用户生命周期</strong>—-大数据建模支撑用户全生命周期的营销和维系</p>
+<p>（2） <strong>提升业务使用量</strong>—-基于大数据的营销体系有效运作、支撑多批次、小群体、高成功率、多用户触点的营销</p>
+<p>（3） <strong>对外价值变现</strong>—-实现对外合作、MR数字轨迹形成商业价值</p>
+<ol>
+<li>常见应用场景</li>
+</ol>
+<p>（1） <strong>潜在离网用户维挽场景</strong></p>
+<p>通过大数据的用户管理，对潜在的离网用户进行数据分析。通过大数据实现用户管理、营销策划、营销实施和闭环反馈的拉通。当海量用户数据来了之后，用大数据平台对所有用户进行分类、识别和管理。用户识别之后，根据用户大数据分析结果触发营销策略。对用户在内部进行渠道选择，匹配相应的资源套餐，通过用户的选择来进行效果的反馈。</p>
+<p>（2） <strong>综合网管分析平台</strong>—基站关联分析场景</p>
+<p>根据离网用户的位置轨迹，用户的业务行为，基站地图以及基站网络质量KPI获得数据源，然后进行大数据的建模分析，判断离网用户是否与其常出没的基站存在关联，进而输出质差基站列表、基站供需平衡度、经常出没已识别质差以及基站的未离网用户列表。最后确定可服务的商用场景。</p>
+<p>（3） <strong>数据变现场景</strong>：户外数字媒体/非数字媒体价值评估场景</p>
+<p>户外媒体行业缺乏受众测量方法</p>
+<p>户外数字媒体/非数字媒体价值评估场景—-需求分析、相关数据分析、广告屏分析得出结果输出</p>
+<ol>
+<li>电信运营商大数据应用方向</li>
+</ol>
+<p>以前电信运营商的主要收入来源：语音、短信业务，未来：数字化服务收入时代</p>
+<p>需要建设大数据平台支撑：（1）自有业务收入提升（2）非通信价值变现，进而使运营商的业务数字化。</p>
+<h3 id="安全产品"><a href="#安全产品" class="headerlink" title="安全产品"></a>安全产品</h3><p>Eudemon8000E防火墙产品</p>
+<h4 id="防火墙技术"><a href="#防火墙技术" class="headerlink" title="防火墙技术"></a>防火墙技术</h4><p>用来防范攻击、过滤报文</p>
+<p><strong>报文过滤</strong>：防火墙通过域来表示不同的网络，通过将防火墙接口加入不同安全域，对域进行划分，并在安全区域之间启动安全检查（称为安全策略），从而对流经不同安全区域的信息流进行安全过滤。</p>
+<p><strong>防火墙默认的四个安全区域</strong>（数字对应优先级）</p>
+<p>防火墙可以划分不同级别的安全策略，优先级从1-100</p>
+<p>本地区域（Local）：100</p>
+<p>受信区域（Trust）：85</p>
+<p>非军事区（DMZ）：50</p>
+<p>非受信区（Untrust）：5</p>
+<p><strong>数据流方向定义</strong>：从低优先级区域到高优先级方向为<u>入方向</u></p>
+<p><u>包过滤</u>：根据源/目的IP或MAC地址、协议、端口号、报文优先级、服务类型等</p>
+<p><u>过滤的处理结果</u>：允许（permit）  或  拒绝（deny）</p>
+<p>提高报文转发效率的方式：<u>首包检查机制</u>  对于一条数据流（IP 端口号 协议都相同的流）只对第一个报文进行检查不检查后续报文。</p>
+<p>严格的安全检查策略限制 非信任区传递数据到信任区</p>
+<p><strong>会话表机制</strong></p>
+<p>解决问题：一般情况下，允许trust区域到非trust区域，反过来需要定制严格的安全检查策略。</p>
+<p>内网用户访问公网服务器，对该数据包的源、目的IP，源、目的端口号，协议号（<strong>五元组</strong>）进行记录；返回的流量与会话表进行匹配，若命中，则不进行安全检查，直接返回内网。若外网服务器主动访问内网，没有会话表，若安全检查不通过，则不允许其访问。</p>
+<p><strong>ASPF（Application Specific Packet Filter）基于状态的报文过滤</strong></p>
+<p>解决问题：对于特殊的软件（如QQ、FTP服务器），<strong>用户发起的端口号与服务器回应的端口号不一致</strong>，无法返回数据。对常用的端口号进行统计，针对常见的协议。</p>
+<p><strong>主、备防火墙</strong></p>
+<p>平时出入数据通过主防火墙，主防火墙有会话表；但是备防火墙没有会话表，主防火墙故障之后备防火墙无法对互联网返回的数据进行检查通过。</p>
+<p>解决方法，利用HRP协议（华为备份协议）将主防火墙会话表和关键配置信息备份到备防火墙。</p>
+<h3 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h3><p>信息：数据/信息流</p>
+<p>信息安全三属性（CIA）</p>
+<ul>
+<li>保密性（confidentiality）：只有授权用户可以获取信息</li>
+<li>完整性（integrity）：信息在输入和传输过程中不被非法授权、修改和破坏，保证一致性</li>
+<li>可用性（availability）：保证合法用户对信息和资源的使用不会被不正当拒绝</li>
+</ul>
+<p>IATF 深度防御保障模型，阐述了系统工程、系统采购、风险管理、认证和鉴定以及生命周期等过程</p>
+<p>三分技术，七分管理</p>
+<p>信息安全管理体系（ISMS）ISMS是由ISO27000定义的一种有关信息安全的管理体系，是一种典型的基于风险管理与过程方法的管理体系。周期性的风险评估，内部审核，有效性测量，管理评审是ISMS规定的四个必要活动，能确保ISMS进入良性循环，持续自我改进。</p>
+<h4 id="信息安全审计"><a href="#信息安全审计" class="headerlink" title="信息安全审计"></a>信息安全审计</h4><ul>
+<li><p>风险、信息安全风险的概念</p>
+<p>风险：指事态的概率及其结果的组合</p>
+<p>信息安全风险：指认为或自然的威胁利用信息系统及其管理体系中存在的脆弱性导致安全事件的发送及其组织造成的影响。（例如：棱镜门事件）</p>
+</li>
+</ul>
+<ul>
+<li><p>风险的构成</p>
+<p>包括五个方面：起源（威胁源）、方式（威胁行为）、途径（脆弱性）、受体（资产）和后果（影响）</p>
+</li>
+</ul>
+<ul>
+<li><p>风险相关术语</p>
+<p><strong>资产</strong>：任何对组合有价值的东西，要保护的对象，以多种形态存在</p>
+<p><strong>威胁</strong>：可能导致对系统或组织危害的不希望事故潜在起因，是引起风险的外因。威胁源采取适当的威胁方式才可能引发风险。</p>
+<p><u>常见威胁源</u>：操作失误、滥用授权、行为抵赖、身份假冒、口令攻击、密钥分析、漏洞利用、拒绝服务、窃取数据、物理破坏、社会工程等</p>
+<p><strong>脆弱性</strong>：可能被威胁所利用的资产或若干资产的薄弱环节，是造成风险的内因。脆弱性本身不对资产构成危害，会被威胁源利用，从而对信息资产造成危害。</p>
+<p>如：系统程序代码缺陷、系统安全配置错误、系统操作流程有缺陷、维护人员安全意识不足</p>
+<p><strong>可能性</strong>：某件事发生的机会，代表威胁源利用脆弱性造成不良后果的机会</p>
+</li>
+</ul>
+<ul>
+<li><p>风险的概念</p>
+<p>风险：威胁源采用某种威胁方式利用脆弱性造成不良后果的可能性，即威胁源采用威胁方式利用脆弱性造成风险。</p>
+</li>
+</ul>
+<ul>
+<li><p>信息安全审计</p>
+<p>是依据有关信息安全技术与管理标准，对信息系统及由其处理、传输和存储的信息的保密性、完整性和可用性等安全属性进行评价的过程。是揭示信息安全风险的最佳手段，改进信息安全现状的有效途径，满足信息安全合规要求的有效方式。</p>
+</li>
+</ul>
+<h4 id="信息安全标准"><a href="#信息安全标准" class="headerlink" title="信息安全标准"></a>信息安全标准</h4><h4 id="信息安全现状"><a href="#信息安全现状" class="headerlink" title="信息安全现状"></a>信息安全现状</h4><p>1.计算机病毒：编制者在计算机程序中插入的破化计算机功能或数据的代码，能影响计算机使用，能自我复制的一组计算机指令或程序代码</p>
+<p>2.系统漏洞：应用软件或操作系统软件在逻辑设计上的错误或缺陷</p>
+<p>3.黑客：热心于计算机技术、水平高超的闯入计算机系统或者网络系统者，热衷于从事恶意破解商业软件、恶意入侵别人网站等事务</p>
+<p>信息安全问题根源</p>
+<p>内因：信息系统本身的脆弱性</p>
+<p>外因：人为与环境的威胁和破坏因素</p>
+<p>发展阶段</p>
+<p>1.通信安全：信息和保密性。诞生于20世纪40~70年代。</p>
+<p>核心思想是通过密码技术解决通信保密，保证数据的保密性和完整性，主要关注传输过程中的数据保护。</p>
+<p>安全威胁：搭线窃听、密码学分析。</p>
+<p>安全措施：加密技术。</p>
+<p>2.计算机安全：诞生于20世纪70-90年代，主要关注保护计算机安全。</p>
+<p>核心思想是预防、检测和减小计算机系统（包括软件和硬件）执行未授权活动所造成的后果，主要关注与数据处理和存储时的数据保护。</p>
+<p>安全威胁：非法访问、恶意代码、脆弱口令等</p>
+<p>安全措施：通过操作系统的访问控制技术来防止非收取用户的访问</p>
+<p>3.信息系统安全：随着信息化的不断深入，互联网的出现需要用到信息系统，主要涉及到保密性、完整性、可用性等。诞生于20世纪90年代后。</p>
+<p>核心思想是综合通信安全和计算机安全，重点在于保护比数据更精炼的信息，确保信息在存储、处理和传输过程中免受偶然或恶意的非法泄密、转移和破坏。</p>
+<p>安全威胁：网络入侵、病毒破坏、信息对抗等</p>
+<p>安全措施：防火墙、防病毒、漏洞扫描、入侵检测、PKI、VPN等</p>
+<p>4.信息安全保障：提升到一个可靠的、有利的保障企业安全运作、国家安全。</p>
+<p>核心思想信息安全从技术扩展到管理，从静态扩展到动态，通过技术、管理和工程等措施的综合融合，形成对信息、信息系统乃至业务使命的保障。</p>
+<p>安全威胁：黑客、恐怖分子、信息战、自然灾害、电力中断等。</p>
+<p>安全措施：技术安全保障体系、安全管理体系、人员意识培训等。</p>
+<h4 id="信息安全发展趋势"><a href="#信息安全发展趋势" class="headerlink" title="信息安全发展趋势"></a>信息安全发展趋势</h4><p>云计算和软件开源</p>
+<p>勒索软件 钓鱼攻击 </p>
+<h4 id="云安全框架"><a href="#云安全框架" class="headerlink" title="云安全框架"></a>云安全框架</h4><p>云安全框架与传统安全技术框架大体类似，需要<strong>纳入虚拟化的安全防护</strong>措施，在<strong>基础层面上仍需要依靠成熟可靠的传统安全技术</strong>提供安全防护。</p>
+<p>云安全聚焦在<u>应用安全</u>，应用安全聚焦在1）应用安全架构2）软件开发生命周期3）工具和服务4）合规性5）脆弱性</p>
+<p><u><strong>加密和密钥管理</strong></u>  用于保护数据的核心机制，加密提供了资源保护功能，密钥管理提供了对受保护资源的访问控制，聚焦在加密的机密性、完整性和密钥管理。避免数据丢失或窃取</p>
+<p><u><strong>身份和访问管理</strong></u>  安全有效的云身份和访问管理是企业部署云计算体系的前提。身份和访问管理聚焦在<strong>身份供应和取消供应、认证联盟、授权和用户配置文件管理</strong>。合规是整个过程的关键考虑因素</p>
+<p><strong><u>虚拟化</u></strong>  聚焦在<strong>虚拟机管理程序</strong> 关注虚拟化和硬件相关的安全问题</p>
+<p><strong>传统的物理安全、业务连续性（BCP）和灾难恢复（DR）</strong></p>
+<h4 id="网络安全攻防"><a href="#网络安全攻防" class="headerlink" title="网络安全攻防"></a>网络安全攻防</h4><p>OSI安全体系结构定义了系统应当提供的五类安全服务，以及提供这些服务的八类安全机制；</p>
+<p><u><strong>五类安全服务</strong></u>是：鉴别、访问控制、数据机密性、数据完整性和抗抵赖性</p>
+<p><u><strong>八类安全机制</strong></u>分别包括：加密、数字签名、访问控制、数据完整性、鉴别、流量填充、路由控制和公证</p>
+<p><strong>网络协议安全问题</strong></p>
+<p><u>网络接口层</u>安全问题常见的有：自然灾害、误操作、传输线路电磁泄露、ARP欺骗等；</p>
+<p><u>网络互连层</u>安全问题常见的有：分片攻击、IP地址欺骗、窃听和IP数据包伪造<u>传输层</u>安全问题常见的有：SYN洪水攻击、TCP会话劫持、数据包伪造等</p>
+<p><u>应用层</u>安全问题常见的有：跨站点脚本、钓鱼攻击、cookie欺骗、数据泄露等</p>
+<p><strong>无线局域网安全问题</strong></p>
+<p>安全问题：传输信道开放、容易接入、开放式认证系统、易于伪造的SID、无保护任意接入；开放式认证系统、共享密钥认证（使用WAP进行保护，手动管理密钥存在重大隐患）</p>
+<p><strong>网络安全设备—防火墙</strong>firewall</p>
+<p><strong>防火墙是位于多个网络间，实施网络之间访问控制的一组组件集合</strong></p>
+<p>防火墙功能：能在网络连接点上建立一个安全控制点，对进出网络数据进行限制，将需要保护的网络与不可信任的网络进行隔离，隐藏信息，并对进出进行安全防护，以及对进出数据进行安全检查、记录相关信息。</p>
+<p>防火墙的局限性：只实现了粗粒度的访问控制，不能防范病毒</p>
+<p><strong>入侵检测系统</strong></p>
+<p>作用：防火墙重要补充，构建网络安全防御体系重要环节，能够克服传统网络防御体系的限制。</p>
+<p>功能：检测并分析用户系统活动，检测系统配置和漏洞，对操作系统进行日志管理，并识别违反安全策略的用户活动，针对已发现的攻击行为作出适当的反应。</p>
+<p>局限性：配置操作和管理使用较为复杂，高虚报警域。</p>
+<p><strong>网络架构安全网络</strong></p>
+<p>新系统的基础支撑环境，网络架构安全核心是保护网络和基础设施，核心目的是通过增加系统的防御屏障或将各层之间的漏洞错开的方式防范差错方式，实现深度防御。即通过设置多次层次的安全防护系统而构成多道防线，即使某一防线失效也能被其他防线弥补或纠正。</p>
+<p>网络架构安全设计聚焦在<strong>合理规划网络安全区域、规划IP地址和VLAN设计、安全配置路由以及交换设备、网络边界访问控制策略、安全冗余配置</strong>等</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/15/存储/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/15/题目/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/15/大数据与安全/"
+           data-title="" data-url="http://cuteCoderLee.github.io/2017/04/15/大数据与安全/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG"
+               alt="liling" />
+          <p class="site-author-name" itemprop="name">liling</p>
+           
+              <p class="site-description motion-element" itemprop="description">做一个有趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cuteCoderLee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#大数据概述"><span class="nav-number">1.</span> <span class="nav-text">大数据概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电信大数据应用"><span class="nav-number">2.</span> <span class="nav-text">电信大数据应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全产品"><span class="nav-number">3.</span> <span class="nav-text">安全产品</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#防火墙技术"><span class="nav-number">3.1.</span> <span class="nav-text">防火墙技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息安全"><span class="nav-number">4.</span> <span class="nav-text">信息安全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#信息安全审计"><span class="nav-number">4.1.</span> <span class="nav-text">信息安全审计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息安全标准"><span class="nav-number">4.2.</span> <span class="nav-text">信息安全标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息安全现状"><span class="nav-number">4.3.</span> <span class="nav-text">信息安全现状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息安全发展趋势"><span class="nav-number">4.4.</span> <span class="nav-text">信息安全发展趋势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#云安全框架"><span class="nav-number">4.5.</span> <span class="nav-text">云安全框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络安全攻防"><span class="nav-number">4.6.</span> <span class="nav-text">网络安全攻防</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liling</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cuteCoderLee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

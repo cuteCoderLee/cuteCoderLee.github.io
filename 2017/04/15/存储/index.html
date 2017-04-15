@@ -1,0 +1,819 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="存储发展历程存储发展历程的驱动力：用户业务的需求；技术的不断提升
+
+早期的存储
+
+早期的服务器和存储是一体的。CPU主频较低，内存较小，硬盘容量不大，业务需求少。
+
+存储的发展
+
+随着IT建设，更多的业务系统运行在服务器上，硬盘的性能、容量、可靠性等方面难以满足业务需求，于是考虑将硬盘从服务器剥离出来，形成专用的存储系统，即DAS（Direct Attached Storage，直连式存储）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lilililing">
+<meta property="og:url" content="http://cuteCoderLee.github.io/2017/04/15/存储/index.html">
+<meta property="og:site_name" content="lilililing">
+<meta property="og:description" content="存储发展历程存储发展历程的驱动力：用户业务的需求；技术的不断提升
+
+早期的存储
+
+早期的服务器和存储是一体的。CPU主频较低，内存较小，硬盘容量不大，业务需求少。
+
+存储的发展
+
+随着IT建设，更多的业务系统运行在服务器上，硬盘的性能、容量、可靠性等方面难以满足业务需求，于是考虑将硬盘从服务器剥离出来，形成专用的存储系统，即DAS（Direct Attached Storage，直连式存储）。">
+<meta property="og:updated_time" content="2017-04-14T03:04:18.514Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lilililing">
+<meta name="twitter:description" content="存储发展历程存储发展历程的驱动力：用户业务的需求；技术的不断提升
+
+早期的存储
+
+早期的服务器和存储是一体的。CPU主频较低，内存较小，硬盘容量不大，业务需求少。
+
+存储的发展
+
+随着IT建设，更多的业务系统运行在服务器上，硬盘的性能、容量、可靠性等方面难以满足业务需求，于是考虑将硬盘从服务器剥离出来，形成专用的存储系统，即DAS（Direct Attached Storage，直连式存储）。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/04/15/存储/"/>
+
+
+
+
+
+  <title>  | lilililing </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lilililing</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/存储/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/存储/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/存储/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="存储发展历程"><a href="#存储发展历程" class="headerlink" title="存储发展历程"></a>存储发展历程</h4><p>存储发展历程的驱动力：用户业务的需求；技术的不断提升</p>
+<ol>
+<li>早期的存储</li>
+</ol>
+<p>早期的服务器和存储是一体的。CPU主频较低，内存较小，硬盘容量不大，业务需求少。</p>
+<ol>
+<li>存储的发展</li>
+</ol>
+<p>随着IT建设，更多的业务系统运行在服务器上，硬盘的性能、容量、可靠性等方面难以满足业务需求，于是考虑将硬盘从服务器剥离出来，形成专用的存储系统，即DAS（Direct Attached Storage，直连式存储）。</p>
+<ol>
+<li>DAS存储形态</li>
+</ol>
+<p><strong>JBOD</strong>：主要实现了硬盘的外置，从而提升了容量，但数据控制管理工作仍由服务器负责，因此，服务器仍有额外的开销；</p>
+<p><strong>智能化</strong>：智能化的DAS存储，将数据管理控制及访问功能集合在一起，服务器只需关注数据读写。</p>
+<ol>
+<li>集中式存储–SAN和NAS</li>
+</ol>
+<p><strong>SAN</strong>（Storage Area Network，存储区域网络）是通过SAN的网络来连接服务器，服务器看到的是一个个块设备，当作硬盘来识别。服务器存储数据，首先在服务器端用文件系统来格式化，之后应用可以进行数据的读写。<strong>SAN通常可以应用在数据库场景，用来存储结构化数据。</strong></p>
+<p>存储形态：纯粹的SAN只能提供结构化的数据存储和访问。目前高端SAN有IBM DS8000、VSP、华为18000等高端阵列，中端SAN越来越少，新型的有固态存储； <strong>主要面向稳定性和性能要求高的场景，往往是大企业、政府核心类的业务中。</strong></p>
+<p><strong>NAS</strong>（Network Attached Storage）：早期NAS主要是面向办公的数据共享，特点是将服务器的文件系统放入存储里，这样服务器通过网络共享数据。<strong>现在NAS主要面对的是非结构化数据的存储</strong>，例如企业员工用于办公文档的共享和存储。</p>
+<p>两种存储形态：</p>
+<p>1）NAS网关：存在时间长，以前的存储以SAN为主，用户要使用NAS存储，通常在SAN存储前加上NAS网关，通过网关对外提供NAS存储服务；主要用于文件共享和VDI（虚拟桌面基础架构）等场景。</p>
+<p>2）大数据海量存储：提供极强的扩展能力，典型代表有EMC Islion以及华为的Ocean Store 9000；因其容量扩展性好，一般用在媒资库、视频监控、高性能计算等场景。</p>
+<p>目前几乎所有的数据都是存储在这两种形态的存储上。</p>
+<p><strong>统一存储：SAN+NAS</strong></p>
+<p> 目的是在同一套硬件和软件的基础上，同时提供SAN和NAS功能。</p>
+<p>发展过程中出现了两种形态，一种是像华为的ocean storeV3、NetApp 的FAS及HP的3Par，属于最佳形态，单套存储系统直接支持SAN和NAS，不需额外购买NAS网关，实现真正的统一。另一种像EMC的VNX，仍需附加NAS网关，只做到了管理层面的统一。</p>
+<h4 id="存储与应用环境"><a href="#存储与应用环境" class="headerlink" title="存储与应用环境"></a>存储与应用环境</h4><ol>
+<li>存储与应用环境的关系</li>
+</ol>
+<ul>
+<li><p><strong>计算机内部系统（个人PC机架构</strong>）:</p>
+<p>软件部分：应用软件、操作系统</p>
+<p>硬件部分：CPU/内存（计算资源）、主板及插槽（系统总线）、输入输出（I/O总线）、硬盘（存储资源）</p>
+</li>
+<li><p><strong>IT系统架构</strong></p>
+<p>软件基础：操作系统、应用软件、集群/分布式软件</p>
+<p>计算资源：服务器集群</p>
+<p>网络资源：解决上层业务处理完的资源需要传输到下层存储或其他设备时所需的网络承载，主要有两种方式，一是IP架构，交换机/路由器/防火墙/已有网络设备；二是FC架构，光纤/光纤模块/光纤交换机等，成本高、距离短，不适合备份容灾架构。</p>
+<p>存储资源：SAN/NAS/DAS 对象存储</p>
+</li>
+</ul>
+<ol>
+<li>存储的应用</li>
+</ol>
+<p>内部存储： CPU 内存 总线</p>
+<h4 id="SAN存储区域网络"><a href="#SAN存储区域网络" class="headerlink" title="SAN存储区域网络"></a>SAN存储区域网络</h4><p>用在服务器与存储资源之间专用的、高性能的网络体系，是独立于LAN的服务器后端存储专用网络，采用可扩展的网络拓扑结构连接服务器和存储设备，每个存储设备不隶属于任何一台服务器，所有的存储设备可以在全部的网络服务器之间作为对等资源共享。</p>
+<p><strong>采用专用的高速网络将一个或多个网络服务器与存储资源连接在一起构成存储专用网络通道</strong>，根据网络承载方式不同可以分为IP SAN和FC SAN。均有三种组网架构：</p>
+<ul>
+<li><u>直连组网</u>：专用通道连接，一台应用服务器使用</li>
+<li><u>单交换组网</u>：通过一台交换机将存储资源共享给多台服务器，一条链路</li>
+<li><u>双交换组网</u>：两台或主备交换机，提供两条链路（服务器-交换机-存储）</li>
+</ul>
+<p><strong>组成部分</strong>：主机总线设备卡、 光纤通道或IP线缆、交换机、存储阵列设备</p>
+<p><strong>FC-SAN架构</strong></p>
+<p>更多应用在<strong>企业内部，高速数据传输</strong></p>
+<p>FC协议栈：FC0：物理交换，定义物理层介质；FC1，编码解码；FC2，结构协议，帧流控制；FC3，加密；FC4，协议封装</p>
+<p>三种拓扑结构：</p>
+<ul>
+<li>FC-PTP点对点直连：只能连接</li>
+<li>FC-AL 仲裁环：通过光纤集线器在一条环路上工作，最多127个设备；安全性低，一障全障</li>
+<li>FC-SW 交换：冗余设计，两条链路最多支持一千六百万</li>
+</ul>
+<p><strong>IP-SAN架构</strong></p>
+<p>更多应用在<strong>备份容灾</strong></p>
+<p>基于TCP/IP协议</p>
+<p>三种实现方式：</p>
+<ul>
+<li>以太网卡+initiator软件：主机侧安装软件，软件完成SCSI–&gt;iSCSI,以太网卡完成数据包传输到外界</li>
+<li>TOE网卡+软件：数据传输由TOE（TCP卸载引擎）网卡完成，分摊以太网卡的功能</li>
+<li>iSCSI HBA卡：既完成协议封装，又完成数据传输，不占用主机资源，最常用</li>
+</ul>
+<h4 id="NAS网络附加存储"><a href="#NAS网络附加存储" class="headerlink" title="NAS网络附加存储"></a>NAS网络附加存储</h4><p>一种特殊的专用数据存储服务器，包括存储器件和内嵌系统软件，可以供跨平台文件共享功能，通常在LAN上占有自己的节点，无需应用服务器的干预，允许用户在网络上存取数据。NAS集中管理和处理网络上的数据，将负载从应用或企业服务器上卸载，降低总拥有成本，保护用户投资。</p>
+<p>是将分布独立的数据进行整合集中化管理，以便不同的主机和应用服务器进行访问的技术。</p>
+<p><strong>与SAN的区别：SAN利用专用网络搭建存储环境，存储过程中所有的文件系统都是在主机侧完成；NAS在内部实现自己的文件系统、操作系统，管理内部数据。</strong></p>
+<p><strong>CIFS协议</strong>（通用INTERNET文件系统）：使程序可以远程访问internet计算机上的文件并要求此计算机的服务，可以视作是ftp或http的一个实现。<strong>主要用于windows操作系统</strong>，采用C/S架构，windows本身集成客户端软件，不需安装新的软件，TCP/IP协议，对网络性能要求高；</p>
+<p><strong>NFS协议</strong>，网络文件系统：应用于UNIX/LINUX系统，实现文件共享，用户和程序可以像访问本地文件一样访问远端系统的文件， C/S架构，TCP或UDP协议</p>
+<p>另外还支持ftp、http协议支持对外文件共享。</p>
+<p><strong>NAS内部结构</strong></p>
+<ul>
+<li>NAS引擎：提供文件系统和操作系统，接收用户发起的请求以及内部数据管理</li>
+<li>网络接口：提供用户交互的网络协议（CIFS/NFS）</li>
+<li>存储：存储阵列，可以包容SAN存储环境</li>
+</ul>
+<p><strong>NAS文件系统IO性能影响因素</strong>：主机/客户端 、网络传输性能 、NAS内部</p>
+<p>NAS和SAN比较</p>
+<p>【图】</p>
+<h4 id="存储部署与运维管理"><a href="#存储部署与运维管理" class="headerlink" title="存储部署与运维管理"></a>存储部署与运维管理</h4><p>存储配置流程：</p>
+<p>1.创建存储空间（创建RAID、创建热备盘、创建LUN（存储资源映射给不同主机使用））；</p>
+<p>2.分配存储空间（创建主机组、创建主机、添加映射）；</p>
+<p>3.建立连接（FC添加启动器/ iSCSI，配置启动器、添加启动器）</p>
+<p>4.使用存储空间（格式化、建立分区）</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/ICT学习笔记之存储原理/" rel="next" title="ICT学习笔记之存储原理">
+                <i class="fa fa-chevron-left"></i> ICT学习笔记之存储原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/15/大数据与安全/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/15/存储/"
+           data-title="" data-url="http://cuteCoderLee.github.io/2017/04/15/存储/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG"
+               alt="liling" />
+          <p class="site-author-name" itemprop="name">liling</p>
+           
+              <p class="site-description motion-element" itemprop="description">做一个有趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cuteCoderLee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储发展历程"><span class="nav-number">1.</span> <span class="nav-text">存储发展历程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储与应用环境"><span class="nav-number">2.</span> <span class="nav-text">存储与应用环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SAN存储区域网络"><span class="nav-number">3.</span> <span class="nav-text">SAN存储区域网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NAS网络附加存储"><span class="nav-number">4.</span> <span class="nav-text">NAS网络附加存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储部署与运维管理"><span class="nav-number">5.</span> <span class="nav-text">存储部署与运维管理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liling</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cuteCoderLee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -87,16 +87,31 @@
 
 
 
-<meta name="description" content="存储的主要体系结构：DAS NAS SAN">
+<meta name="description" content="SDNsoftware defined network，软件定义网络，是一种新型网络创新架构。
+核心思想：控制和转发分离、 软件应用灵活/可编程；
+核心技术：通过将网络设备控制面与数据面分离开，从而实现网络流量的灵活控制，为核心网络以及应用的创新提供良好的平台。
+新型网络技术，从网络架构和设备架构方面进行创新
+传统网络，每个路由器都有自己的控制平台和转发平台；传统乘出租车
+SDN，控制和转发分开，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ICT学习笔记之存储原理">
-<meta property="og:url" content="http://cuteCoderLee.github.io/2017/03/27/ICT学习笔记之存储原理/index.html">
+<meta property="og:title" content="lilililing">
+<meta property="og:url" content="http://cuteCoderLee.github.io/2017/04/15/SDN/index.html">
 <meta property="og:site_name" content="lilililing">
-<meta property="og:description" content="存储的主要体系结构：DAS NAS SAN">
-<meta property="og:updated_time" content="2017-03-29T12:31:11.751Z">
+<meta property="og:description" content="SDNsoftware defined network，软件定义网络，是一种新型网络创新架构。
+核心思想：控制和转发分离、 软件应用灵活/可编程；
+核心技术：通过将网络设备控制面与数据面分离开，从而实现网络流量的灵活控制，为核心网络以及应用的创新提供良好的平台。
+新型网络技术，从网络架构和设备架构方面进行创新
+传统网络，每个路由器都有自己的控制平台和转发平台；传统乘出租车
+SDN，控制和转发分开，">
+<meta property="og:updated_time" content="2017-04-13T07:35:31.128Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ICT学习笔记之存储原理">
-<meta name="twitter:description" content="存储的主要体系结构：DAS NAS SAN">
+<meta name="twitter:title" content="lilililing">
+<meta name="twitter:description" content="SDNsoftware defined network，软件定义网络，是一种新型网络创新架构。
+核心思想：控制和转发分离、 软件应用灵活/可编程；
+核心技术：通过将网络设备控制面与数据面分离开，从而实现网络流量的灵活控制，为核心网络以及应用的创新提供良好的平台。
+新型网络技术，从网络架构和设备架构方面进行创新
+传统网络，每个路由器都有自己的控制平台和转发平台；传统乘出租车
+SDN，控制和转发分开，">
 
 
 
@@ -124,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/03/27/ICT学习笔记之存储原理/"/>
+  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/04/15/SDN/"/>
 
 
 
 
 
-  <title> ICT学习笔记之存储原理 | lilililing </title>
+  <title>  | lilililing </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +264,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/03/27/ICT学习笔记之存储原理/">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/SDN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liling">
@@ -270,7 +285,7 @@
             
             
               
-                ICT学习笔记之存储原理
+                
               
             
           </h1>
@@ -285,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T16:35:23+08:00">
-                2017-03-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
               </time>
             
 
@@ -304,8 +319,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/27/ICT学习笔记之存储原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/ICT学习笔记之存储原理/" itemprop="commentCount"></span>
+                <a href="/2017/04/15/SDN/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/SDN/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -331,58 +346,55 @@
       
 
       
-        <p>存储的主要体系结构：DAS NAS SAN<br><a id="more"></a>  </p>
-<h2 id="存储介质与存储接口"><a href="#存储介质与存储接口" class="headerlink" title="存储介质与存储接口"></a>存储介质与存储接口</h2><h3 id="存储介质"><a href="#存储介质" class="headerlink" title="存储介质"></a>存储介质</h3><ul>
-<li>机械硬盘（主要参数）  <ul>
-<li>容量=柱面×磁头×扇区×512bytes</li>
-<li>转速：盘片转动圈数/分钟（rpm）越高性能越好</li>
-<li>缓存（cache）：越大越好</li>
-<li>平均访问时间：平均寻道时间 平均等待时间</li>
-<li>数据传输率：内部传输率；外部传输率（通过接口）</li>
-<li>IOPS:每秒输入输出量（衡量性能的主要指标之一）</li>
-<li>Throughput吞吐量：单位时间内可以传输成功的数据量  </li>
-</ul>
-</li>
-<li>SSD（固态硬盘）<br>DDR芯片 <em>FLASH芯片(多数采用）</em><br>响应时间短 读写效率高 能耗低 …<h3 id="存储接口"><a href="#存储接口" class="headerlink" title="存储接口"></a>存储接口</h3></li>
-<li>ATA（Advanced Technology Attachment）高级技术附加装置，最高133<ul>
-<li>IDE硬盘（Integrated Drive Electronics）</li>
-<li>并行ATA技术</li>
-</ul>
-</li>
-<li>SCSI（Small Computer System Interface）小型计算机系统接口，主流320</li>
-<li>SATA（serial ATA）串行ATA：150MBps-600MBps，商用主流300；点对点，热插拔（多应用于可移动设备）</li>
-<li><em>SAS</em>（serial attached SCSI）串行连接SCSI，支持全双工、双端口</li>
-<li><p><em>FC</em>：FC-AL（fiber channel arbitrated loop）光纤通道仲裁环；大存储应用<br>NL SAS：采用SAS接口、SATA盘体，也称进线SAS<br>硬盘接口比较<br><img src="" alt=""></p>
-<h2 id="RAID技术"><a href="#RAID技术" class="headerlink" title="RAID技术"></a>RAID技术</h2><p>独立冗余磁盘阵列：更高效的数据组织（分条、并行）；数据安全保护（检验、热备）<br>实现方式：<br>硬件RAID：集成处理器的RAID适配卡实现，拥有自己的控制处理器、I/O处理芯片和存储器，减少对主机CPU运行时间的占用，提高传输效率<br>软件RAID：完全依赖主机CPU，占用CPU处理周期，且依赖于操作系统<br>分条<br>条带：<br>分条：多个磁盘的同一位置（同一磁道同一扇区）的条带<br>XOR检验–相同为假，相异为真<br>镜像<br>RAID状态：四种（创建 <strong>正常工作</strong> 降级 失效）<br>RAID级别：  </p>
-</li>
-<li><p>RAID0：条带化 </p>
-</li>
-<li>RAID1：镜像</li>
-<li>RAID3：条带化，单独校验盘，写入慢；失效数据可重计算恢复</li>
-<li>RAID5：条带化，校验信息分布在</li>
-<li>RAID6：两次校验，  <ul>
-<li>P+Q：</li>
-<li>DP：两个单独的专属盘存放校验信息；写入慢，读取快；允许两块盘故障  </li>
-</ul>
-</li>
-<li>RAID10：组合，先进性RAID1镜像，再进行RAID0..至少两块硬盘</li>
-<li>RAID50：至少六块硬盘<br>各级别比较<br><img src="" alt=""></li>
-</ul>
-<h2 id="存储阵列"><a href="#存储阵列" class="headerlink" title="存储阵列"></a>存储阵列</h2><p>硬盘框<br>控制框</p>
-<h2 id="SAN技术"><a href="#SAN技术" class="headerlink" title="SAN技术"></a>SAN技术</h2><p>存储结构：直接连接存储（DAS） 网络连接存储（NAS） 存储区域网络（SAN)<br>SAN组成部分（FC-SAN、IP-SAN）：</p>
+        <h3 id="SDN"><a href="#SDN" class="headerlink" title="SDN"></a>SDN</h3><p>software defined network，软件定义网络，是一种新型网络创新架构。</p>
+<p>核心思想：控制和转发分离、 软件应用灵活/可编程；</p>
+<p><strong>核心技术：通过将网络设备控制面与数据面分离开，从而实现网络流量的灵活控制，为核心网络以及应用的创新提供良好的平台。</strong></p>
+<p>新型网络技术，从网络架构和设备架构方面进行创新</p>
+<p>传统网络，每个路由器都有自己的控制平台和转发平台；传统乘出租车</p>
+<p>SDN，控制和转发分开，转发设备无需专用设备；电话约车</p>
+<p>实现全局流量和整体最优</p>
+<p>大型机与个人电脑：三层架构（硬件 操作系统 应用）</p>
+<p>PC生态系统革新：OS-&gt;虚拟化 </p>
+<p>支撑因素：硬件底层化：x86指令集、软件定义、开源</p>
+<p>SDN ：网络分层 虚拟化       找到合适的硬件底层，openflow</p>
+<h4 id="SDN解决方案"><a href="#SDN解决方案" class="headerlink" title="SDN解决方案"></a>SDN解决方案</h4><p><strong>DCI（ data center interconnect）：数据中心之间互联的网络，实现以数据中心为中心组网的基础承载网。</strong></p>
+<p><strong>为什么需要DCI？</strong></p>
+<p>高扩展性、低成本、资源丰富、温度适宜等条件要求使得云数据中心建设位置要求高，导致出现新建大型云数据中心与传统骨干网位置不重合；</p>
+<p>云业务对网络要求高，如对时延要求严格，跨DC同步计算、虚拟机热迁移等业务都要求在10ms内；DC间流量具有突发性和不均衡性，需采用SDN技术进行实时调控，现网复杂，新技术部署困难</p>
+<p>综上，重用现网骨干网很难，需新建DCI网络。</p>
+<p><strong>基于SDN的DCI方案总览</strong></p>
+<p>支撑云数据中心业务端到端的运营，整体架构包括承载层和控制层，需在网络基础承载层上引入部署SDN的控制层。</p>
+<p><strong>控制层</strong>是网络的业务发放管理平台和网络智能控制中心，该层主要功能部件有：</p>
 <ul>
-<li>主机总线设配卡（FC-HBA、ISCIS-HBA）  </li>
-<li>光纤线缆、IP线缆  </li>
-<li>光纤交换机、以太网交换机  </li>
-<li>存储阵列设备<br>比较<br><img src="" alt="">  </li>
+<li>业务发放平台：提供业务自动化入口实现租户业务自主发放，及网络资源状态的可视和运维管理入口</li>
+<li>业务协同平台：DCI业务需求分解、DC与IDC协同，实现端到端的跨控制器资源协同与分解</li>
+<li>云平台：接受业务发放平台的业务分解，进行DC云业务分解和协同，实现DC的内存储、计算和网络协同</li>
+<li>DC控制器：接受OpenStack业务分解，统一控制DC的NVE和VxLAN GW，实现DC内网络自动部署与控制</li>
+<li>DCI控制器：接受业务协同平台资源的分解，实现underlay网络部署的自动化和网络流量的智能优化</li>
+<li>流量采集工具：调优策略输入、流量采集组件可以基于端口TE隧道进行流量采集和分析，并提供网络流量可视化界面</li>
 </ul>
-<h2 id="NAS技术"><a href="#NAS技术" class="headerlink" title="NAS技术"></a>NAS技术</h2><p>网络附属存储：一种特殊的专用数据存储<br>CIFS协议<br>NFS协议<br><strong>NAS系统:</strong></p>
-<ul>
-<li>NAS引擎  </li>
-<li>网络接口  </li>
-<li>存储  </li>
-</ul>
-<p>NAS文件系统IO与性能<br>SAN与NAS比较<br><img src="" alt=""></p>
+<p><strong>承载层</strong>是租户业务的承载实体，负责跨DC网络连接以及业务宽带和SLA保证。</p>
+<p>骨干网支持VxLAN技术，提供了大二层组网能力，能够跨越广域网和多个物理DC构建Vdc网络，实现跨区域的资源节点间的互备和虚拟机动态迁移，有效提升DC云资源的利用效率。骨干网部署业界广泛使用的MPLS TE流量工程技术为租户业务提供端到端的宽带保证，提升了网络资源的利用效率，特别是提供了基于租户和业务的差异化的服务能力，网络承载支持采用Overlay技术，Overlay业务网络基于云业务驱动支持快速的业务开通 Underlay物理网络按需提供网络资源，实现端到端的SLA（服务等级协议）保障和智能流量的优化。</p>
+<p>目前IP Core网络中存在如下一些流量调整需求：实现IGW出口、DC出口的流量均衡 、降低不同ISP(网络服务提供商)网间费用的结算 、提升VIP用户体验 </p>
+<p> 针对这些需求 当前主要依赖于<strong>手工调整BGP路由策略</strong> ：</p>
+<pre><code>1监控链路带宽利用率
+2识别出需要调整的流
+3基于流制作BGP策略下发给设备
+4循环操作，直到流量符合期望目标的要求
+</code></pre><p><strong>智能流量调优方案：RR+方案</strong></p>
+<p>RR+方案在IP core现网中加入SDN Controller，实现集中控制，智能化流量调优</p>
+<p>RR+可以带来什么？</p>
+<p>1最大化IGW带宽利用率均衡链路间流量的分布，降低网间结算费用，不同客户提供不同SLA服务；</p>
+<p>2自动调整流量，取代复杂的手工操作；</p>
+<p>3基于标准BGP通讯，可以和现网设备平滑兼容。</p>
+<p><strong>PCE+方案</strong></p>
+<p>目前网络中，对流量的转发主要依赖路由转发，路由协议主要使用最短路径优先算法，在转发中不会考虑链路带宽等因素，这样会存在带宽利用率低的问题。</p>
+<p>PCE+解决这一问题！</p>
+<p>PCE+方案需要在网络中部署PCE server，也即SDN controller，通过PCE server，使用statefulPCE技术，为MPLS TE LSP集中算路，使网络带宽资源使用尽量达到最优。</p>
+<p><strong>PCE+架构</strong></p>
+<p>需要新部署的网元是PCE server，转发设备称之为PCE client。PCE server手机全网拓扑信息和托管业务，全局管理网络带宽资源，统一分配资源，集中计算LSP业务路径。</p>
+<p>当网络中PCE client需要计算LSP时，向PCE server发起路径计算请求，计算完成后反馈给client，client进行LSP隧道建立。</p>
+<h3 id="NFV"><a href="#NFV" class="headerlink" title="NFV"></a>NFV</h3><p>network function virtualization，网络功能虚拟化，是采用虚拟化技术，将传统电信设备的软件与硬件解耦，基于通用计算、存储、网络设备实现电信网络功能，提升管理和维护效率，增强系统灵活性。</p>
 
       
     </div>
@@ -419,8 +431,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/26/ICT学习笔记之服务器操作系统/" rel="next" title="ICT学习笔记之服务器操作系统">
-                <i class="fa fa-chevron-left"></i> ICT学习笔记之服务器操作系统
+              <a href="/2017/04/15/NFV/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -428,10 +440,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/15/存储/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -457,8 +465,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/27/ICT学习笔记之存储原理/"
-           data-title="ICT学习笔记之存储原理" data-url="http://cuteCoderLee.github.io/2017/03/27/ICT学习笔记之存储原理/">
+      <div class="ds-thread" data-thread-key="2017/04/15/SDN/"
+           data-title="" data-url="http://cuteCoderLee.github.io/2017/04/15/SDN/">
       </div>
     
   </div>
@@ -566,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储介质与存储接口"><span class="nav-number">1.</span> <span class="nav-text">存储介质与存储接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储介质"><span class="nav-number">1.1.</span> <span class="nav-text">存储介质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储接口"><span class="nav-number">1.2.</span> <span class="nav-text">存储接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAID技术"><span class="nav-number">2.</span> <span class="nav-text">RAID技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储阵列"><span class="nav-number">3.</span> <span class="nav-text">存储阵列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAN技术"><span class="nav-number">4.</span> <span class="nav-text">SAN技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAS技术"><span class="nav-number">5.</span> <span class="nav-text">NAS技术</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SDN"><span class="nav-number">1.</span> <span class="nav-text">SDN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDN解决方案"><span class="nav-number">1.1.</span> <span class="nav-text">SDN解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NFV"><span class="nav-number">2.</span> <span class="nav-text">NFV</span></a></li></ol></div>
             
 
           </div>

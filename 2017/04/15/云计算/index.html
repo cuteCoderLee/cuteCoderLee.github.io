@@ -1,0 +1,883 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="云计算背景技术驱动 需求驱动 商业模式转变
+海量数据和终端、 IT复杂性（数据中心分散，利用率低；业务恢复时间长；手工分配资源；运维困难）、 商业延迟（大数据处理能力差；无法弹性匹配等） 也是促进云计算的重要因素
+云计算概念商业视角：云计算=信息电厂；按需使用付费
+计算和存储从局域网向互联网迁移；软件从终端向云端迁移；软硬件解耦，实现硬件共享
+技术视角：计算和存储的网络
+狭义: IT技术设施的交付">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lilililing">
+<meta property="og:url" content="http://cuteCoderLee.github.io/2017/04/15/云计算/index.html">
+<meta property="og:site_name" content="lilililing">
+<meta property="og:description" content="云计算背景技术驱动 需求驱动 商业模式转变
+海量数据和终端、 IT复杂性（数据中心分散，利用率低；业务恢复时间长；手工分配资源；运维困难）、 商业延迟（大数据处理能力差；无法弹性匹配等） 也是促进云计算的重要因素
+云计算概念商业视角：云计算=信息电厂；按需使用付费
+计算和存储从局域网向互联网迁移；软件从终端向云端迁移；软硬件解耦，实现硬件共享
+技术视角：计算和存储的网络
+狭义: IT技术设施的交付">
+<meta property="og:updated_time" content="2017-04-14T07:26:02.436Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lilililing">
+<meta name="twitter:description" content="云计算背景技术驱动 需求驱动 商业模式转变
+海量数据和终端、 IT复杂性（数据中心分散，利用率低；业务恢复时间长；手工分配资源；运维困难）、 商业延迟（大数据处理能力差；无法弹性匹配等） 也是促进云计算的重要因素
+云计算概念商业视角：云计算=信息电厂；按需使用付费
+计算和存储从局域网向互联网迁移；软件从终端向云端迁移；软硬件解耦，实现硬件共享
+技术视角：计算和存储的网络
+狭义: IT技术设施的交付">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/04/15/云计算/"/>
+
+
+
+
+
+  <title>  | lilililing </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lilililing</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/云计算/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/云计算/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/云计算/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="云计算背景"><a href="#云计算背景" class="headerlink" title="云计算背景"></a>云计算背景</h3><p>技术驱动 需求驱动 商业模式转变</p>
+<p>海量数据和终端、 IT复杂性（数据中心分散，利用率低；业务恢复时间长；手工分配资源；运维困难）、 商业延迟（大数据处理能力差；无法弹性匹配等） 也是促进云计算的重要因素</p>
+<h4 id="云计算概念"><a href="#云计算概念" class="headerlink" title="云计算概念"></a>云计算概念</h4><p>商业视角：云计算=信息电厂；按需使用付费</p>
+<p>计算和存储从局域网向互联网迁移；软件从终端向云端迁移；软硬件解耦，实现硬件共享</p>
+<p>技术视角：计算和存储的网络</p>
+<p>狭义: IT技术设施的交付和使用模式，通过按需易扩展的方式获得所需的资源，包括基础架构、平台、软件等；</p>
+<p>广义：通过网络以按需、易扩展的方式获得所需的服务，这种服务可以是IT和软件、互联网相关的，也可以是任意其他服务，如医疗云、教育云等。</p>
+<h4 id="云计算部署模式"><a href="#云计算部署模式" class="headerlink" title="云计算部署模式"></a>云计算部署模式</h4><p>私有云 ：基础设施为单一组织拥有</p>
+<p>公有云 ：销售云计算服务</p>
+<p>混合云：由两种或多种云组成；逻辑上，私有云和公有云通过企业防火墙隔离</p>
+<h4 id="云计算应用模式"><a href="#云计算应用模式" class="headerlink" title="云计算应用模式"></a>云计算应用模式</h4><p>IaaS(Infrastructure as a Service)：基础设施作为服务，如虚拟机的租用、云盘等；</p>
+<p>PaaS(Platform…)：面向专业开发者，针对系统平台，给用户提供开放平台的服务</p>
+<p>SaaS(Sofetware…)：面向终端用户，提供软件服务，如邮箱服务等</p>
+<h3 id="云计算价值"><a href="#云计算价值" class="headerlink" title="云计算价值"></a>云计算价值</h3><h3 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h3><p>虚拟化是指通过虚拟化技术，将一台计算机虚拟为多台逻辑计算机，在一台计算机上同时运行多个逻辑计算机，每个逻辑计算机可以运行不同的操作系统，并且，应用程序都可以在相互独立的空间内运行而互不影响，从而显著的提高了计算机的工作效率。<br>物理机：宿主机  host OS<br>虚拟机：客户机  guest OS</p>
+<p><strong>虚拟化后的区别就是：</strong>物理机上可以同时运行多个虚拟机，而且还有<em>虚拟机监控器</em>，通过虚拟机监控器的模拟，可以使得虚拟机在上层软件看来就是一个真实的机器。</p>
+<p>物理资源池化，多个虚拟机直接从资源池中获取资源，与硬件解耦</p>
+<ul>
+<li>计算虚拟化：CPU、内存、IO虚拟化</li>
+<li>存储虚拟化：裸设备+逻辑卷、存储设备、主机存储+文件系统虚拟化</li>
+<li>网络虚拟化：虚拟专用网VPN、 VLAN</li>
+</ul>
+<h4 id="虚拟化本质"><a href="#虚拟化本质" class="headerlink" title="虚拟化本质"></a>虚拟化本质</h4><p>分区：在单一物理服务器上可同时运行多个虚拟机，按需使用资源池资源</p>
+<p>隔离：虚拟机业务互不影响</p>
+<p>封装：虚拟机执行环境封装在独立文件中，可以移动和复制文件来实现虚拟机的移动和复制</p>
+<p>独立：相对于硬件独立，无需修改虚拟机，可在多个物理服务器上运行</p>
+<p><strong>虚拟机热迁移</strong>：虚拟机保存和恢复，虚拟机的整个运行状态</p>
+<h3 id="openstack"><a href="#openstack" class="headerlink" title="openstack"></a>openstack</h3><p>综合的云计算管理平台</p>
+<h4 id="主要组件介绍"><a href="#主要组件介绍" class="headerlink" title="主要组件介绍"></a>主要组件介绍</h4><ul>
+<li><p><strong>keystone：提供身份认证服务</strong></p>
+<p>负责用户、租户、角色、服务和服务端点的管理，各组件间的认证核心，提供服务的注册功能，且支持SQL、PAM、LDAP等后端认证。（整个openstack框架的注册表，其他组件通过keystone来注册服务的endpoint）</p>
+<p><strong><u>常用术语</u></strong></p>
+<p><strong>user</strong>：openstack的基本用户，进行访问的人或程序</p>
+<p><strong>project</strong>：项目或租户，指分配给使用者的资源的集合（如n个实例，n个cpu等）</p>
+<p><strong>role</strong>：代表一组用户可以访问资源的权限</p>
+<p><strong>domain</strong>：域，定义管理边界，是上层集合，可以包含多个project、user、role等</p>
+<p><strong>endpoint</strong>：服务的url路径，暴露出的访问点</p>
+<p><u>认证模型</u></p>
+<p>创建多个<u>domain</u>，给多个公司使用，每个公司在domain下创建多个子公司<u>project</u>，子公司project下可以创建多个用户<u>user</u>，用户可以跨多个project存在。</p>
+<p><u><strong>keystone认证原理</strong></u></p>
+<p><strong>用户</strong>提出创建虚拟机实例的请求，将先通过<strong>keystone</strong>创建一个访问令牌<u>access token</u>，首先将访问令牌和访问请求提交给Nova服务，Nova服务将访问令牌交给keystone验证，确保令牌没有被篡改；验证通过后，为启动虚拟机的实例，还需向Glance组件申请相关的镜像资源，同样Glance为保证令牌没有被篡改过，也需将令牌交给keystone进行验证，验证通过后将发放镜像资源给Nova组件；虚拟机的创建还需要存储、网络等资源，因此Nova组件还需要给负责各种资源的组件传递资源申请的请求，资源申请的过程中，都<strong>将伴随着访问令牌的验证</strong>；最终Nova拿到启动虚拟机实例的所有资源后进行实例的启动，分配给相关的用户。</p>
+</li>
+<li><p><strong>nova：提供计算服务</strong></p>
+<p>Nova是openstack云中的计算组织控制器，管理云中实例的生命周期，是一个负责管理计算资源、网络、认证所需的可扩展性平台。</p>
+<p>负责虚拟机实例的调度分配以及实例的创建、启停、迁移、重启等操作，从而管理云中实例的生命周期，<strong>是整个云中的组织控制器</strong>。</p>
+<p><strong><u>功能特性</u></strong></p>
+<p>实现实例的生命周期的管理；调动管理平台的网络、存储等计算资源；提供统一风格的RestAPI接口；支持透明的hypervisor；各个模块间通过消息队列的方式进行消息传递。</p>
+<p>计算服务：运行的虚拟实例支持的<strong><u>hypervisor（虚拟机管理程序）</u></strong>有<u>KVM</u>（默认）XEN等等；</p>
+<p>分布式控制器：提供亚马逊EMC2兼容的API接口</p>
+<p><strong><u>常用术语</u></strong></p>
+<p><strong>KVM</strong>：内核虚拟化，openstack默认的hypervisor层</p>
+<p><strong>Qemu</strong>:KVM的替补角色，没有KVM执行效率高，不支持全虚拟化</p>
+<p><strong>Flavor</strong>:新建虚拟机的配置列表，虚拟机模板</p>
+<p><strong>Keypair</strong>:ssh连接访问实例的密钥对</p>
+<p><strong>安全组</strong>：控制访问策略的容器，包含各种安全组规则</p>
+<p><strong>安全组规则</strong>：控制实例访问的具体策略</p>
+<p><strong><u>Nova组件</u></strong></p>
+<p>Nova API：统一风格的RestAPI接口，作为Nova组件的入口，接受用户的请求</p>
+<p>Nova scheduler：负责调度，将实例计算分配到具体的计算节点</p>
+<p>Nova conductor：负责与Nova数据库进行交互</p>
+<p>Nova compute：运行在计算节点上，虚拟机实例的创建和管理</p>
+<p>message queue：消息队列，负责Nova各个组件间的消息传递</p>
+<p>database：数据库模块</p>
+<p><strong><u>Nova组件的协作运行</u></strong></p>
+<p>用户通过CLI命令行或horizon向Nova组件发起创建实例的请求，<strong>Nova API</strong>作为入口接收用户的请求，以<strong>消息队列</strong>的方式将请求发送给 <strong>Nova scheduler</strong>，Nova scheduler从消息队列中，侦听到nova API的消息队列后，借助消息队列的方式通过<strong>Nova conductor</strong>与<strong>数据库</strong>进行交互，查询当前计算节点的负载和使用情况，根据查询结果，将虚拟机实例分配到当前负载最小，且满足启动虚拟机实例的计算节点上；实例的创建依靠<strong>Nova compute</strong>通过消息队列的方式与<strong>Nova volume 、Nova network</strong>等组件的协作共同实现。</p>
+</li>
+<li><p><strong>glance：镜像服务</strong></p>
+<p>为Nova提供镜像服务以启动实例的组件，包括镜像的创建、镜像快照管理以及镜像模板等；不负责镜像的本地存储。</p>
+<p><u>支持的镜像格式</u>：raw(无格式),qcow(默认),vhd(VMware格式),vmdk，iso</p>
+<p><u>后端管理</u>：swift，AmazonS3，文件系统；（镜像的存储后端）</p>
+<p><strong>Glance-api</strong>：负责提供镜像服务的restAPI服务，作为镜像服务请求的入口</p>
+<p><strong>GLance-registry</strong>：负责与glance使用的数据库的交互，如镜像的创建、删除、修改等操作</p>
+<p><strong><u>架构</u></strong></p>
+<p>当来自horizon、CLI、Nova、Compute等发送来的镜像请求，由glance-api接收请求，将请求消息传递给glance registry组件，在<strong>glance数据库</strong>中查询镜像存储的位置信息，将查询结果返回给api；glance api调用<strong>storage adapter组件</strong>进行查询，用于<strong>查询后端的存储</strong>如swift、amazon S3等，最终获取镜像返回给用户。</p>
+</li>
+<li><p><strong>swift：对象存储服务</strong></p>
+<p>与amazonS3类似，提供存取数据的应用服务，通常用于保存非结构化数据，如通常作为Glance组件的存储后端或云盘等应用</p>
+<p><strong><u>Swift 是</u></strong>openstack中提供高可用分布式对象存储的服务，为nova组件提供<strong>虚拟机镜像存储服务</strong>；在数据冗余方面，无需采用RAID，通过在软件层面，引入一致性散列技术和数据冗余，牺牲一定的数据一致性，来达到高可用和可伸缩性；支持多租户模式下，容器和对象读写操作；<strong>适用于互联网应用场景下非结构化的数据存储，比如，华为云盘等</strong>。</p>
+<p><strong><u>常用术语1</u></strong></p>
+<p><strong>account</strong>：用户定义的管理存储区域</p>
+<p><strong>container</strong>：存储隔间，类似于子文件夹或存储目录</p>
+<p><strong>object</strong>：包含了基本的存储实体和自身的元数据</p>
+<p><strong>ring</strong>：记录了磁盘上存储的实体名称和物理位置的映射关系（accout环 container环 object环）</p>
+<p><u>相互间关系</u>：可以创建多个account，每个account可以创建多个容器container【container间不能相互嵌套】，每个container下可以创建多个object。</p>
+<p><strong>Swift在物理结构上往往会存储对象的多个副本，通常按照物理位置的特点，将对象拷贝到不同的物理位置上，来保证数据地理位置上的可靠性</strong></p>
+<p><strong><u>常用术语2</u></strong></p>
+<p><strong>region</strong>：地域，往往代表不同城市地理位置，从灾备方面考虑</p>
+<p><strong>zone</strong>：可用区，强调基础设施（如物理供电、网络、空调等）的隔离；可能是同一个城市不同数据中心的机房，也可能是同一个数据中心不同供电、空调隔离的机房</p>
+<p><strong>node</strong>：节点，代表一台存储服务器</p>
+<p><strong>disk</strong>：磁盘，代表物理存储设备</p>
+<p><strong>cluster</strong>：群集，为冗余考虑设计的架构</p>
+<p><u>相互间关系：</u>根据不同的地理位置，有不同的region，在同一个region下，为冗余考虑可以设置多个可用区zone，每个可用区可以有多个不同的存储节点node。在更大的架构上，多个region可以构成cluster。</p>
+<p><strong><u>swift工作架构</u></strong></p>
+<p>首先，<strong>用户</strong>提出一个对象存储服务的申请，由<strong>Swift API</strong>接收和处理，收到之后，先去找<strong>keystone认证节点</strong>，对用户的身份进行认证。认证通过后，将请求提交给<strong>Swift Proxy</strong>的组件，Swift Proxy是Swift 的代理，由Swift Proxy来确定究竟应该将存储对象放在哪一个满足存储要求的存储节点上。最终将对象存储到指定的存储节点上即可。最终将返回结果返回给用户。</p>
+</li>
+<li><p><strong>neutron：网络服务</strong></p>
+<p>基于软件定义网络（SDN）思想，实现软件资源的网络化管理，支持 多种类型插件，实现多租户网络隔离，可以与支持硬件和软件的网络解决方案集成。在实现上充分利用linux系统中各种网络相关的技术，支持第三方插件。</p>
+<p><strong><u>常用术语</u></strong></p>
+<p><strong>Bridge-int</strong>:综合网桥，常用于实现内部网络通讯功能的网桥</p>
+<p><strong>Br-ex:</strong>外部网桥，通常用于跟外部网络通讯的网桥</p>
+<p><strong>Neutron-server</strong>：提供API接口，将API的调用请求传递给已配置好的插件进行后续处理</p>
+<p><strong>Neutron-L2-agent</strong>：二层代理，用于实现二层网络通信的代理，用于管理VLAN插件，接受Neutron-server的指令来创建VLAN</p>
+<p><strong>Neutron-L3-agent</strong>：负责租户网络与floating IP间的地址转换，通过linux 的IP tables中的NAT功能实现IP转换；</p>
+<p><strong>Neutron-DHCP-agent</strong>：openstack中用于创建子网，并为每个子网实现IP地址自动分发的组件</p>
+<p><strong>Neutron-metadata-agent</strong>：运行在网络节点上，用于响应Nova中的metadata请求</p>
+<p><strong>LBaaS agent</strong>：为多个实例和open vswitch angent提供负载均衡服务</p>
+<p><strong><u>架构</u></strong></p>
+<p>Neutron通过API接口接收来自用户或其他组件的网络请求，以消息队列的方式提交给2、3层代理，其中Neutron-DHCP-agent实现子网的创建和IP地址自动分发，Neutron-L2-agent实现相同VLAN下网络的通信，Neutron-L3-agent实现同一租户网络下，不同子网间的通信。</p>
+</li>
+<li><p><strong>cinder：块存储服务</strong></p>
+<p>与亚马逊EBS组件相似；</p>
+<p>为虚拟机实例提供卷的持久化服务，同时支持对卷的快照、备份管理；基于插件的架构易于扩展</p>
+<p>为虚拟机实例提供卷的块存储服务，可将卷挂载到实例上，作为虚拟机实例的本地磁盘使用；一个卷可以同时挂载到多个实例上；共享的卷同时只能被一个实例进行写操作，其他实例只能进行只读操作。</p>
+<p><u>支持的文件系统类型</u></p>
+<p>LVM/ISCSI</p>
+<p>NFS</p>
+<p>NetApp NFS</p>
+<p>Gluster</p>
+<p>DELL　Equall Logic</p>
+<p><strong><u>常用术语</u></strong></p>
+<p><strong>volume备份</strong>：卷备份，存放在备份的设备中</p>
+<p><strong>volume快照</strong>：卷在某个时间点的状态</p>
+<p><strong>Cinder API</strong>：为cider请求提供统一风格的rest API服务，是cinder服务的入口</p>
+<p><strong>cinder scheduler</strong>: 负责调度，为新建卷制定块存储设备</p>
+<p><strong>cinder volume</strong>：负责与存储的块设备交互，实现卷的创建、删除、修改等操作</p>
+<p><strong>cinder backup</strong>：负责通过驱动和后端的备份打交道</p>
+<p><strong><u>cinder工作架构</u></strong></p>
+<p>当用户、Nova、compute等提出创建卷的服务请求时，首先<strong>cinder API</strong>接收请求，然后<strong>以消息队列</strong>的方式发送给<strong>Cinder scheduler</strong>进行调用，Cinder scheduler侦听到消息后，在数据库中查询当前存储节点的状态信息，根据预定策略，选择卷的最佳<strong>volume service节点</strong>，将调度结果发布给volume service调用。volume service收到来自volume scheduler的调度结果后去查找<strong>volume provider</strong>，在特定的存储节点上创建相关的卷，然后将相关结果返回给用户，同时将修改的数据写入数据库中。</p>
+</li>
+<li><p><strong>horizon：</strong>web统一化管理界面</p>
+<p>提供自动化仪表板的管理服务，实现对用户、租户、卷、网络等几乎所有资源的图像化管理</p>
+</li>
+<li><p><strong>ceilometer：</strong>监控和计量服务</p>
+<p>对openstack平台中各组件信息的统一化采集和处理，实现状态监控及流量监控功能；提供计量服务</p>
+<p><strong><u>核心组件</u></strong></p>
+<p><strong>Ceilometer-agent-compute</strong>：运行在计算节点上，是收集计算节点信息的代理</p>
+<p><strong>Ceilometer-agent-central</strong>：运行在控制节点上，轮询服务的非持续化数据</p>
+<p><strong>Ceilometer-collector</strong>：运行在一个或多个控制节点上，监听message bus（消息总线），将收集到的消息写入数据库中</p>
+<p><strong>Storage</strong>：数据存储，支持mango DB、mysql等，存储收集到的样本数据</p>
+<p><strong>API server</strong>：运行在控制节点上，提供对数据库的数据访问</p>
+<p><strong>Message Bus</strong>：计量数据的消息总线，收集数据给ceilometer-collector</p>
+<p><strong><u>ceilometer架构</u></strong></p>
+<p>采用两种数据采集的方式，一种是消费了openstack内各个服务自动发出的notification消息，另一种是调用各个服务的API，主动轮询获取数据。</p>
+<p>在openstack中，大部分事件会发出通知消息，比如创建、删除实例时，<strong>通知消息是ceilometer的首要的数据来源；</strong></p>
+<p>另外有一些计量信息，是通知获取不到的，如一些实例的cpu运行时间或使用率等，因此采取第二种方式，即<strong>周期性地调用相关API轮询这些信息</strong>。</p>
+</li>
+<li><p><strong>Heat</strong></p>
+</li>
+</ul>
+<p>Heat是一个基于模板来创建相关资源的服务，是OpenStack核心项目之一。可以通过.yaml文件生成模板，通过Heat-agent组件在OpenStack中创建相关的资源。<br>除此之外，支持自由的Haut模板。以及亚马逊的cloudy formation格式的模板。<br>模板支持丰富的资源类型，不仅支持了常用的基础架构，包括计算、网络、存储、 镜像等功能，还包括了Ceilometer警报等高级资源。<br>提供基于模板的编排服务。</p>
+<p><strong>Stack</strong>：Heat要用到的<strong>所有设施和资源</strong>的集合。</p>
+<p><strong>Heat template</strong>：是以.yaml结尾的文件，用于创建stack。</p>
+<p><strong>Heat-api</strong>：提供rest api服务，Heat入口将api请求发送给heat engine去执行。</p>
+<p><strong>Heat-api-cfn</strong>：支持亚马逊格式访问的rest api。</p>
+<p><strong>Heat-engine</strong>：Heat的核心模块，接收API请求，在openstack中创建资源。</p>
+<p><strong>Heat-cfntools、Heat-init</strong>：在镜像中安装完成虚拟实例操作任务的工具。</p>
+<p><strong>Heat-api-cloudwatch</strong>： 监控编排服务。</p>
+<p><strong>Resource</strong>：底层各种服务抽象的集合。<em>（例：计算、存储、网络）</em></p>
+<p><strong>Heat-client</strong>：用于调用访问其它各个组件的client工具</p>
+<p>当用户在Horizon中或者命令行（CLI）中提交包含模板和参数的，创建实例的请求时，Heat服务接收请求，调用Heat-API/Heat-API-cfn，然后API首先验证模板的正确性，然后通过消息队列异步传输给Heat Engine进行处理。</p>
+<p>当Heat Engine拿到请求后，会把请求解析为各种资源类型，而每一种资源都有相关的Client与相关的服务对应。<br>Client通过发送rest请求给其它的服务，从而获取相关的资源，最终完成请求的处理。<br>在整个过程中，Heat Engine的作用分为三层：</p>
+<ol>
+<li>处理Heat层面的请求，然后根据模板和输入的参数来创建Stack。</li>
+<li>解析Stack中各种资源的依赖关系以及Stack的嵌套关系。</li>
+<li>根据解析出来的关系，依次调用各种服务的Clinet，来创建各种资源。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/15/网络基础/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/15/docker&微服务/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/15/云计算/"
+           data-title="" data-url="http://cuteCoderLee.github.io/2017/04/15/云计算/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG"
+               alt="liling" />
+          <p class="site-author-name" itemprop="name">liling</p>
+           
+              <p class="site-description motion-element" itemprop="description">做一个有趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cuteCoderLee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#云计算背景"><span class="nav-number">1.</span> <span class="nav-text">云计算背景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#云计算概念"><span class="nav-number">1.1.</span> <span class="nav-text">云计算概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#云计算部署模式"><span class="nav-number">1.2.</span> <span class="nav-text">云计算部署模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#云计算应用模式"><span class="nav-number">1.3.</span> <span class="nav-text">云计算应用模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云计算价值"><span class="nav-number">2.</span> <span class="nav-text">云计算价值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟化技术"><span class="nav-number">3.</span> <span class="nav-text">虚拟化技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟化本质"><span class="nav-number">3.1.</span> <span class="nav-text">虚拟化本质</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#openstack"><span class="nav-number">4.</span> <span class="nav-text">openstack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要组件介绍"><span class="nav-number">4.1.</span> <span class="nav-text">主要组件介绍</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liling</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cuteCoderLee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

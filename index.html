@@ -250,6 +250,2049 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/SDN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/15/SDN/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/SDN/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/SDN/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="SDN"><a href="#SDN" class="headerlink" title="SDN"></a>SDN</h3><p>software defined network，软件定义网络，是一种新型网络创新架构。</p>
+<p>核心思想：控制和转发分离、 软件应用灵活/可编程；</p>
+<p><strong>核心技术：通过将网络设备控制面与数据面分离开，从而实现网络流量的灵活控制，为核心网络以及应用的创新提供良好的平台。</strong></p>
+<p>新型网络技术，从网络架构和设备架构方面进行创新</p>
+<p>传统网络，每个路由器都有自己的控制平台和转发平台；传统乘出租车</p>
+<p>SDN，控制和转发分开，转发设备无需专用设备；电话约车</p>
+<p>实现全局流量和整体最优</p>
+<p>大型机与个人电脑：三层架构（硬件 操作系统 应用）</p>
+<p>PC生态系统革新：OS-&gt;虚拟化 </p>
+<p>支撑因素：硬件底层化：x86指令集、软件定义、开源</p>
+<p>SDN ：网络分层 虚拟化       找到合适的硬件底层，openflow</p>
+<h4 id="SDN解决方案"><a href="#SDN解决方案" class="headerlink" title="SDN解决方案"></a>SDN解决方案</h4><p><strong>DCI（ data center interconnect）：数据中心之间互联的网络，实现以数据中心为中心组网的基础承载网。</strong></p>
+<p><strong>为什么需要DCI？</strong></p>
+<p>高扩展性、低成本、资源丰富、温度适宜等条件要求使得云数据中心建设位置要求高，导致出现新建大型云数据中心与传统骨干网位置不重合；</p>
+<p>云业务对网络要求高，如对时延要求严格，跨DC同步计算、虚拟机热迁移等业务都要求在10ms内；DC间流量具有突发性和不均衡性，需采用SDN技术进行实时调控，现网复杂，新技术部署困难</p>
+<p>综上，重用现网骨干网很难，需新建DCI网络。</p>
+<p><strong>基于SDN的DCI方案总览</strong></p>
+<p>支撑云数据中心业务端到端的运营，整体架构包括承载层和控制层，需在网络基础承载层上引入部署SDN的控制层。</p>
+<p><strong>控制层</strong>是网络的业务发放管理平台和网络智能控制中心，该层主要功能部件有：</p>
+<ul>
+<li>业务发放平台：提供业务自动化入口实现租户业务自主发放，及网络资源状态的可视和运维管理入口</li>
+<li>业务协同平台：DCI业务需求分解、DC与IDC协同，实现端到端的跨控制器资源协同与分解</li>
+<li>云平台：接受业务发放平台的业务分解，进行DC云业务分解和协同，实现DC的内存储、计算和网络协同</li>
+<li>DC控制器：接受OpenStack业务分解，统一控制DC的NVE和VxLAN GW，实现DC内网络自动部署与控制</li>
+<li>DCI控制器：接受业务协同平台资源的分解，实现underlay网络部署的自动化和网络流量的智能优化</li>
+<li>流量采集工具：调优策略输入、流量采集组件可以基于端口TE隧道进行流量采集和分析，并提供网络流量可视化界面</li>
+</ul>
+<p><strong>承载层</strong>是租户业务的承载实体，负责跨DC网络连接以及业务宽带和SLA保证。</p>
+<p>骨干网支持VxLAN技术，提供了大二层组网能力，能够跨越广域网和多个物理DC构建Vdc网络，实现跨区域的资源节点间的互备和虚拟机动态迁移，有效提升DC云资源的利用效率。骨干网部署业界广泛使用的MPLS TE流量工程技术为租户业务提供端到端的宽带保证，提升了网络资源的利用效率，特别是提供了基于租户和业务的差异化的服务能力，网络承载支持采用Overlay技术，Overlay业务网络基于云业务驱动支持快速的业务开通 Underlay物理网络按需提供网络资源，实现端到端的SLA（服务等级协议）保障和智能流量的优化。</p>
+<p>目前IP Core网络中存在如下一些流量调整需求：实现IGW出口、DC出口的流量均衡 、降低不同ISP(网络服务提供商)网间费用的结算 、提升VIP用户体验 </p>
+<p> 针对这些需求 当前主要依赖于<strong>手工调整BGP路由策略</strong> ：</p>
+<pre><code>1监控链路带宽利用率
+2识别出需要调整的流
+3基于流制作BGP策略下发给设备
+4循环操作，直到流量符合期望目标的要求
+</code></pre><p><strong>智能流量调优方案：RR+方案</strong></p>
+<p>RR+方案在IP core现网中加入SDN Controller，实现集中控制，智能化流量调优</p>
+<p>RR+可以带来什么？</p>
+<p>1最大化IGW带宽利用率均衡链路间流量的分布，降低网间结算费用，不同客户提供不同SLA服务；</p>
+<p>2自动调整流量，取代复杂的手工操作；</p>
+<p>3基于标准BGP通讯，可以和现网设备平滑兼容。</p>
+<p><strong>PCE+方案</strong></p>
+<p>目前网络中，对流量的转发主要依赖路由转发，路由协议主要使用最短路径优先算法，在转发中不会考虑链路带宽等因素，这样会存在带宽利用率低的问题。</p>
+<p>PCE+解决这一问题！</p>
+<p>PCE+方案需要在网络中部署PCE server，也即SDN controller，通过PCE server，使用statefulPCE技术，为MPLS TE LSP集中算路，使网络带宽资源使用尽量达到最优。</p>
+<p><strong>PCE+架构</strong></p>
+<p>需要新部署的网元是PCE server，转发设备称之为PCE client。PCE server手机全网拓扑信息和托管业务，全局管理网络带宽资源，统一分配资源，集中计算LSP业务路径。</p>
+<p>当网络中PCE client需要计算LSP时，向PCE server发起路径计算请求，计算完成后反馈给client，client进行LSP隧道建立。</p>
+<h3 id="NFV"><a href="#NFV" class="headerlink" title="NFV"></a>NFV</h3><p>network function virtualization，网络功能虚拟化，是采用虚拟化技术，将传统电信设备的软件与硬件解耦，基于通用计算、存储、网络设备实现电信网络功能，提升管理和维护效率，增强系统灵活性。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/NFV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/15/NFV/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/NFV/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/NFV/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="NFV架构"><a href="#NFV架构" class="headerlink" title="NFV架构"></a>NFV架构</h4><p>NFV (Network Function Virtualization) 网络功能虚拟化，ETSI组织下组建的。</p>
+<p>希望通过采用通用服务器 交换机和存储设备实现传统电信网络的功能。通过IT的虚拟化技术，许多类型的网络设备可以合并到工业界标准中，servers switchs  storages 需要用软件实现网络功能并能在一系列工业标准服务器硬件上运行，可以根据需要迁移，实例化部署在网络的不同位置而不需要部署新设备，需要大容量Server存储和大容量以太网  不同应用以软件形式远程自动部署在统一的基础设施上。</p>
+<p>三个关键点：软硬件解耦  开放  自动化 </p>
+<p><strong>NFV将IP基因融入电信网络</strong></p>
+<p>传统电信网软硬件绑定，更新困难，管理维护困难。采用虚拟化技术和云计算的网络，硬件采用标准的服务器 存储设备和交换机，虚拟化之后  上层业务通过软件形式运行在统一的标准的硬件基础之上 。</p>
+<p>虚拟化后的网络好处：易于更新、硬件通用化 支持异构，资源归一  简化管理与运维</p>
+<p><strong>NFV框架主要包括3大组件：NFVI、VNF、和MANO</strong><br>解释：<br>框架中<strong>最底层的是硬件</strong>，包括计算、存储、和网络资源；<br>往上的<strong>云操作系统</strong>，完成虚拟化和云化的相关的功能，<strong>硬件和云操作系统成为NFVI。</strong>I指的是infrastruction，设施的意思，由VIM来管理；<br>再往上是<strong>虚拟网络功能</strong>，比如vIMS提供IMS的语音业务，vEPC提供4G的数据网络功能。虚拟网络功能由VNFM来管理，提供VNF的声明周期管理；<br>再往上是<strong>网络管理层即网管</strong>，可以配套NFVO进行网络业务生命周期的管理。<br><strong>NFV三大组件的关键要求</strong><br><strong>【1】组件MANO：</strong>包括NFVO、VNFM和VIM，<br>要求VNFM适配不同厂商NFVO和VIM；并且MANO系统应该尽量减少对现有的OSS/BSS的冲击。比如要求MANO支持和现有传统平台（如U2000）的对接<br><strong>【2】组件VNF(虚拟化网络功能)：</strong><br>要求它可以运行在不同厂商的NFVI；<br>对应传统的电信业务网络，每个物理网元映射为一个虚拟网元VNF。<br><strong>【3】组件NFVI-云操作系统</strong><br>要求优选基于OpenStack的云操作系统<br>将<strong>物理</strong>计算/存储/交换网络资源通过虚拟化计算转换为<strong>虚拟</strong>的计算/存储/交换网络资源池<br><strong>【4】组件NFVI-硬件</strong><br>要求它优选具有虚拟化辅助功能的芯片的COTS<br>同时具备高IOPS与高可靠性的磁阵<br>低RAID等级的磁阵建议冗余组网</p>
+<h4 id="NFV关键能力"><a href="#NFV关键能力" class="headerlink" title="NFV关键能力"></a>NFV关键能力</h4><p><strong>开放</strong></p>
+<p>虚拟化网络功能运行在多厂商云平台</p>
+<p>NFV支持异构：在硬件基础上，可以支持厂商B的VNFM和厂商A的NFVO，并且可以在和现网的传统平台如U2000 OSS进行异构系统的集成；</p>
+<p>NFV可以广泛兼容不同厂商的硬件以及云化的操作系统</p>
+<p><strong>云化架构</strong></p>
+<p>云化架构是弹性和可靠性的基础。</p>
+<p>传统平台软件和硬件绑定–&gt; 虚拟化阶段，软硬件解耦，软件可以运行在标准的硬件基础上，但业务逻辑和业务数据还是绑定的—&gt; 云化架构阶段，继续解耦，同时业务逻辑和业务数据进行解耦，会话转发层和业务逻辑解耦，</p>
+<p><strong>弹性</strong></p>
+<p>分钟级的弹性扩容和秒级弹性缩容。</p>
+<p>当业务需要增加时，由主DB生成新的虚拟机以支持更多业务处理，DB中就保留了动态数据（如用户签约数据、链路局向配置数据、稳态呼叫会话数据等），因此用动态数据可以生成新的VM来支持业务需求；</p>
+<p>当业务量下降时，将业务迁移其他虚拟机，对相应的虚拟机下电，减少虚拟机设备的运行，而稳态话务可以在其他模块中重建。</p>
+<p><strong>高可靠性</strong></p>
+<p>应用层、云操作系统层、硬件层都有相应的冗余机制。</p>
+<p><strong>应用层的冗余</strong> 1）通过主备和负荷分担方式实现主备VM间的冗余：主VM故障，备VM接管业务；2）无状态的N+M冗余机制：当负荷分担的N个虚拟机中出现故障了，其他M个虚拟机将自动接管业务</p>
+<p><strong>云操作系统冗余</strong> 通过虚拟机快速重建 实现冗余机制</p>
+<p><strong>硬件层冗余</strong> 通过簇化及物料冗余来实现冗余机制</p>
+<p>各自独立，高度互补确保整体可用性（资源永远可用、应用层会话零中断）</p>
+<p><strong>高性能</strong></p>
+<p>FusionSphere华为</p>
+<p>呼叫处理方面华为的FusionSphere比第二名的Vmware高17%。</p>
+<p>高性能技术的关键技术：NUMA亲和性、CPU绑定、DPDK、透明巨页、虚拟中断优化等</p>
+<p>NFV存在的问题</p>
+<p>（1）标准不成熟，技术架构实现上有分歧；</p>
+<p>（2）多供应商、集成复杂。</p>
+<p>（3）部件兼容性风险大。</p>
+<p>（4）NFV工程难度大。</p>
+<p>（5）网络功能虚拟化技术滞后</p>
+<p>（6）虚拟化可靠性不足。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/docker&微服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/15/docker&微服务/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/docker&微服务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/docker&微服务/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><h4 id="docker发展历程"><a href="#docker发展历程" class="headerlink" title="docker发展历程"></a>docker发展历程</h4><p><strong>1.容器和Docker</strong><br><strong>容器（container）：</strong>在linux中，容器技术是一种进程隔离的技术，应用可以运行在每个相互隔离的容器中。<br><strong>容器与虚拟机的区别：</strong>在容器中，各个应用共用一个kernel<br><strong>Docker：</strong>Docker是一家公司，在13年之前公司名叫 dotCloud，Docker仅仅是一个容器管理的产品。在13年，将Docker开源，Docker风靡全球，公司也更名为Docker。<br><strong>2.容器技术的演进</strong><br>1979年，有了容器技术的雏形，root技术的引进开启了进程隔离技术<br>2000年，FreeBSD Jails将计算机分为多个独立的小型计算系统。<br>2006年，谷歌 Process Containers技术，在进程隔离的基础上，进行了计算资源的限制<br>2008年<strong>，LXC，作为第一个完整的容器管理工具</strong><br>2013年，LMCTFY实现了linux应用程序的程序化，成为<strong>libcontainer</strong>的重要组成部分。<br>2013年，Docker最初使用的是LXC，后来被替换成libcontainer<br><strong>3. Docker技术的迅猛发展</strong><br>在开源之后迎来迅猛的发展，在现在也保持着迅猛的发展势头<br><strong>4. Docker技术发展迅猛的原因总结：</strong><br><strong>应用架构正在发生变革—微服务化</strong><br>在互联网时代，为了实现应用更快的开发迭代和更好的弹性伸缩，互联网应用不再采用传统的3层架构，而是采用微服务的方式，实现软件系统的松耦合，跨部门开发。<br><strong>基础架构系统也在发生变革—虚拟化、混合云</strong><br>从硬件服务器到虚拟机到企业私有云，从本地数据中心到灾备数据中心再到公有云。<br><strong>容器技术的作用</strong><br>一次封装，多次部署，随时迁移，不需要关注底层环境<br><strong>Docker定义的标准+服务应用</strong></p>
+<ul>
+<li>基础设施标准化（Docker Engine）：有了Docker Engine，可将Docker容器跑起来</li>
+<li>应用交付的标准化（Docker Image）:提供了一套应用快速打包为轻量级Docker Image的方法，开发人员在代码完成之后，可以将其打包为镜像；</li>
+<li>运维管理的标准化（Docker container）:运维人员不在需要将应用准备系统、运行环境、组件和基础软件包,容器时代，应用都运行在一个个的Docker container中。标准运维将关注容器，而不是复杂的系统环境。</li>
+<li>分发部署标准化（Docker Registry）：指的是<strong>容器化之后</strong>不同版本的应用镜像都存储在镜像仓库中。</li>
+</ul>
+<h4 id="容器技术精髓剖析"><a href="#容器技术精髓剖析" class="headerlink" title="容器技术精髓剖析"></a>容器技术精髓剖析</h4><p>1.namespace技术</p>
+<p><strong>namespace</strong>包含了六项隔离：</p>
+<ul>
+<li><strong>UTS</strong> ——独立的主机名与域名</li>
+<li><strong>IPC</strong> ——通信（信号量、消息队列和共享内容）</li>
+<li><strong>PID</strong> ——进程编号，通过PID技术，同个主机上的不同容器可以有相同的PID进程</li>
+<li><strong>Network</strong> ——网络设备、网络栈、端口、路由</li>
+<li><strong>Mount</strong> ——让容器拥有自己的文件系统</li>
+<li><strong>User</strong> ——用户和用户组，实现用户权限的隔离</li>
+</ul>
+<p>2.cgroups技术</p>
+<p>通过<strong>cgroups</strong>可以为容器设定系统资源的配额，包括CPU、内存、I/O等等。对于不同的系统资源，cgroups提供了统一的接口，对资源进行控制和统计。<br>限制的具体方式不尽相同，实际的流程很复杂。</p>
+<p>3.其他相关linux kernel技术</p>
+<p>-<strong>selinux和apparmor</strong>：增强对容器的访问控制<br>-<strong>capabilities</strong>：将超级用户root的权限分割成各种不同的capability权限，从而更严格地控制容器的权限。<br>-<strong>netlink</strong>：完成Docker的网络环境配置和创建<br>这些技术从安全、隔离、防火墙、访问等方面为容器的成熟落地打下了坚实的基础。</p>
+<p>4.lxc 和libcontainer（容器管理技术）</p>
+<p><strong>lxc</strong>是第一个完整意义上的容器管理技术。通过lxc可以方便的创建、启动和停止一个容器，还可以通过lxc来操纵容器中的应用，也可以查看容器的运行状态。<br>Docker的出现把lxc的复杂的使用方式简化为自己的一套体系。Docker后来开发了原生的libcontainer代替了lxc。</p>
+<p>libcontainer实际上反向定义了一组接口标准。</p>
+<ul>
+<li><strong>反向定义</strong>：libcontainer并不是为了调用底层的Linux Kernel技术而设计的，而是Linux Kernel技术符合了定义出来的libcontainer标准，Docker引擎才能运行起来。如果此后还有新技术符合这套标准，Docker引擎还是可以正常运行。<br>这样的设计思路为Docker的跨平台实现和全面化应用带来了可能。</li>
+</ul>
+<p>5.Docker技术原理</p>
+<p><strong>Docker构造：</strong></p>
+<p><strong>Client-Server</strong><br>Docker结构装好了Docker工具之后，也就同时装好了Client端和Server端。<br>Client端可以是Docker命令行工具，也可以是GitHub上开源的图形化工具（Kitematic UI）。通过Client工具可以发起创建、管理容器的指令到Server端。</p>
+<p><strong>Docker Daemon</strong></p>
+<p>Docker Daemon通过libcontainer、lxc管理技术来完成容器管理操作。<br>Docker Daemon的三个重要组件：</p>
+<ul>
+<li><strong>exec driver</strong>：存储了容器定义的配置信息，libcontainer拿到配置信息以后调用底层的namespace、cgroups等技术来完成容器的创建和管理。</li>
+<li><strong>network driver</strong>：完成容器网络环境的配置，包括了容器的IP地址、端口、防火墙策略，以及与主机的端口映射等。</li>
+<li><strong>graph driver</strong>: 负责对容器镜像的管理。</li>
+</ul>
+<h4 id="Docker核心技术"><a href="#Docker核心技术" class="headerlink" title="Docker核心技术"></a>Docker核心技术</h4><p>1.容器与虚拟机对比</p>
+<p>虚拟机和容器的结构对比</p>
+<p><strong>虚拟机</strong>下，是硬件→操作系统→Hypervisor→虚拟机操作系统→配置虚拟机依赖环境→安装App<br><strong>容器</strong>下，是硬件→操作系统→Docker Engine→运行所需要的依赖环境→安装App<br><strong>容器的运行不需要安装虚拟机的操作系统，是比虚拟机更加轻量的虚拟化技术。</strong><br>Docker和虚拟机对比的详细信息</p>
+<p>Docker容器共用一个Kernel，而虚拟机使用自己操作系统的Kernel→<strong>虚拟机拥有比Docker更好的隔离性。</strong></p>
+<p><strong>Docker有更多的优势</strong>：</p>
+<ul>
+<li>虚拟机操作系统的存在，占用了更多的计算资源；</li>
+<li>空间占用上，虚拟机是GB级，Docker可以小至几MB；</li>
+<li>Docker的启动时间更快（毫秒级）；</li>
+<li>Docker有更强的快速扩展能力、跨平台迁移能力</li>
+</ul>
+<p>2.Docker的重要概念：容器、镜像、仓库</p>
+<p><strong>容器</strong>：与虚拟机一样都是承载相关应用的载体</p>
+<p><strong>镜像</strong>：当容器安装了特定的应用之后，就可以将其打包成镜像。需要应用的时候，将镜像下载下来，就可以快速运行起来。</p>
+<p><strong>仓库</strong>：存储镜像的地方。</p>
+<p>3.Docker容器的使用</p>
+<p>3种状态：running、stopped、paused；与虚拟机的运行、关机、挂起相似。</p>
+<p>4.Docker镜像</p>
+<p>当把镜像下载到本地之后，可以使用Docker run的命令，启动一个基于这个镜像的容器。对容器修改之后，可以将其commit回去，生成一个新版本的镜像。</p>
+<p><strong>镜像的层级结构</strong></p>
+<p>Docker镜像是一种层级结构的文件系统，最上层往往是可写的，存储了已经运行的容器的修改信息当对容器进行kill的时候，修改信息就会被删掉。当容器被commit成镜像的时候，这些修改信息也会保存成新的层级。<strong>镜像的生成除了使用commit之外，还可以使用Dockerfile（更标准、更常用）。这种方式生成出来的镜像更加干净、透明。</strong></p>
+<p>5.Docker仓库</p>
+<p><strong>Dockerhub和私有仓库</strong></p>
+<p>Dockerhub是Docker的官方仓库，存放着各种官方的标准镜像。可以使用pull命令直接从Dockerhub中下载镜像到本地进行使用。</p>
+<p>还可以构建自己的镜像仓库，用于存放常用的镜像以及企业自定义的应用镜像。可以从私有仓库中下载、上传镜像。</p>
+<p>6.Docker核心技术–build，ship，run</p>
+<p>Docker的主要操作</p>
+<p>首先利用Dockerfile将代码组建成为一个镜像，然后将镜像上传到企业自定义的镜像仓库中。当我们需要镜像的时候，可以从<strong>任何地方</strong>连接到镜像仓库中，将镜像下载到本地（ship，我理解的），然后一键将其Run起来。<br>这就是”Build once, run everywhere”：一次构建，任何地方都能运行。</p>
+<p>7.Docker数据卷</p>
+<p>容器一旦关闭，修改信息就会丢失，这对于一些有状态的应用来说往往是不可接受的。<br>解决办法：可以通过<strong>给容器挂载文件目录或者存储</strong>来解决，从而可以存储容器运行中的一些数据。这样，当容器崩溃，重新启动容器的时候，依然可以访问之前容器存储下来的一些数据。这种方式也可以解决一些主机和容器之间的数据访问。</p>
+<p>8.Docker网络</p>
+<p>实现容器之间的通信、容器与外部之间的通信。<br>四种模式：</p>
+<ul>
+<li><strong>Bridged</strong>：表示容器可以与主机上的容器，主机外部进行通信</li>
+<li><strong>Host</strong>：表示容器只能与主机通信</li>
+<li><strong>Container</strong>：表示容器只能与容器通信</li>
+<li><strong>None</strong>：没有网络连接</li>
+</ul>
+<p>比较常用的是Bridged模式。主机会生成一个Docker网桥，每个容器可以拥有自己的虚拟网卡，容器网卡通过网桥连接到主机的物理网卡，与外部进行通信。</p>
+<h4 id="Docker平台架构"><a href="#Docker平台架构" class="headerlink" title="Docker平台架构"></a>Docker平台架构</h4><p><strong>1.容器编排（orchestration）</strong><br>这里的编排泛指广义的编排，用于管理容器下面的主机，管理容器以及日期之间的逻辑关系，即为我们所知的应用架构。</p>
+<ul>
+<li><strong>集群管理：</strong>【<strong>关键词：</strong>配置管理、资源视图、节点增删、高可用】</li>
+<li>容器调度：<strong>【关键词：容器部署、调度策略、互斥】</strong></li>
+<li>故障恢复：【关键词：主机检查、容器检查】</li>
+<li>应用编排：应用是一个个细微的容器来组成，每一个容器之间具有一定的逻辑关系，我们需要使用简单明了的编排语句将这些容器关联起来，比如容器之间的端口访问，容器的启动顺序等，从而实现整个应用的逻辑架构。</li>
+</ul>
+<p><strong>2.编排主流的3大工具</strong></p>
+<ul>
+<li>Swarm: Docker  2014年发布 内置于Docker，和compose一起使用</li>
+<li>Mesos: Apache  2007年发布 一般会结合marathon、Zookeeper一起使用 </li>
+<li>Kubernetes: Google 2014年发布 结合<strong>集群管理工具Etcd</strong>一起使用</li>
+</ul>
+<p><strong>3.负载均衡和服务发现</strong></p>
+<p><strong>负载均衡：</strong>请求到达负载均衡器之后，负载均衡器平均的分配到后面的容器上。</p>
+<p>常用的负载均衡的技术：<strong>haproxy,LVS,F5,Nginx</strong></p>
+<p><strong>服务发现</strong>：服务发现会自动将容器的配置信息上传至配置中心（config center），包含了容器的IP、端口、对外的域名等。</p>
+<p>常用的服务发现的技术：Etcd,Zookeeper,Consul负载均衡器周期性的从配置中心获取配置信息，并且将容器加入到相关的负载均衡访问架构中<br><strong>4.日志管理</strong><br><strong>日志：</strong>包含主机、编排工具、日志、容器、容器中的应用等等相关的日志<br><strong>对日志处理平台的要求：</strong>集中化、海量存储、灵活过滤、快速查询、伸缩性架构、高可用、强大的UI<br><strong>日志管理软件：</strong> <strong>ELK</strong>  </p>
+<p>ELK包含了<strong>3个组件:</strong><br>Logstash，用于收集各种各样的日志<br>ElasticSearch:主要用于存储和搜索日志<br>Kbana:用于界面展示的管理工具</p>
+<p><strong>5.Docker监控</strong><br>包括 主机 镜像 容器 应用等维度进行监控<br>并构建相关的告警,跟踪，监控等监控流程体系，即<strong>WANT原则</strong><br><strong>(Watching(监控)</strong>、<strong>Answer（响应）</strong>、<strong>Notify（通知）</strong>、<strong>Track（跟踪）</strong>，总结起来就是WANT)<br>常用的监控工具：Zabbix, Nagios, cAdvisor, Datadog, Scout等<br><strong>6.Docker平台架构</strong><br><strong>截图</strong><br><strong>平台层：</strong>底层需要对计算，网络，存储等资源进行管理，结合容器引擎和容器编排的工具实现对容器化应用的落地<br><strong>能力层：</strong>需要实现容器化应用的弹性架构，负载均衡等等，需要实现平台的统一监控和统一的日志管理，需要有严格的权限体系实现对用户、租户的管理，需要结合当前的<strong>DevOps理念</strong>来实现对应用的持续交付和版本控制<br><strong>最上层：</strong>平台还需提供应用的Web UI和功能齐全的API服务</p>
+<p><strong>7.Docker平台技术体系</strong><br><strong>Orchestration(编排): </strong>Swarm, Kubernetes, Mesos<br><strong>Cluster Management(集群管理):</strong> Etcd, Zookeeper, Haproxy<br><strong>CI/CD(持续集成):</strong> Jenkins, GitLab, Registry<br><strong>Database(数据库):</strong> redis, MySQL, mongoDB<br><strong>ELK&amp;CMDB(日志和配置管理):</strong> Logstash, Chef, puppet<br><strong>Monitor(监控):</strong> ZABBIX, Nagios, sysdig</p>
+<h4 id="Docker三大编排工具"><a href="#Docker三大编排工具" class="headerlink" title="Docker三大编排工具"></a>Docker三大编排工具</h4><p><strong><u>1.Mesos</u></strong></p>
+<p>两个重要角色，<u>slave</u>：安装在集群节点上；<u>master</u>：集群的管理节点；slave将节点的资源使用情况周期性地报告给master节点。</p>
+<p><strong>最小单元是容器</strong></p>
+<p>Mesos配合架构的FrameWork进行资源调度，过程如下：</p>
+<p>【有图】</p>
+<p>1）master将计算机节点的资源使用情况周期性地报告给FrameWork Scheduler</p>
+<p>2）FrameWork Scheduler进行调配后，下发部署的任务给集群节点 </p>
+<p>3）节点上的FrameWork Executor获取任务进行容器的部署</p>
+<p>4）节点将部署结果反馈给master</p>
+<p>5）master将更新主机资源的状态给FrameWork Scheduler</p>
+<ul>
+<li><strong>Mesos + Marathon + Zookeeper</strong>构建Docker平台</li>
+</ul>
+<p>Marathon是可以调用Docker引擎的FrameWork，可以将容器按照一定的调度策略部署到合适的主机上；</p>
+<p>Zookeeper管理Marathon和Mesos，保证节点的高可用性，即当master节点宕机后，可以快速选取新的master节点，而不影响逻辑架构。其本身是一个分布式的高可用架构。</p>
+<p><strong><u>2.Kubernetes</u></strong>（谷歌的开源容器管理项目）</p>
+<p>mesos中最小单元是容器，Kubernetes中最小单元是<strong><u>Pod</u></strong>，容器被封装在Pod中，一个Pod中可以存放一个或多个容器。<u>同一个Pod中，容器可以直接访问另一个容器；存储目录挂载到一个容器下，同一个Pod中的另一个容器也可以访问这个存储。</u></p>
+<p><strong>Pod的设计目的是：将需要紧密联系的Docker容器放置在一个独立的空间内（Pod）。</strong></p>
+<p><strong>整体架构</strong></p>
+<ul>
+<li>部署Kubernetes前，先部署Etcd作为集群的管理工具。</li>
+</ul>
+<p>Kubernetes的两个重要角色：minion（普通节点） master（管理节点）</p>
+<ul>
+<li>minion节点上的Kubernetes结合Etcd 和cAdvisor将节点信息汇总到master节点中；</li>
+<li>master节点中schduler使用一定的调度策略将Pod调度到minion节点上；使用replication controller控制Pod的数量和伸缩；使用service来分配Pod的ip和处理负载均衡；master提供了统一的访问接入口，可以通过外部或者commands对Kubernetes进行管理</li>
+<li>通过Kubernetes各个组件的配合，可以实现容器的资源调度、部署启动、服务发现、运行监控、错误处理、扩容缩容</li>
+</ul>
+<p><strong><u>3.Swarm</u></strong>（Docker公司的容器集群管理工具）</p>
+<p>Docker1.12 版本之后，Swarm已经封装进Docker引擎。装好Docker之后无需单独安装Swarm.</p>
+<p>Swarm的两个重要角色 manager node 和worker node</p>
+<p>自带服务发现功能，可以做到manager node的高可用性，其内置的负载均衡技术 使用LVS，同时依然支持其他服务发现的工具(Etcd等)</p>
+<p><strong><u>4.三大平台对比</u></strong></p>
+<p>【表格截图】</p>
+<h4 id="Docker生态圈及企业应用案例"><a href="#Docker生态圈及企业应用案例" class="headerlink" title="Docker生态圈及企业应用案例"></a>Docker生态圈及企业应用案例</h4><p><strong>1.应用场景：快速交付与CICO</strong><br>企业应用的开发上线流程一般是：代码、构建编译、测试、发布、部署<br>遇到的问题：可能因为环境的问题导致上线延迟，测试不通过等。<br><strong>快速交付：</strong>Docker，通过Docker可以大大的提高环境交付的质量和速度，开发人员写好代码之后，交付的不在是一大堆的部署文档，而是一个个的镜像存储到镜像仓库中。在测试环境、预生产环境以及生产环境将镜像仓库中的镜像拉取出来即可。保证部署出来的所有应用都是标准的、统一的。即为实现了应用的<strong>快速交付。</strong><br><strong>CICD：</strong>持续集成和持续部署（Constant Integration Constant Deployment）当我们的代码更新时，开发人员可以构建一个新的镜像版本到镜像仓库中，运维人员可以快速的将我们的镜像应用到测试环境、预生产环境以及生产环境。甚至可以通过gen case实现整个更新的自动化，从而实现了持续集成持续部署，实现了应用开发环境的快速迭代。<br><strong>2.应用场景：云间迁移</strong><br>应用容器化之后，对底层环境的要求将大大的降低，应用可以实现从本地数据中心到AWS（亚马逊云），阿里云、公有云等迁移<br><strong>3.应用场景：弹性扩展</strong><br>企业应用容器化之后，应用的扩展就是拉取镜像部署更多容器的简单过程，可以部署相关的监控系统，当发现应用访问慢或者是资源紧张的时候，在弹性扩展的策略下，应用会自动增加相应的容器实例，从而减轻应用访问的压力。当集群中的主机资源不足的时候，还可以使用IaaS接口，自动的增加主机的数量，以便于创建更多的Docker容器。<br><strong>4.应用案例：</strong>平安Padis平台，京东618（基于openstack和Docker）、天猫双十一<br><strong>5.Docker巨大生态势能</strong><br>从安全架构领域，操作系统领域、网络、存储、安全、安全、监控、日志等方面，越来越多的公司卷入到Docker的发展潮流当中。<br><strong>6.基于Docker的产品：</strong>红帽openshift、阿里云容器服务、Azure容器服务、网易蜂巢、道客云、有容云、希云、时速云等</p>
+<h3 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h3><h4 id="单体架构到微服务架构演进"><a href="#单体架构到微服务架构演进" class="headerlink" title="单体架构到微服务架构演进"></a>单体架构到微服务架构演进</h4><p>1.Monolithic单体式架构解析<br>Monolithic单体式架构指的是尽管是模块化逻辑，但是最终还是会打包并且部署为一个<strong>单一应用</strong>，具体的格式依赖于具体的语言和框架，例如，部分java应用会被大包围WAR格式，部署在Tomcat上或者JIT上，而另外一些java应用会被打包为自包含的jar格式，同样，Reals和node.js会被打包为层级目录。</p>
+<p>2.Monolithic单体式架构的优缺点<br>优点：开发工具IDE和其他工具都擅长开发一个简单应用，这类应用也很易于调试和部署。只需要把打包应用拷贝到服务器端，通过在负载均衡器后端运行多个拷贝，就可以轻松实现多个扩展<br>缺点：单体式架构一旦随着时间的推移，逐渐的变大，敏捷开发和部署举步维艰。任何单个开发者都很难搞懂它。修正bug和正确的添加新功能变得非常困难且很耗时。</p>
+<p>3.Monolithic单体式架构面临的挑战<br>随着市场变化快用户需求变化快、用户访问量增加的同时，单块架构应用的维护成本、人员的培养成本、缺陷修复成本、技术架构演进的成本、系统扩展成本等都在增加。单块架构的曾经的优势已逐渐不在适应互联网时代的快速变化。<br>4.微服务架构模式倡导的做法<br>Microservice微服务架构是一种架构模式，提倡将Monolithic单体式架构应用分为一系列小的服务，服务之间相互协调，相互配合，为用户提供服务。<strong>每个服务运行于其独立的进程中</strong>，服务之间采用轻量级的协议进行通信，每个服务都围绕着具体业务进行构建，并能够独立部署。<br>微服务架构的优点：每个服务能够内聚，代码容易理解，开发效率高，服务之间可以独立部署，使得持续部署成为可能，容易针对每个服务组件开发团队，容错性也大大提高。<br>5.向微服务架构演进的推荐顺序<br>先规划，然后是中间件和数据库，最后是服务和应用</p>
+<h4 id="基于Docker的微服务应用架构设计"><a href="#基于Docker的微服务应用架构设计" class="headerlink" title="基于Docker的微服务应用架构设计"></a>基于Docker的微服务应用架构设计</h4><p>设计模式—-“<strong>12-factor</strong>”</p>
+<p>为构建如下SaaS应用提供了方法论：使用标准化流程自动配置，从而使得新的开发者花费最少的成本加入这个项目，与操作系统间尽可能划清界限，在各个系统中提供最大的可移植性，适合部署在现在的云计算平台，从而在服务器和 系统管理方面节省资源；</p>
+<p>将<strong>开发环境与可生产环境的差异降至最低</strong>，并使用持续交付实现敏捷开发，可以在工具、架构、开发流程不发生明显变化的前提下实施扩展。</p>
+<ul>
+<li><p><strong>基准代码</strong></p>
+<p>基准代码与应用间总是保持一一对应关系：一旦有多个基准代码，就不能称之为一个应用，而是一个分布式系统。分布式系统中的每一个组件都是一个应用，每个应用可以使用12-factor进行开发。</p>
+<p><strong>多个应用共享一份基准代码是有悖12-factor原则的，解决方案是将基准代码拆分为独立的类库，然后使用依赖管理策略去使用管理</strong>。</p>
+</li>
+<li><p><strong>（显式声明）依赖关系</strong></p>
+<p>应用程序不会隐式依赖系统级的类库，一定是通过依赖清单，确切地声明所有依赖项。</p>
+<p>此外，在运行过程中通过依赖项隔离工具确保程序不会调用系统中存在但清单中未声明的依赖项。该做法统一应用到生产和开发环境中。</p>
+</li>
+<li><p><strong>配置（config）</strong></p>
+<p>推荐<strong>将应用的配置存储在环境变量</strong>中，环境变量可以方便地在部署之间做修改，而不改动一行代码；与配置文件不同，将其嵌入代码库的概率微乎其微；与传统的解决配置问题的机制如java的属性配置文件相比，环境变量与语言和系统无关。</p>
+</li>
+<li><p><strong>后端服务</strong></p>
+<p>12-factor不会区别对待本地或第三方服务，对应用程序而言，两者都是附加资源。</p>
+<p>12-factor应用支持任意部署，如在不改动代码的情况下，将本地的mysql数据库换成第三方服务（如亚马逊）</p>
+</li>
+</ul>
+<h4 id="基于容器的微服务架构剖析"><a href="#基于容器的微服务架构剖析" class="headerlink" title="基于容器的微服务架构剖析"></a>基于容器的微服务架构剖析</h4><ol>
+<li>Docker本质<br>Docker是一个微容器，一个云计算的微pass容器，类似jvm(Java Virtual Machine，Java虚拟机),比其更加强大，<strong>直接基于Linux内核</strong>；<br>比VM虚拟机更加轻量，能够在Linux、云计算、IS等平台上直接运行，带着你的应用无缝的移植到各种运行环境。<br><strong>Docker本质是一个允许创建镜像，并让镜像的实例运行在容器中的软件。</strong><br>所谓镜像往往包含了很多步骤，就像虚拟机的模板一样。</li>
+<li>Docker流行因素<br>依赖设计做的不到位，最后只能在运行阶段依靠docker这样的微容器松耦合，Docker的细粒度松耦合能用一个docker 容器装载一个场景功能。也就是按照功能角色分类。<br>每个Docker里面装一个服务或应用，一个服务器上可以运行多个Docker。系统级的服务比如Mysql数据库、memcash缓存</li>
+<li>集群分布微服务<br>业务应用系统可以应用微服务进行分类，每个Docker中运行一个微服务，</li>
+<li>Docker对传统Paas平台的挑战<br>Docker比java ee服务器更强的地方在于，Docker基于Linux内核，可以装载各种语言应用，是一种崭新的PaaS微平台。</li>
+<li>Docker的安全性<br>Docker利用容器将资源进行有效隔离。与Linux操作系统和hypervisor有相同的安全运行管理和配置管理级别。</li>
+</ol>
+<h4 id="微服务云架构管理"><a href="#微服务云架构管理" class="headerlink" title="微服务云架构管理"></a>微服务云架构管理</h4><ol>
+<li>微服务简化<br>微服务架构带来了诸多优势，构建、部署、维护分布式的微服务系统并不容易。而<strong>容器所提供的的轻量级面向应用的虚拟化运行环境为微服务提供了理想的载体</strong>。<br>基于容器技术的云服务将极大的简化容器化微服务创建、集成、部署、运维的整个流程，从而推动微服务在云端的大规模实践。</li>
+<li>微服务创建<br>假设用户的微服务程序，存储于GitHub等代码托管服务中，用户可以将这个代码仓库构建成容器镜像，并保存在镜像仓库中，用户可以将这个微服务一键部署到容器云平台。<br>云平台提供了持续集成的功能，用户可以选择是否使用。每当微服务的代码有变化时，就构建一个新的容器镜像以便以后部署使用。</li>
+<li><strong>微服务集成</strong><br>用户可以自由组合、复用数以万计的容器化微服务，像搭积木一样轻松集成应用；<br>比如，用户需要一个通用的Mysql数据库服务，无需构建镜像，可以直接在镜像仓库中选择适合的数据库服务镜像，并与其微服务链接起来；</li>
+<li>微服务部署<br>微服务由于组件数量众多，云端部署成为实践上的一个难点<br>容器云平台容器为应用发布的载体，用户不必指定传统部署方式中的繁琐的步骤，只需提供容器镜像和简单的容器配置，平台会将整个部署流程自动化。</li>
+<li>微服务运维<br>微服务由于独立进程众多，部署后的运维、管理成为实践的另一个难点；<br>容器云平台完全屏蔽<strong>底层云主机和基础架构运维</strong>，让用户专注于应用；<br>通过容器编排，自动恢复，自动扩展，监控日志，等高级应用生命周期服务，实现容器化微服务的智能托管；进一步帮助用户降低运维成本。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/云计算/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/15/云计算/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/云计算/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/云计算/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="云计算背景"><a href="#云计算背景" class="headerlink" title="云计算背景"></a>云计算背景</h3><p>技术驱动 需求驱动 商业模式转变</p>
+<p>海量数据和终端、 IT复杂性（数据中心分散，利用率低；业务恢复时间长；手工分配资源；运维困难）、 商业延迟（大数据处理能力差；无法弹性匹配等） 也是促进云计算的重要因素</p>
+<h4 id="云计算概念"><a href="#云计算概念" class="headerlink" title="云计算概念"></a>云计算概念</h4><p>商业视角：云计算=信息电厂；按需使用付费</p>
+<p>计算和存储从局域网向互联网迁移；软件从终端向云端迁移；软硬件解耦，实现硬件共享</p>
+<p>技术视角：计算和存储的网络</p>
+<p>狭义: IT技术设施的交付和使用模式，通过按需易扩展的方式获得所需的资源，包括基础架构、平台、软件等；</p>
+<p>广义：通过网络以按需、易扩展的方式获得所需的服务，这种服务可以是IT和软件、互联网相关的，也可以是任意其他服务，如医疗云、教育云等。</p>
+<h4 id="云计算部署模式"><a href="#云计算部署模式" class="headerlink" title="云计算部署模式"></a>云计算部署模式</h4><p>私有云 ：基础设施为单一组织拥有</p>
+<p>公有云 ：销售云计算服务</p>
+<p>混合云：由两种或多种云组成；逻辑上，私有云和公有云通过企业防火墙隔离</p>
+<h4 id="云计算应用模式"><a href="#云计算应用模式" class="headerlink" title="云计算应用模式"></a>云计算应用模式</h4><p>IaaS(Infrastructure as a Service)：基础设施作为服务，如虚拟机的租用、云盘等；</p>
+<p>PaaS(Platform…)：面向专业开发者，针对系统平台，给用户提供开放平台的服务</p>
+<p>SaaS(Sofetware…)：面向终端用户，提供软件服务，如邮箱服务等</p>
+<h3 id="云计算价值"><a href="#云计算价值" class="headerlink" title="云计算价值"></a>云计算价值</h3><h3 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h3><p>虚拟化是指通过虚拟化技术，将一台计算机虚拟为多台逻辑计算机，在一台计算机上同时运行多个逻辑计算机，每个逻辑计算机可以运行不同的操作系统，并且，应用程序都可以在相互独立的空间内运行而互不影响，从而显著的提高了计算机的工作效率。<br>物理机：宿主机  host OS<br>虚拟机：客户机  guest OS</p>
+<p><strong>虚拟化后的区别就是：</strong>物理机上可以同时运行多个虚拟机，而且还有<em>虚拟机监控器</em>，通过虚拟机监控器的模拟，可以使得虚拟机在上层软件看来就是一个真实的机器。</p>
+<p>物理资源池化，多个虚拟机直接从资源池中获取资源，与硬件解耦</p>
+<ul>
+<li>计算虚拟化：CPU、内存、IO虚拟化</li>
+<li>存储虚拟化：裸设备+逻辑卷、存储设备、主机存储+文件系统虚拟化</li>
+<li>网络虚拟化：虚拟专用网VPN、 VLAN</li>
+</ul>
+<h4 id="虚拟化本质"><a href="#虚拟化本质" class="headerlink" title="虚拟化本质"></a>虚拟化本质</h4><p>分区：在单一物理服务器上可同时运行多个虚拟机，按需使用资源池资源</p>
+<p>隔离：虚拟机业务互不影响</p>
+<p>封装：虚拟机执行环境封装在独立文件中，可以移动和复制文件来实现虚拟机的移动和复制</p>
+<p>独立：相对于硬件独立，无需修改虚拟机，可在多个物理服务器上运行</p>
+<p><strong>虚拟机热迁移</strong>：虚拟机保存和恢复，虚拟机的整个运行状态</p>
+<h3 id="openstack"><a href="#openstack" class="headerlink" title="openstack"></a>openstack</h3><p>综合的云计算管理平台</p>
+<h4 id="主要组件介绍"><a href="#主要组件介绍" class="headerlink" title="主要组件介绍"></a>主要组件介绍</h4><ul>
+<li><p><strong>keystone：提供身份认证服务</strong></p>
+<p>负责用户、租户、角色、服务和服务端点的管理，各组件间的认证核心，提供服务的注册功能，且支持SQL、PAM、LDAP等后端认证。（整个openstack框架的注册表，其他组件通过keystone来注册服务的endpoint）</p>
+<p><strong><u>常用术语</u></strong></p>
+<p><strong>user</strong>：openstack的基本用户，进行访问的人或程序</p>
+<p><strong>project</strong>：项目或租户，指分配给使用者的资源的集合（如n个实例，n个cpu等）</p>
+<p><strong>role</strong>：代表一组用户可以访问资源的权限</p>
+<p><strong>domain</strong>：域，定义管理边界，是上层集合，可以包含多个project、user、role等</p>
+<p><strong>endpoint</strong>：服务的url路径，暴露出的访问点</p>
+<p><u>认证模型</u></p>
+<p>创建多个<u>domain</u>，给多个公司使用，每个公司在domain下创建多个子公司<u>project</u>，子公司project下可以创建多个用户<u>user</u>，用户可以跨多个project存在。</p>
+<p><u><strong>keystone认证原理</strong></u></p>
+<p><strong>用户</strong>提出创建虚拟机实例的请求，将先通过<strong>keystone</strong>创建一个访问令牌<u>access token</u>，首先将访问令牌和访问请求提交给Nova服务，Nova服务将访问令牌交给keystone验证，确保令牌没有被篡改；验证通过后，为启动虚拟机的实例，还需向Glance组件申请相关的镜像资源，同样Glance为保证令牌没有被篡改过，也需将令牌交给keystone进行验证，验证通过后将发放镜像资源给Nova组件；虚拟机的创建还需要存储、网络等资源，因此Nova组件还需要给负责各种资源的组件传递资源申请的请求，资源申请的过程中，都<strong>将伴随着访问令牌的验证</strong>；最终Nova拿到启动虚拟机实例的所有资源后进行实例的启动，分配给相关的用户。</p>
+</li>
+<li><p><strong>nova：提供计算服务</strong></p>
+<p>Nova是openstack云中的计算组织控制器，管理云中实例的生命周期，是一个负责管理计算资源、网络、认证所需的可扩展性平台。</p>
+<p>负责虚拟机实例的调度分配以及实例的创建、启停、迁移、重启等操作，从而管理云中实例的生命周期，<strong>是整个云中的组织控制器</strong>。</p>
+<p><strong><u>功能特性</u></strong></p>
+<p>实现实例的生命周期的管理；调动管理平台的网络、存储等计算资源；提供统一风格的RestAPI接口；支持透明的hypervisor；各个模块间通过消息队列的方式进行消息传递。</p>
+<p>计算服务：运行的虚拟实例支持的<strong><u>hypervisor（虚拟机管理程序）</u></strong>有<u>KVM</u>（默认）XEN等等；</p>
+<p>分布式控制器：提供亚马逊EMC2兼容的API接口</p>
+<p><strong><u>常用术语</u></strong></p>
+<p><strong>KVM</strong>：内核虚拟化，openstack默认的hypervisor层</p>
+<p><strong>Qemu</strong>:KVM的替补角色，没有KVM执行效率高，不支持全虚拟化</p>
+<p><strong>Flavor</strong>:新建虚拟机的配置列表，虚拟机模板</p>
+<p><strong>Keypair</strong>:ssh连接访问实例的密钥对</p>
+<p><strong>安全组</strong>：控制访问策略的容器，包含各种安全组规则</p>
+<p><strong>安全组规则</strong>：控制实例访问的具体策略</p>
+<p><strong><u>Nova组件</u></strong></p>
+<p>Nova API：统一风格的RestAPI接口，作为Nova组件的入口，接受用户的请求</p>
+<p>Nova scheduler：负责调度，将实例计算分配到具体的计算节点</p>
+<p>Nova conductor：负责与Nova数据库进行交互</p>
+<p>Nova compute：运行在计算节点上，虚拟机实例的创建和管理</p>
+<p>message queue：消息队列，负责Nova各个组件间的消息传递</p>
+<p>database：数据库模块</p>
+<p><strong><u>Nova组件的协作运行</u></strong></p>
+<p>用户通过CLI命令行或horizon向Nova组件发起创建实例的请求，<strong>Nova API</strong>作为入口接收用户的请求，以<strong>消息队列</strong>的方式将请求发送给 <strong>Nova scheduler</strong>，Nova scheduler从消息队列中，侦听到nova API的消息队列后，借助消息队列的方式通过<strong>Nova conductor</strong>与<strong>数据库</strong>进行交互，查询当前计算节点的负载和使用情况，根据查询结果，将虚拟机实例分配到当前负载最小，且满足启动虚拟机实例的计算节点上；实例的创建依靠<strong>Nova compute</strong>通过消息队列的方式与<strong>Nova volume 、Nova network</strong>等组件的协作共同实现。</p>
+</li>
+<li><p><strong>glance：镜像服务</strong></p>
+<p>为Nova提供镜像服务以启动实例的组件，包括镜像的创建、镜像快照管理以及镜像模板等；不负责镜像的本地存储。</p>
+<p><u>支持的镜像格式</u>：raw(无格式),qcow(默认),vhd(VMware格式),vmdk，iso</p>
+<p><u>后端管理</u>：swift，AmazonS3，文件系统；（镜像的存储后端）</p>
+<p><strong>Glance-api</strong>：负责提供镜像服务的restAPI服务，作为镜像服务请求的入口</p>
+<p><strong>GLance-registry</strong>：负责与glance使用的数据库的交互，如镜像的创建、删除、修改等操作</p>
+<p><strong><u>架构</u></strong></p>
+<p>当来自horizon、CLI、Nova、Compute等发送来的镜像请求，由glance-api接收请求，将请求消息传递给glance registry组件，在<strong>glance数据库</strong>中查询镜像存储的位置信息，将查询结果返回给api；glance api调用<strong>storage adapter组件</strong>进行查询，用于<strong>查询后端的存储</strong>如swift、amazon S3等，最终获取镜像返回给用户。</p>
+</li>
+<li><p><strong>swift：对象存储服务</strong></p>
+<p>与amazonS3类似，提供存取数据的应用服务，通常用于保存非结构化数据，如通常作为Glance组件的存储后端或云盘等应用</p>
+<p><strong><u>Swift 是</u></strong>openstack中提供高可用分布式对象存储的服务，为nova组件提供<strong>虚拟机镜像存储服务</strong>；在数据冗余方面，无需采用RAID，通过在软件层面，引入一致性散列技术和数据冗余，牺牲一定的数据一致性，来达到高可用和可伸缩性；支持多租户模式下，容器和对象读写操作；<strong>适用于互联网应用场景下非结构化的数据存储，比如，华为云盘等</strong>。</p>
+<p><strong><u>常用术语1</u></strong></p>
+<p><strong>account</strong>：用户定义的管理存储区域</p>
+<p><strong>container</strong>：存储隔间，类似于子文件夹或存储目录</p>
+<p><strong>object</strong>：包含了基本的存储实体和自身的元数据</p>
+<p><strong>ring</strong>：记录了磁盘上存储的实体名称和物理位置的映射关系（accout环 container环 object环）</p>
+<p><u>相互间关系</u>：可以创建多个account，每个account可以创建多个容器container【container间不能相互嵌套】，每个container下可以创建多个object。</p>
+<p><strong>Swift在物理结构上往往会存储对象的多个副本，通常按照物理位置的特点，将对象拷贝到不同的物理位置上，来保证数据地理位置上的可靠性</strong></p>
+<p><strong><u>常用术语2</u></strong></p>
+<p><strong>region</strong>：地域，往往代表不同城市地理位置，从灾备方面考虑</p>
+<p><strong>zone</strong>：可用区，强调基础设施（如物理供电、网络、空调等）的隔离；可能是同一个城市不同数据中心的机房，也可能是同一个数据中心不同供电、空调隔离的机房</p>
+<p><strong>node</strong>：节点，代表一台存储服务器</p>
+<p><strong>disk</strong>：磁盘，代表物理存储设备</p>
+<p><strong>cluster</strong>：群集，为冗余考虑设计的架构</p>
+<p><u>相互间关系：</u>根据不同的地理位置，有不同的region，在同一个region下，为冗余考虑可以设置多个可用区zone，每个可用区可以有多个不同的存储节点node。在更大的架构上，多个region可以构成cluster。</p>
+<p><strong><u>swift工作架构</u></strong></p>
+<p>首先，<strong>用户</strong>提出一个对象存储服务的申请，由<strong>Swift API</strong>接收和处理，收到之后，先去找<strong>keystone认证节点</strong>，对用户的身份进行认证。认证通过后，将请求提交给<strong>Swift Proxy</strong>的组件，Swift Proxy是Swift 的代理，由Swift Proxy来确定究竟应该将存储对象放在哪一个满足存储要求的存储节点上。最终将对象存储到指定的存储节点上即可。最终将返回结果返回给用户。</p>
+</li>
+<li><p><strong>neutron：网络服务</strong></p>
+<p>基于软件定义网络（SDN）思想，实现软件资源的网络化管理，支持 多种类型插件，实现多租户网络隔离，可以与支持硬件和软件的网络解决方案集成。在实现上充分利用linux系统中各种网络相关的技术，支持第三方插件。</p>
+<p><strong><u>常用术语</u></strong></p>
+<p><strong>Bridge-int</strong>:综合网桥，常用于实现内部网络通讯功能的网桥</p>
+<p><strong>Br-ex:</strong>外部网桥，通常用于跟外部网络通讯的网桥</p>
+<p><strong>Neutron-server</strong>：提供API接口，将API的调用请求传递给已配置好的插件进行后续处理</p>
+<p><strong>Neutron-L2-agent</strong>：二层代理，用于实现二层网络通信的代理，用于管理VLAN插件，接受Neutron-server的指令来创建VLAN</p>
+<p><strong>Neutron-L3-agent</strong>：负责租户网络与floating IP间的地址转换，通过linux 的IP tables中的NAT功能实现IP转换；</p>
+<p><strong>Neutron-DHCP-agent</strong>：openstack中用于创建子网，并为每个子网实现IP地址自动分发的组件</p>
+<p><strong>Neutron-metadata-agent</strong>：运行在网络节点上，用于响应Nova中的metadata请求</p>
+<p><strong>LBaaS agent</strong>：为多个实例和open vswitch angent提供负载均衡服务</p>
+<p><strong><u>架构</u></strong></p>
+<p>Neutron通过API接口接收来自用户或其他组件的网络请求，以消息队列的方式提交给2、3层代理，其中Neutron-DHCP-agent实现子网的创建和IP地址自动分发，Neutron-L2-agent实现相同VLAN下网络的通信，Neutron-L3-agent实现同一租户网络下，不同子网间的通信。</p>
+</li>
+<li><p><strong>cinder：块存储服务</strong></p>
+<p>与亚马逊EBS组件相似；</p>
+<p>为虚拟机实例提供卷的持久化服务，同时支持对卷的快照、备份管理；基于插件的架构易于扩展</p>
+<p>为虚拟机实例提供卷的块存储服务，可将卷挂载到实例上，作为虚拟机实例的本地磁盘使用；一个卷可以同时挂载到多个实例上；共享的卷同时只能被一个实例进行写操作，其他实例只能进行只读操作。</p>
+<p><u>支持的文件系统类型</u></p>
+<p>LVM/ISCSI</p>
+<p>NFS</p>
+<p>NetApp NFS</p>
+<p>Gluster</p>
+<p>DELL　Equall Logic</p>
+<p><strong><u>常用术语</u></strong></p>
+<p><strong>volume备份</strong>：卷备份，存放在备份的设备中</p>
+<p><strong>volume快照</strong>：卷在某个时间点的状态</p>
+<p><strong>Cinder API</strong>：为cider请求提供统一风格的rest API服务，是cinder服务的入口</p>
+<p><strong>cinder scheduler</strong>: 负责调度，为新建卷制定块存储设备</p>
+<p><strong>cinder volume</strong>：负责与存储的块设备交互，实现卷的创建、删除、修改等操作</p>
+<p><strong>cinder backup</strong>：负责通过驱动和后端的备份打交道</p>
+<p><strong><u>cinder工作架构</u></strong></p>
+<p>当用户、Nova、compute等提出创建卷的服务请求时，首先<strong>cinder API</strong>接收请求，然后<strong>以消息队列</strong>的方式发送给<strong>Cinder scheduler</strong>进行调用，Cinder scheduler侦听到消息后，在数据库中查询当前存储节点的状态信息，根据预定策略，选择卷的最佳<strong>volume service节点</strong>，将调度结果发布给volume service调用。volume service收到来自volume scheduler的调度结果后去查找<strong>volume provider</strong>，在特定的存储节点上创建相关的卷，然后将相关结果返回给用户，同时将修改的数据写入数据库中。</p>
+</li>
+<li><p><strong>horizon：</strong>web统一化管理界面</p>
+<p>提供自动化仪表板的管理服务，实现对用户、租户、卷、网络等几乎所有资源的图像化管理</p>
+</li>
+<li><p><strong>ceilometer：</strong>监控和计量服务</p>
+<p>对openstack平台中各组件信息的统一化采集和处理，实现状态监控及流量监控功能；提供计量服务</p>
+<p><strong><u>核心组件</u></strong></p>
+<p><strong>Ceilometer-agent-compute</strong>：运行在计算节点上，是收集计算节点信息的代理</p>
+<p><strong>Ceilometer-agent-central</strong>：运行在控制节点上，轮询服务的非持续化数据</p>
+<p><strong>Ceilometer-collector</strong>：运行在一个或多个控制节点上，监听message bus（消息总线），将收集到的消息写入数据库中</p>
+<p><strong>Storage</strong>：数据存储，支持mango DB、mysql等，存储收集到的样本数据</p>
+<p><strong>API server</strong>：运行在控制节点上，提供对数据库的数据访问</p>
+<p><strong>Message Bus</strong>：计量数据的消息总线，收集数据给ceilometer-collector</p>
+<p><strong><u>ceilometer架构</u></strong></p>
+<p>采用两种数据采集的方式，一种是消费了openstack内各个服务自动发出的notification消息，另一种是调用各个服务的API，主动轮询获取数据。</p>
+<p>在openstack中，大部分事件会发出通知消息，比如创建、删除实例时，<strong>通知消息是ceilometer的首要的数据来源；</strong></p>
+<p>另外有一些计量信息，是通知获取不到的，如一些实例的cpu运行时间或使用率等，因此采取第二种方式，即<strong>周期性地调用相关API轮询这些信息</strong>。</p>
+</li>
+<li><p><strong>Heat</strong></p>
+</li>
+</ul>
+<p>Heat是一个基于模板来创建相关资源的服务，是OpenStack核心项目之一。可以通过.yaml文件生成模板，通过Heat-agent组件在OpenStack中创建相关的资源。<br>除此之外，支持自由的Haut模板。以及亚马逊的cloudy formation格式的模板。<br>模板支持丰富的资源类型，不仅支持了常用的基础架构，包括计算、网络、存储、 镜像等功能，还包括了Ceilometer警报等高级资源。<br>提供基于模板的编排服务。</p>
+<p><strong>Stack</strong>：Heat要用到的<strong>所有设施和资源</strong>的集合。</p>
+<p><strong>Heat template</strong>：是以.yaml结尾的文件，用于创建stack。</p>
+<p><strong>Heat-api</strong>：提供rest api服务，Heat入口将api请求发送给heat engine去执行。</p>
+<p><strong>Heat-api-cfn</strong>：支持亚马逊格式访问的rest api。</p>
+<p><strong>Heat-engine</strong>：Heat的核心模块，接收API请求，在openstack中创建资源。</p>
+<p><strong>Heat-cfntools、Heat-init</strong>：在镜像中安装完成虚拟实例操作任务的工具。</p>
+<p><strong>Heat-api-cloudwatch</strong>： 监控编排服务。</p>
+<p><strong>Resource</strong>：底层各种服务抽象的集合。<em>（例：计算、存储、网络）</em></p>
+<p><strong>Heat-client</strong>：用于调用访问其它各个组件的client工具</p>
+<p>当用户在Horizon中或者命令行（CLI）中提交包含模板和参数的，创建实例的请求时，Heat服务接收请求，调用Heat-API/Heat-API-cfn，然后API首先验证模板的正确性，然后通过消息队列异步传输给Heat Engine进行处理。</p>
+<p>当Heat Engine拿到请求后，会把请求解析为各种资源类型，而每一种资源都有相关的Client与相关的服务对应。<br>Client通过发送rest请求给其它的服务，从而获取相关的资源，最终完成请求的处理。<br>在整个过程中，Heat Engine的作用分为三层：</p>
+<ol>
+<li>处理Heat层面的请求，然后根据模板和输入的参数来创建Stack。</li>
+<li>解析Stack中各种资源的依赖关系以及Stack的嵌套关系。</li>
+<li>根据解析出来的关系，依次调用各种服务的Clinet，来创建各种资源。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/网络基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/15/网络基础/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/网络基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/网络基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="IP路由技术"><a href="#IP路由技术" class="headerlink" title="IP路由技术"></a>IP路由技术</h3><p>路由表</p>
+<p>IP路由的过程</p>
+<p><strong>路由协议</strong></p>
+<h3 id="IPv6技术"><a href="#IPv6技术" class="headerlink" title="IPv6技术"></a>IPv6技术</h3><p><strong>1.为什么学习IPv6？</strong></p>
+<p>海量地址需求；57B，家庭（2B）移动（5B）M2M（machine to machine，物联网，50B）</p>
+<p><strong>2.IPv6地址格式</strong></p>
+<p>IPv6地址 （128位）= 前缀（前64位）+接口标识（后64位）；前缀相当于IPv4的网络ID，接口标识相当于IPv4的主机ID。</p>
+<p>本地链路地址：fe80开头；相当于IPv4的私网地址，不上因特网</p>
+<p>全球单播地址：2001开头；相当于IPv4的公网地址</p>
+<p><strong>标准书写格式</strong> </p>
+<p>首选格式，用16进制表示，四个数字一组，中间用<code>：</code>隔开</p>
+<blockquote>
+<p>如 2001:0410:0000:0001:0000:0000:0000:45ff/64</p>
+</blockquote>
+<p>压缩格式，若以零开头可以省略，连续全零的组用 <code>::</code>表示，一个地址中<code>::</code>只能出现一次</p>
+<blockquote>
+<p>如 2001:410:0:1::45ff/64</p>
+</blockquote>
+<p><strong>地址分类</strong></p>
+<p>单播地址（unicast）：标识一个接口，单播地址的报文会被送到被标识的接口</p>
+<p>组播（multicast）：标识多个接口，组播地址的保温会被送被标识的所有接口</p>
+<p>任意播（anycast）：标识多个接口，任意播…最近的一个被标识接口，最近节点由路由协议定义</p>
+<p><strong>单播地址分类</strong></p>
+<p>未指定地址：全0地址 ::</p>
+<p>回环地址： ::1</p>
+<p>全球单播地址：2001开头</p>
+<p>内嵌IPv4的IPv6地址： 例 <code>::10.153.70.200</code></p>
+<p>链路本地地址： 以fe80开头，不上因特网，例 <code>FE80::E0:F726:4E58</code></p>
+<h3 id="VLAN技术"><a href="#VLAN技术" class="headerlink" title="VLAN技术"></a>VLAN技术</h3><p>virtual local area network，虚拟局域网</p>
+<p>传统以太网交换机在转发数据时，采用源地址学习的方式，自动学习各个端口连接的主机的MAC地址，形成转发表；缺乏转发控制手段</p>
+<p>存在的问题：网络安全性差；网络效率低；业务扩展性差</p>
+<p>VLAN 技术 逻辑上分成网络组，组内可以通信，组间不允许通信</p>
+<p><strong>VLAN实现</strong></p>
+<p>通过打标签隔离组与组间的通信</p>
+<p><strong>VLAN标签应用规则</strong></p>
+<p>Access端口：交换机用来连接用户主机的接口；收，标准以太网数据帧； 发     PVID（管理员赋予）</p>
+<p>Trunk端口：交换机用来连接其他交换机的接口；</p>
+<p>Hybrid端口：连接用户主机及其他交换机；可以剥离多个VLAN标签</p>
+<h3 id="QoS技术"><a href="#QoS技术" class="headerlink" title="QoS技术"></a>QoS技术</h3><p>语音业务 视频服务 上网业务（网络拥塞）</p>
+<p>衡量因素：带宽[短板理论]；时延（一端到一端）；抖动（同个网络同一业务，你好-&gt;好你）；丢包（你好-&gt;好）</p>
+<p><strong>常见QoS服务模型</strong></p>
+<p>best-effort service[尽力而为]</p>
+<p>integrated service[集中服务]</p>
+<p>differentiated service[区分服务模型]：常用，根据不同业务提供不同服务</p>
+<ul>
+<li>业务分类方式，如对流量进行分类和标记</li>
+</ul>
+<p>复杂流分类：根据业务的IP地址、端口号、服务类型等进行区分，相同的业务具有相同的特点，进行标记——在报文里设置优先级的值</p>
+<p>简单流分类：根据已经标记的优先级，对报文进行调度</p>
+<ul>
+<li>业务管理方式</li>
+</ul>
+<p>令牌桶机制</p>
+<p>流量监管：没有令牌的报文，直接被丢弃；优点：不会引入时延</p>
+<p>流量整形：没有令牌超出的报文，先进行缓存，在网络空闲时转发；优点：丢包率低；缺点：引入时延</p>
+<ul>
+<li><strong>报文调度方法</strong></li>
+</ul>
+<p>FIFO[先进先出]：</p>
+<p>PQ[优先级队列]：对高优先级报文优先转发，减少时延；缺点（饿死现象）</p>
+<p>WFQ[加权公平队列]：按队列权重分配流出口的带宽，不出现饿死现象</p>
+<p>一般采用PQ+WFQ方式，对于在线游戏、语音等关键业务，将其放在PQ队列中，但限制带宽速率</p>
+<p>如果网络中出现较大程度的拥塞，报文都要进行排队，排队满了之后的报文都会被丢弃，无论优先级高低。</p>
+<p><strong>防止高优先级的报文被丢弃</strong>：WRED（加权随机早期检测丢弃）排队时丢弃报文，优先级高丢弃率低，保证队列不满，关键业务端到端的服务</p>
+<p><strong>QoS应用</strong></p>
+<p>流分类    流行为（设置带宽、优先级等）  流量策略（关联流分类和流行为）  策略应用</p>
+<h3 id="NAT技术"><a href="#NAT技术" class="headerlink" title="NAT技术"></a>NAT技术</h3><p>network address translation，网络地址转换。是将IP数据报头中的IP地址转换为另一个IP地址的过程，实际应用中主要用于<strong>实现私有网络访问公共网络</strong>的功能；通过<strong>使用少量的公网IP地址代表较多的私网IP地址</strong>的方式，有助于减缓可用IP地址空间的枯竭。（扩展到实现任意两个网络间进行访问时的地址转换）</p>
+<p>私网IP地址是指内部网络或主机的IP地址；公网IP是指因特网上全球唯一的IP地址。               </p>
+<p>服务器（公网）  用户（私网）/服务器（私网）  用户（公网） 路由没有私网IP地址信息，无法实现互访</p>
+<p>NAT session 在网络地址转换时，设备会对报文转换前的源IP地址以及端口号和转换后的源IP地址及端口号的对应关系做记录。</p>
+<ul>
+<li><p><strong>NAT No-PAT</strong>，一对一地址转换，在地址转换过程中，数据包的源IP地址由私网地址转换为公网地址 ，端口号不做转换。</p>
+<p>进行网络地址转换时，NAT设备会对报文转换前的源IP地址以及端口号和转换后的源IP地址以及端口号的对应关系做记录（NAT session）</p>
+<p>一个私网地址对应一个公网地址，并不节省公网地址</p>
+</li>
+<li><p><strong>NAPT</strong>(network address port translation，网络地址端口转换)，多对一地址转换，允许多个内部地址映射到同一个公有地址上，同时映射IP地址和端口号，<strong>可以实现多个内网用户公用一个公网IP</strong>。</p>
+<p>服务器在私网，用户在公网访问私网服务器</p>
+</li>
+<li><p><strong>NAT server</strong>，网络管理员手动建立映射（静态配置），得到私网服务器地址转换得到的公网服务器地址及端口号，使公网用户通过访问转换后的公网地址及端口号来实现访问私网服务器;公网用户访问私网服务器。服务器回应方式与NAPT类似。</p>
+</li>
+<li><p><strong>NAT ALG（应用级网关）</strong>，设备通过应用级协议的协商报文的分析，在双方的新通道建立前，提前获取相关信息，为其自动建立相应的NAT转换规则。<strong>实现网络级和应用级对应</strong> 对一些常见的特殊协议支持其应用层的IP地址替换，如FTP、FTP（File Transfer Protocol，文件传输协议）、ICMP（Internet Control Message Protocol，因特网控制消息协议）、DNS（Domain Name System，域名系统）、ILS（Internet Locator Service，Internet定位服务）、H.323、SIP（Session Initiation Protocol，会话发起协议）、NetMeeting 3.01、NBT（NetBIOS over TCP/IP，基于TCP/IP的网络基本输入输出系统）等。</p>
+</li>
+</ul>
+<h3 id="NE40E-X系列路由器产品概述"><a href="#NE40E-X系列路由器产品概述" class="headerlink" title="NE40E-X系列路由器产品概述"></a>NE40E-X系列路由器产品概述</h3><p>NE40E-X3</p>
+<p>NE40E-X8</p>
+<p>NE40E-X16</p>
+<p>NE40E-X2</p>
+<p>NE40E-X1</p>
+<h3 id="S9300交换机产品概述"><a href="#S9300交换机产品概述" class="headerlink" title="S9300交换机产品概述"></a>S9300交换机产品概述</h3><h3 id="NE系列路由器日常维护"><a href="#NE系列路由器日常维护" class="headerlink" title="NE系列路由器日常维护"></a>NE系列路由器日常维护</h3><p>维护项目，五个</p>
+<p>机房环境：温度 湿度</p>
+<p>设备环境：单板温度和电压</p>
+<p>日志和告警：及时处理和上告</p>
+<p>设备运行状况：单板 CPU 风扇</p>
+<p>业务运行状况：检查相关数据配置</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/虚拟化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/15/虚拟化/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/虚拟化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/虚拟化/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="虚拟化"><a href="#虚拟化" class="headerlink" title="虚拟化"></a>虚拟化</h3><p>物理架构存在的问题：</p>
+<ul>
+<li>难以复制和移动</li>
+<li>受制于硬件组件</li>
+<li>生命周期短</li>
+<li>服务器资源利用率低</li>
+</ul>
+<p>虚拟化</p>
+<p>服务器硬件上安装虚拟化层，在虚拟化层上再安装操作系统和应用；虚拟出的逻辑计算机即为虚拟机</p>
+<p>虚拟机间的资源共享（虚拟机使用的CPU、内存、网卡、磁盘都是由主机的物理结构提供的）</p>
+<ul>
+<li>CPU虚拟化，实现过量使用</li>
+<li>内存复用或压缩等技术，实现内存的过量分配</li>
+<li>虚拟网络，使用虚拟交换机，将虚拟机的虚拟网卡与网络网卡连接，并接入外部网络</li>
+<li>VMFS磁盘资源虚拟化，数据存储池划分虚拟磁盘供给虚拟机使用</li>
+</ul>
+<h3 id="VMware组件介绍"><a href="#VMware组件介绍" class="headerlink" title="VMware组件介绍"></a>VMware组件介绍</h3><p>1.VMware ESXi</p>
+<p>核心组件，也即ESXi主机虚拟化层</p>
+<p>作用：用于协调物理计算机的资源，同时通过ESXi管理其上的虚拟机，如部署、迁移等操作；还可以通过ESXi管理物理计算机上的网络存储资源，通过配置虚拟交换机上的vSwitch管理配置网络资源，通过VMfs和nfs管理虚拟存储资源。</p>
+<p>2.vCenter Server</p>
+<p>作用：提供集中的管理接口，供管理员管理整套的虚拟化环境；也可以为虚拟化提供更高级的功能，如虚拟机迁移，分布式服务，快速部署虚拟机等。（构成图）</p>
+<p>vCenter配置和清单信息保存在数据库中–&gt;数据库服务器</p>
+<p>在管理主机时，有部分服务需要在各个主机上，如分布式虚拟交换机需要一定的分布式服务，同时在管理虚拟化环境时，需要相应的权限管理及用户访问控制；统一的身份验证以方便管理，vCenter提供了一些接口，供第三方程序连接。</p>
+<p>3.其他组件</p>
+<p>Vsphere client：客户端的管理工具，用户连接并管理ESXi主机和vCenter Server时，为其提供图形化管理界面。</p>
+<p>Update Manager：更新管理</p>
+<p>VMware Data Protection（VDP）：数据保护</p>
+<p>VMware vRealize Orchestrator：实现一系列的自动化工作流（如检测到存储不足时自动迁移等）</p>
+<p>vCloud Director：云平台组件，适用于部署私有云，发布云环境</p>
+<h3 id="ESXi"><a href="#ESXi" class="headerlink" title="ESXi"></a>ESXi</h3><p>1.VMware发展历程</p>
+<p>2006年，GSX。物理机上安装操作系统，再将VMware作为应用程序安装在主机上，VMware通过宿主操作系统进行资源和操作系统管理，此为寄居式虚拟化（过度依赖宿主操作系统）</p>
+<p>2009年，ESX。将ESX安装在物理计算机上，称为裸机安装。其将虚拟化程序与操作系统整合在一起，将虚拟化程序写入linux系统中，ESX通过linux系统的servers console运行，资源和虚拟机的管理通过合作代理伙伴或脚本执行。缺陷是虚拟化程序包含linux系统，系统的非虚拟化部分进程会占用主机资源，造成资源浪费；其次在管理资源和虚拟机时，只能通过脚本和代理，不方便。</p>
+<p>2011年，ESXi。改进一，提出linux层，只保留VMkernel对虚拟化内核进行管理，减小了虚拟化层的大小；改进二，将控制台从虚拟化程序中提出，变成独立组件–Vsphere client，方便快捷管理。ESXi独立于通用的操作系统运行。（虚拟化管理程序的黄金级标准）</p>
+<p>优点：精简的体系结构；更小的安全占用空间；简化的部署和配置；简化的修补和更新模式。</p>
+<p>体系结构</p>
+<p><img src="D:\Picture\markdown\ESXi.png" alt=""></p>
+<h3 id="vCenter-Server"><a href="#vCenter-Server" class="headerlink" title="vCenter Server"></a>vCenter Server</h3><p>充当ESXi主机及其虚拟化中心管理点的服务</p>
+<p>作用：1）提供集中管理的接口；2）实现虚拟化的高级功能，如虚拟机迁移的vMotion、分布式虚拟交换机等</p>
+<p>体系结构</p>
+<p>通过vCenter Server管理虚拟环境的ESXi主机，需要客户端来连接和管理vCenter Server（如vSphere Client），其配置和清单信息存在数据库中，需要数据库服务器；当架构庞大时，需要统一的身份验证，AD域。</p>
+<p><img src="D:\Picture\markdown\vcenter structure.png" alt=""></p>
+<p>与ESXi通信</p>
+<p><img src="D:\Picture\markdown\esxi-vcenter.png" alt=""></p>
+<p>管理角色</p>
+<p><img src="D:\Picture\markdown\管理角色.png" alt=""></p>
+<h3 id="虚拟机及虚拟机管理"><a href="#虚拟机及虚拟机管理" class="headerlink" title="虚拟机及虚拟机管理"></a>虚拟机及虚拟机管理</h3><p><strong>1.什么是虚拟机？</strong><br>虚拟机是一个逻辑的计算机，可以在其上运行受支持的客户端操作系统和应用程序的虚拟硬件集；<br>从本质上来说，或者是从存储的角度来看，是一组离散的文件。<br><strong>2.虚拟机文件</strong><br>VM文件夹包括：配置文件、交换文件、BIOS文件，日志文件、虚拟磁盘文件【重中之重】。<br>此外，还有快照文件，锁定文件，挂起状态的文件等，分别具有不同的作用，在不同的场景下出现。<br><strong>3.虚拟机的模板</strong><br>通过虚拟机的模板快速的部署虚拟机<br>模板是虚拟机的主副本，用于创建和部署新的虚拟机。<br>模板通常包括一个客户操作系统，一组应用程序和一个特定的虚拟机配置的映像。<br><strong>4.管理模板</strong><br>在制作模板时，我们可以选择将虚拟机转化为模板，也可以选择克隆为模板。<br>若是转换为模板，则是选择为该虚拟机添加模板标记，并转化为模板，效率很快，此时虚拟机必须处于关闭状态才可以进行。<br>若选择克隆为模板，则是先克隆虚拟机，再制作模板，所以，耗时很长，但是克隆为模板时，虚拟机的电源是可以开启的，也可以是关闭的。<br>在选择用模板部署虚拟机时，可以选择通过模板部署虚拟机，也可以选择转换为虚拟机，来修改模板。同时，在部署虚拟机的过程中，我们可以选择使用规范或者自定义的向导完成部署后的自定义工作。比如，刷新SID，加入域等，以减少部署虚拟机后的后续工作。<br><strong>5.克隆虚拟机</strong><br>克隆是虚拟机的一个精确副本，被克隆的虚拟机的电源是可以开启的，也可以是关闭的。<br><strong>6.动态的增加磁盘大小</strong><br><strong>7.虚拟机的快照</strong><br>通过快照保留虚拟机的状态，以便可以反复的回到同一状态。<br>快照提供了一种<em>临时</em>的容错解决方案<br>快照的工作原理：当为虚拟机拍摄快照时，回生成快照的状态文件，保留拍摄快照时虚拟机运行的状态信息，同时，将元虚拟机的磁盘变为只读磁盘，并且新建一块新的增量虚拟磁盘，拍摄快照后的变更数据，写入增量虚拟磁盘中；恢复快照时，将增量虚拟磁盘删除，清除所有变更后的快照信息，并再次新建增量磁盘；如果想删除快照，则上块增量虚拟磁盘中的数据写入到只读磁盘中，并删除增量虚拟磁盘，这样就保留了快照后的信息，删除了快照节点，可以在开启、关闭和挂起时拍摄快照。拍摄快照也可以选择是否捕获虚拟机内存状态，设置状态和虚拟的磁盘状态<br>但是，虚拟机快照只是一种临时的容错方案，不能替代备份方案，如果虚拟机的数据损坏，快照无法完成修复。所以，依然需要规划虚拟机的数据保护。同时，为了比避免增量磁盘过大，需要对虚拟机的快照做及时的删除。</p>
+<h3 id="vmware-vMotion-amp-storage-vMotion"><a href="#vmware-vMotion-amp-storage-vMotion" class="headerlink" title="vmware vMotion &amp; storage vMotion"></a>vmware vMotion &amp; storage vMotion</h3><p>虚拟机迁移：将虚拟机从一台主机或数据存储移到另一台主机或数据存储。</p>
+<p>类型及描述</p>
+<ul>
+<li>冷迁移：迁移处于关闭状态的虚拟机</li>
+<li>挂起迁移：处于挂起状态的虚拟机</li>
+<li>迁移主机(vMotion)：开启状态的虚拟机</li>
+<li>迁移存储(storage vMotion)：虚拟机处于开启状态时将其文件存储迁移到另一个数据存储中</li>
+</ul>
+<p><img src="D:\Picture\markdown\movetype.png" alt=""></p>
+<p><strong>vMotion-迁移主机</strong></p>
+<p><strong>作用：</strong>可以提高整体硬件的利用率;使得迅即在计划内硬件停机期间能够继续运行;实现跨主机平衡虚拟机负载;通过vMotion，可以实现虚拟机的动态迁移，而服务不中断。为客户带来诸多的优势，比如，零宕机时间，可以进行有计划的服务器的维护和升级迁移工作负载，使得资源的利用率最大化，确保服务器的持续可用性。实现完整的交易集成。</p>
+<p><strong>vMotion支持广泛的存储格式</strong>，支持iSCSI和ip SAN环境，以及NAS</p>
+<p><strong>需要注意的地方：</strong>进行vMotion时，虚拟机需要进行一系列的要求才可以进行迁移：</p>
+<ul>
+<li>虚拟机不能与内部交换机相连接；(内部交换机不连接任何物理网卡，目标计算机上无法完成相同的配置。所以，无法进行迁移)</li>
+<li>虚拟机不能与装载了本地映像的虚拟设备相连接；(目标主机由于无法访问本地映像，而导致迁移失败)</li>
+<li>虚拟机也不能配置CPU的关联性；如果虚拟机使用的时RDM映射磁盘，目标主机必须能够访问该RDM。</li>
+</ul>
+<p><strong>Storage vMotion</strong></p>
+<p><strong>定义：</strong>Storage vMotion将虚拟机从一个数据存储迁移到另外一个数据存储，源和目标的类型可以不同。</p>
+<p><strong>作用：</strong>通过存储迁移，我们可以进行存储的维护集合重新分配；重新分配存储的负载；清除即将淘汰的存储；执行存储的分层。</p>
+<p><strong>在进行Storage vMotion之前，需要注意：</strong>迁移工作需要和系统管理员一同规划和协调，避免因系统的特殊需求和配置等在迁移过程中影响业务，同时，尽量在非高峰时段运行，避免因为迁移消耗过多的主机网络资源，从而影响业务。最后，需要确保源主机可以访问数据存储和目标的数据存储</p>
+<h3 id="VMware可用性及扩展性"><a href="#VMware可用性及扩展性" class="headerlink" title="VMware可用性及扩展性"></a>VMware可用性及扩展性</h3><p>纵深防御，逐层规划</p>
+<p>VMware各级容灾方案</p>
+<p><img src="D:\Picture\markdown\vmware容灾.png" alt=""></p>
+<p><strong>HA</strong> 高可用解决方案</p>
+<p><img src="D:\Picture\markdown\HA.png" alt=""></p>
+<p>适用故障情况：主机故障，客户OS故障，应用程序故障</p>
+<p>实现高可用的方式：当服务器发生故障时，HA自动到其他虚拟机上进行虚拟机的重启，保障虚拟机的可用性及业务的连续性。</p>
+<p>优势：是一套经济有效的适用于所有应用的高可用解决方案（不需要stand-by硬件；没有集群软件的成本和复杂性，只需在集群中启用HA功能）</p>
+<p>缺陷：通过重启虚拟机来实现服务器运行关键业务和应用程序的能力，有些虚拟机重启速度慢，使得业务连续性低；仅仅自动重启，难以满足高可用性。</p>
+<p><strong>FT</strong>  Fault Tolerance 设计目标：出现计划外的中断时，某个备份的虚拟机可以立即接管任务，确保不出现服务的中断。</p>
+<p>提供了比HA更高的业务连续性，实现了应用程序的零停机和零数据丢失。</p>
+<p><strong>工作原理</strong>：启用FT时，VMware会在其他主机上为该虚拟机创建辅助虚拟机后备，该热备虚拟机运行状态与原虚拟机相同，但不对外提供服务；当原虚拟机出现故障时，该虚拟机替代原虚拟机进行工作而不中断业务，并在其他主机上再次创建辅助虚拟机。</p>
+<p><strong>DRS</strong> Distributed Resource Scheduler</p>
+<p>虚拟化的可扩展性，实现了动态负载均衡和连续的智能优化，保证了应用需要的资源；实现跨资源池的动态调整计算资源和基于预定义规则，智能分配资源。</p>
+<p>规划DRS时，是围绕业务进行组织规划的，而不是硬件。</p>
+<p>工作过程（当有新主机加入时）：DRS自动扩展资源池，经过计算后，将虚拟机迁移到新主机上。有利于添加更多的资源，避免业务繁忙时，出现过载现象。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/题目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/15/题目/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/题目/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/题目/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题目分布</p>
+<ul>
+<li>基础架构（40%）<ul>
+<li>服务器操作系统（6%,4）</li>
+<li>存储（6%,4）</li>
+<li>云数据中心（6%,4）</li>
+<li>VMware虚拟化（6%,4）</li>
+<li>数据库（6%）</li>
+<li>IP网络（6%）</li>
+<li>其他 物联网/AI（4%,3）</li>
+</ul>
+</li>
+<li>云计算（25%）<ul>
+<li>云计算基础概念（10%,6）</li>
+<li>OpenStack（5%,3）</li>
+<li>Docker基础（5%,3）</li>
+<li>微服务（5%,3）</li>
+</ul>
+</li>
+<li>SDN/NFV（14%）<ul>
+<li>SDN（8%,5）</li>
+<li>NFV（6%,4）</li>
+</ul>
+</li>
+<li>大数据与安全（21%）<ul>
+<li>大数据（11%,7）</li>
+<li>安全（10%,6）</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/大数据与安全/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/15/大数据与安全/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/大数据与安全/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/大数据与安全/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="大数据概述"><a href="#大数据概述" class="headerlink" title="大数据概述"></a>大数据概述</h3><p>大数据通常用来形容过一个公司创造的大量非结构化和半结构化数据，主要四个维度（volume velocity variety value）。</p>
+<p>大数据定义：指无法在可承受范围的时间内用硬软件进行捕捉、管理和处理的数据集合，需要新处理模式才能使该数据集合称为具有更强决策力、洞察力和流程优化等能力的海量、多样化信息资产。</p>
+<p><strong>分类：</strong></p>
+<p>结构化数据；可以存储在数据库中，可以用二维表来逻辑表达实现的数据</p>
+<p>半结构化数据；介于结构化与半结构化之间的数据，如HTML文档</p>
+<p>非结构化数据；不方便用数据库二维表表达的数据，包括所有格式的办公文档，文本图片，XML，HTML，各类报表音频、视频、图像等</p>
+<p><strong>大数据带来的挑战：</strong>（1）网络架构：传统网络架构对南北向（纵向）的网络流量需求支持良好，但不适配大数据应用对东西流量的需求，为了满足东西向流量（横向）的需求，要对传统网络架构进行重构。</p>
+<p>（2）数据中心：传统数据中心里计算存储等各个子系统相互独立，用于大数据处理的数据中心需要更高的资源利用率，同时访问压力大，需要使用虚拟化、云计算等技术为这些子系统进行拉通整合。</p>
+<p>（3）数据仓库：不适应非结构化数据和半结构数据的处理需求。</p>
+<p><strong>大数据与云计算的关系：</strong></p>
+<p>云计算是底层平台，大数据是应用。</p>
+<p>云计算作为底层平台，整合了计算、存储、网络等资源，同时提供基础架构资源弹性伸缩能力。</p>
+<p>大数据在云计算平台的支撑下，调度下层资源进行数据源加载，计算和最终结果输出等动作。</p>
+<p>CRM BI BOSS</p>
+<h3 id="电信大数据应用"><a href="#电信大数据应用" class="headerlink" title="电信大数据应用"></a>电信大数据应用</h3><p>1.大数据给电信行业的机会与挑战</p>
+<p>挑战1：电信行业生产圈的信息产业遇到了革命性的变化。运营商相关业务的发展更加依赖数据，如传统的语音 窄宽 带宽数据以及超宽带 数字经济等相关业务的数据数据量越来越大。</p>
+<p>挑战2：OTT 虚拟运营商的介入。使得运营商竞争环境更加的复杂和激烈</p>
+<p>挑战3：客户消费模式的改变。需要大数据分析深入洞察用户的需求，进行定制化的服务，改善客户体验</p>
+<p>挑战4：提升精细化的管理水平。以数据为中心的运营支撑一体化、精细化成为必然趋势，数据将成为企业的核心资产。</p>
+<ol>
+<li>电信行业大数据典型商业需求</li>
+</ol>
+<p>大数据的总体目标是构建统一的数据采集与整合能力，大数据分析处理能力，计算及数据服务能力，大数据应用能力和互联网化得数据开放能力，支撑业务创新与商业成功。</p>
+<p>（1） <strong>延长用户生命周期</strong>—-大数据建模支撑用户全生命周期的营销和维系</p>
+<p>（2） <strong>提升业务使用量</strong>—-基于大数据的营销体系有效运作、支撑多批次、小群体、高成功率、多用户触点的营销</p>
+<p>（3） <strong>对外价值变现</strong>—-实现对外合作、MR数字轨迹形成商业价值</p>
+<ol>
+<li>常见应用场景</li>
+</ol>
+<p>（1） <strong>潜在离网用户维挽场景</strong></p>
+<p>通过大数据的用户管理，对潜在的离网用户进行数据分析。通过大数据实现用户管理、营销策划、营销实施和闭环反馈的拉通。当海量用户数据来了之后，用大数据平台对所有用户进行分类、识别和管理。用户识别之后，根据用户大数据分析结果触发营销策略。对用户在内部进行渠道选择，匹配相应的资源套餐，通过用户的选择来进行效果的反馈。</p>
+<p>（2） <strong>综合网管分析平台</strong>—基站关联分析场景</p>
+<p>根据离网用户的位置轨迹，用户的业务行为，基站地图以及基站网络质量KPI获得数据源，然后进行大数据的建模分析，判断离网用户是否与其常出没的基站存在关联，进而输出质差基站列表、基站供需平衡度、经常出没已识别质差以及基站的未离网用户列表。最后确定可服务的商用场景。</p>
+<p>（3） <strong>数据变现场景</strong>：户外数字媒体/非数字媒体价值评估场景</p>
+<p>户外媒体行业缺乏受众测量方法</p>
+<p>户外数字媒体/非数字媒体价值评估场景—-需求分析、相关数据分析、广告屏分析得出结果输出</p>
+<ol>
+<li>电信运营商大数据应用方向</li>
+</ol>
+<p>以前电信运营商的主要收入来源：语音、短信业务，未来：数字化服务收入时代</p>
+<p>需要建设大数据平台支撑：（1）自有业务收入提升（2）非通信价值变现，进而使运营商的业务数字化。</p>
+<h3 id="安全产品"><a href="#安全产品" class="headerlink" title="安全产品"></a>安全产品</h3><p>Eudemon8000E防火墙产品</p>
+<h4 id="防火墙技术"><a href="#防火墙技术" class="headerlink" title="防火墙技术"></a>防火墙技术</h4><p>用来防范攻击、过滤报文</p>
+<p><strong>报文过滤</strong>：防火墙通过域来表示不同的网络，通过将防火墙接口加入不同安全域，对域进行划分，并在安全区域之间启动安全检查（称为安全策略），从而对流经不同安全区域的信息流进行安全过滤。</p>
+<p><strong>防火墙默认的四个安全区域</strong>（数字对应优先级）</p>
+<p>防火墙可以划分不同级别的安全策略，优先级从1-100</p>
+<p>本地区域（Local）：100</p>
+<p>受信区域（Trust）：85</p>
+<p>非军事区（DMZ）：50</p>
+<p>非受信区（Untrust）：5</p>
+<p><strong>数据流方向定义</strong>：从低优先级区域到高优先级方向为<u>入方向</u></p>
+<p><u>包过滤</u>：根据源/目的IP或MAC地址、协议、端口号、报文优先级、服务类型等</p>
+<p><u>过滤的处理结果</u>：允许（permit）  或  拒绝（deny）</p>
+<p>提高报文转发效率的方式：<u>首包检查机制</u>  对于一条数据流（IP 端口号 协议都相同的流）只对第一个报文进行检查不检查后续报文。</p>
+<p>严格的安全检查策略限制 非信任区传递数据到信任区</p>
+<p><strong>会话表机制</strong></p>
+<p>解决问题：一般情况下，允许trust区域到非trust区域，反过来需要定制严格的安全检查策略。</p>
+<p>内网用户访问公网服务器，对该数据包的源、目的IP，源、目的端口号，协议号（<strong>五元组</strong>）进行记录；返回的流量与会话表进行匹配，若命中，则不进行安全检查，直接返回内网。若外网服务器主动访问内网，没有会话表，若安全检查不通过，则不允许其访问。</p>
+<p><strong>ASPF（Application Specific Packet Filter）基于状态的报文过滤</strong></p>
+<p>解决问题：对于特殊的软件（如QQ、FTP服务器），<strong>用户发起的端口号与服务器回应的端口号不一致</strong>，无法返回数据。对常用的端口号进行统计，针对常见的协议。</p>
+<p><strong>主、备防火墙</strong></p>
+<p>平时出入数据通过主防火墙，主防火墙有会话表；但是备防火墙没有会话表，主防火墙故障之后备防火墙无法对互联网返回的数据进行检查通过。</p>
+<p>解决方法，利用HRP协议（华为备份协议）将主防火墙会话表和关键配置信息备份到备防火墙。</p>
+<h3 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h3><p>信息：数据/信息流</p>
+<p>信息安全三属性（CIA）</p>
+<ul>
+<li>保密性（confidentiality）：只有授权用户可以获取信息</li>
+<li>完整性（integrity）：信息在输入和传输过程中不被非法授权、修改和破坏，保证一致性</li>
+<li>可用性（availability）：保证合法用户对信息和资源的使用不会被不正当拒绝</li>
+</ul>
+<p>IATF 深度防御保障模型，阐述了系统工程、系统采购、风险管理、认证和鉴定以及生命周期等过程</p>
+<p>三分技术，七分管理</p>
+<p>信息安全管理体系（ISMS）ISMS是由ISO27000定义的一种有关信息安全的管理体系，是一种典型的基于风险管理与过程方法的管理体系。周期性的风险评估，内部审核，有效性测量，管理评审是ISMS规定的四个必要活动，能确保ISMS进入良性循环，持续自我改进。</p>
+<h4 id="信息安全审计"><a href="#信息安全审计" class="headerlink" title="信息安全审计"></a>信息安全审计</h4><ul>
+<li><p>风险、信息安全风险的概念</p>
+<p>风险：指事态的概率及其结果的组合</p>
+<p>信息安全风险：指认为或自然的威胁利用信息系统及其管理体系中存在的脆弱性导致安全事件的发送及其组织造成的影响。（例如：棱镜门事件）</p>
+</li>
+</ul>
+<ul>
+<li><p>风险的构成</p>
+<p>包括五个方面：起源（威胁源）、方式（威胁行为）、途径（脆弱性）、受体（资产）和后果（影响）</p>
+</li>
+</ul>
+<ul>
+<li><p>风险相关术语</p>
+<p><strong>资产</strong>：任何对组合有价值的东西，要保护的对象，以多种形态存在</p>
+<p><strong>威胁</strong>：可能导致对系统或组织危害的不希望事故潜在起因，是引起风险的外因。威胁源采取适当的威胁方式才可能引发风险。</p>
+<p><u>常见威胁源</u>：操作失误、滥用授权、行为抵赖、身份假冒、口令攻击、密钥分析、漏洞利用、拒绝服务、窃取数据、物理破坏、社会工程等</p>
+<p><strong>脆弱性</strong>：可能被威胁所利用的资产或若干资产的薄弱环节，是造成风险的内因。脆弱性本身不对资产构成危害，会被威胁源利用，从而对信息资产造成危害。</p>
+<p>如：系统程序代码缺陷、系统安全配置错误、系统操作流程有缺陷、维护人员安全意识不足</p>
+<p><strong>可能性</strong>：某件事发生的机会，代表威胁源利用脆弱性造成不良后果的机会</p>
+</li>
+</ul>
+<ul>
+<li><p>风险的概念</p>
+<p>风险：威胁源采用某种威胁方式利用脆弱性造成不良后果的可能性，即威胁源采用威胁方式利用脆弱性造成风险。</p>
+</li>
+</ul>
+<ul>
+<li><p>信息安全审计</p>
+<p>是依据有关信息安全技术与管理标准，对信息系统及由其处理、传输和存储的信息的保密性、完整性和可用性等安全属性进行评价的过程。是揭示信息安全风险的最佳手段，改进信息安全现状的有效途径，满足信息安全合规要求的有效方式。</p>
+</li>
+</ul>
+<h4 id="信息安全标准"><a href="#信息安全标准" class="headerlink" title="信息安全标准"></a>信息安全标准</h4><h4 id="信息安全现状"><a href="#信息安全现状" class="headerlink" title="信息安全现状"></a>信息安全现状</h4><p>1.计算机病毒：编制者在计算机程序中插入的破化计算机功能或数据的代码，能影响计算机使用，能自我复制的一组计算机指令或程序代码</p>
+<p>2.系统漏洞：应用软件或操作系统软件在逻辑设计上的错误或缺陷</p>
+<p>3.黑客：热心于计算机技术、水平高超的闯入计算机系统或者网络系统者，热衷于从事恶意破解商业软件、恶意入侵别人网站等事务</p>
+<p>信息安全问题根源</p>
+<p>内因：信息系统本身的脆弱性</p>
+<p>外因：人为与环境的威胁和破坏因素</p>
+<p>发展阶段</p>
+<p>1.通信安全：信息和保密性。诞生于20世纪40~70年代。</p>
+<p>核心思想是通过密码技术解决通信保密，保证数据的保密性和完整性，主要关注传输过程中的数据保护。</p>
+<p>安全威胁：搭线窃听、密码学分析。</p>
+<p>安全措施：加密技术。</p>
+<p>2.计算机安全：诞生于20世纪70-90年代，主要关注保护计算机安全。</p>
+<p>核心思想是预防、检测和减小计算机系统（包括软件和硬件）执行未授权活动所造成的后果，主要关注与数据处理和存储时的数据保护。</p>
+<p>安全威胁：非法访问、恶意代码、脆弱口令等</p>
+<p>安全措施：通过操作系统的访问控制技术来防止非收取用户的访问</p>
+<p>3.信息系统安全：随着信息化的不断深入，互联网的出现需要用到信息系统，主要涉及到保密性、完整性、可用性等。诞生于20世纪90年代后。</p>
+<p>核心思想是综合通信安全和计算机安全，重点在于保护比数据更精炼的信息，确保信息在存储、处理和传输过程中免受偶然或恶意的非法泄密、转移和破坏。</p>
+<p>安全威胁：网络入侵、病毒破坏、信息对抗等</p>
+<p>安全措施：防火墙、防病毒、漏洞扫描、入侵检测、PKI、VPN等</p>
+<p>4.信息安全保障：提升到一个可靠的、有利的保障企业安全运作、国家安全。</p>
+<p>核心思想信息安全从技术扩展到管理，从静态扩展到动态，通过技术、管理和工程等措施的综合融合，形成对信息、信息系统乃至业务使命的保障。</p>
+<p>安全威胁：黑客、恐怖分子、信息战、自然灾害、电力中断等。</p>
+<p>安全措施：技术安全保障体系、安全管理体系、人员意识培训等。</p>
+<h4 id="信息安全发展趋势"><a href="#信息安全发展趋势" class="headerlink" title="信息安全发展趋势"></a>信息安全发展趋势</h4><p>云计算和软件开源</p>
+<p>勒索软件 钓鱼攻击 </p>
+<h4 id="云安全框架"><a href="#云安全框架" class="headerlink" title="云安全框架"></a>云安全框架</h4><p>云安全框架与传统安全技术框架大体类似，需要<strong>纳入虚拟化的安全防护</strong>措施，在<strong>基础层面上仍需要依靠成熟可靠的传统安全技术</strong>提供安全防护。</p>
+<p>云安全聚焦在<u>应用安全</u>，应用安全聚焦在1）应用安全架构2）软件开发生命周期3）工具和服务4）合规性5）脆弱性</p>
+<p><u><strong>加密和密钥管理</strong></u>  用于保护数据的核心机制，加密提供了资源保护功能，密钥管理提供了对受保护资源的访问控制，聚焦在加密的机密性、完整性和密钥管理。避免数据丢失或窃取</p>
+<p><u><strong>身份和访问管理</strong></u>  安全有效的云身份和访问管理是企业部署云计算体系的前提。身份和访问管理聚焦在<strong>身份供应和取消供应、认证联盟、授权和用户配置文件管理</strong>。合规是整个过程的关键考虑因素</p>
+<p><strong><u>虚拟化</u></strong>  聚焦在<strong>虚拟机管理程序</strong> 关注虚拟化和硬件相关的安全问题</p>
+<p><strong>传统的物理安全、业务连续性（BCP）和灾难恢复（DR）</strong></p>
+<h4 id="网络安全攻防"><a href="#网络安全攻防" class="headerlink" title="网络安全攻防"></a>网络安全攻防</h4><p>OSI安全体系结构定义了系统应当提供的五类安全服务，以及提供这些服务的八类安全机制；</p>
+<p><u><strong>五类安全服务</strong></u>是：鉴别、访问控制、数据机密性、数据完整性和抗抵赖性</p>
+<p><u><strong>八类安全机制</strong></u>分别包括：加密、数字签名、访问控制、数据完整性、鉴别、流量填充、路由控制和公证</p>
+<p><strong>网络协议安全问题</strong></p>
+<p><u>网络接口层</u>安全问题常见的有：自然灾害、误操作、传输线路电磁泄露、ARP欺骗等；</p>
+<p><u>网络互连层</u>安全问题常见的有：分片攻击、IP地址欺骗、窃听和IP数据包伪造<u>传输层</u>安全问题常见的有：SYN洪水攻击、TCP会话劫持、数据包伪造等</p>
+<p><u>应用层</u>安全问题常见的有：跨站点脚本、钓鱼攻击、cookie欺骗、数据泄露等</p>
+<p><strong>无线局域网安全问题</strong></p>
+<p>安全问题：传输信道开放、容易接入、开放式认证系统、易于伪造的SID、无保护任意接入；开放式认证系统、共享密钥认证（使用WAP进行保护，手动管理密钥存在重大隐患）</p>
+<p><strong>网络安全设备—防火墙</strong>firewall</p>
+<p><strong>防火墙是位于多个网络间，实施网络之间访问控制的一组组件集合</strong></p>
+<p>防火墙功能：能在网络连接点上建立一个安全控制点，对进出网络数据进行限制，将需要保护的网络与不可信任的网络进行隔离，隐藏信息，并对进出进行安全防护，以及对进出数据进行安全检查、记录相关信息。</p>
+<p>防火墙的局限性：只实现了粗粒度的访问控制，不能防范病毒</p>
+<p><strong>入侵检测系统</strong></p>
+<p>作用：防火墙重要补充，构建网络安全防御体系重要环节，能够克服传统网络防御体系的限制。</p>
+<p>功能：检测并分析用户系统活动，检测系统配置和漏洞，对操作系统进行日志管理，并识别违反安全策略的用户活动，针对已发现的攻击行为作出适当的反应。</p>
+<p>局限性：配置操作和管理使用较为复杂，高虚报警域。</p>
+<p><strong>网络架构安全网络</strong></p>
+<p>新系统的基础支撑环境，网络架构安全核心是保护网络和基础设施，核心目的是通过增加系统的防御屏障或将各层之间的漏洞错开的方式防范差错方式，实现深度防御。即通过设置多次层次的安全防护系统而构成多道防线，即使某一防线失效也能被其他防线弥补或纠正。</p>
+<p>网络架构安全设计聚焦在<strong>合理规划网络安全区域、规划IP地址和VLAN设计、安全配置路由以及交换设备、网络边界访问控制策略、安全冗余配置</strong>等</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/存储/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/15/存储/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/存储/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/存储/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="存储发展历程"><a href="#存储发展历程" class="headerlink" title="存储发展历程"></a>存储发展历程</h4><p>存储发展历程的驱动力：用户业务的需求；技术的不断提升</p>
+<ol>
+<li>早期的存储</li>
+</ol>
+<p>早期的服务器和存储是一体的。CPU主频较低，内存较小，硬盘容量不大，业务需求少。</p>
+<ol>
+<li>存储的发展</li>
+</ol>
+<p>随着IT建设，更多的业务系统运行在服务器上，硬盘的性能、容量、可靠性等方面难以满足业务需求，于是考虑将硬盘从服务器剥离出来，形成专用的存储系统，即DAS（Direct Attached Storage，直连式存储）。</p>
+<ol>
+<li>DAS存储形态</li>
+</ol>
+<p><strong>JBOD</strong>：主要实现了硬盘的外置，从而提升了容量，但数据控制管理工作仍由服务器负责，因此，服务器仍有额外的开销；</p>
+<p><strong>智能化</strong>：智能化的DAS存储，将数据管理控制及访问功能集合在一起，服务器只需关注数据读写。</p>
+<ol>
+<li>集中式存储–SAN和NAS</li>
+</ol>
+<p><strong>SAN</strong>（Storage Area Network，存储区域网络）是通过SAN的网络来连接服务器，服务器看到的是一个个块设备，当作硬盘来识别。服务器存储数据，首先在服务器端用文件系统来格式化，之后应用可以进行数据的读写。<strong>SAN通常可以应用在数据库场景，用来存储结构化数据。</strong></p>
+<p>存储形态：纯粹的SAN只能提供结构化的数据存储和访问。目前高端SAN有IBM DS8000、VSP、华为18000等高端阵列，中端SAN越来越少，新型的有固态存储； <strong>主要面向稳定性和性能要求高的场景，往往是大企业、政府核心类的业务中。</strong></p>
+<p><strong>NAS</strong>（Network Attached Storage）：早期NAS主要是面向办公的数据共享，特点是将服务器的文件系统放入存储里，这样服务器通过网络共享数据。<strong>现在NAS主要面对的是非结构化数据的存储</strong>，例如企业员工用于办公文档的共享和存储。</p>
+<p>两种存储形态：</p>
+<p>1）NAS网关：存在时间长，以前的存储以SAN为主，用户要使用NAS存储，通常在SAN存储前加上NAS网关，通过网关对外提供NAS存储服务；主要用于文件共享和VDI（虚拟桌面基础架构）等场景。</p>
+<p>2）大数据海量存储：提供极强的扩展能力，典型代表有EMC Islion以及华为的Ocean Store 9000；因其容量扩展性好，一般用在媒资库、视频监控、高性能计算等场景。</p>
+<p>目前几乎所有的数据都是存储在这两种形态的存储上。</p>
+<p><strong>统一存储：SAN+NAS</strong></p>
+<p> 目的是在同一套硬件和软件的基础上，同时提供SAN和NAS功能。</p>
+<p>发展过程中出现了两种形态，一种是像华为的ocean storeV3、NetApp 的FAS及HP的3Par，属于最佳形态，单套存储系统直接支持SAN和NAS，不需额外购买NAS网关，实现真正的统一。另一种像EMC的VNX，仍需附加NAS网关，只做到了管理层面的统一。</p>
+<h4 id="存储与应用环境"><a href="#存储与应用环境" class="headerlink" title="存储与应用环境"></a>存储与应用环境</h4><ol>
+<li>存储与应用环境的关系</li>
+</ol>
+<ul>
+<li><p><strong>计算机内部系统（个人PC机架构</strong>）:</p>
+<p>软件部分：应用软件、操作系统</p>
+<p>硬件部分：CPU/内存（计算资源）、主板及插槽（系统总线）、输入输出（I/O总线）、硬盘（存储资源）</p>
+</li>
+<li><p><strong>IT系统架构</strong></p>
+<p>软件基础：操作系统、应用软件、集群/分布式软件</p>
+<p>计算资源：服务器集群</p>
+<p>网络资源：解决上层业务处理完的资源需要传输到下层存储或其他设备时所需的网络承载，主要有两种方式，一是IP架构，交换机/路由器/防火墙/已有网络设备；二是FC架构，光纤/光纤模块/光纤交换机等，成本高、距离短，不适合备份容灾架构。</p>
+<p>存储资源：SAN/NAS/DAS 对象存储</p>
+</li>
+</ul>
+<ol>
+<li>存储的应用</li>
+</ol>
+<p>内部存储： CPU 内存 总线</p>
+<h4 id="SAN存储区域网络"><a href="#SAN存储区域网络" class="headerlink" title="SAN存储区域网络"></a>SAN存储区域网络</h4><p>用在服务器与存储资源之间专用的、高性能的网络体系，是独立于LAN的服务器后端存储专用网络，采用可扩展的网络拓扑结构连接服务器和存储设备，每个存储设备不隶属于任何一台服务器，所有的存储设备可以在全部的网络服务器之间作为对等资源共享。</p>
+<p><strong>采用专用的高速网络将一个或多个网络服务器与存储资源连接在一起构成存储专用网络通道</strong>，根据网络承载方式不同可以分为IP SAN和FC SAN。均有三种组网架构：</p>
+<ul>
+<li><u>直连组网</u>：专用通道连接，一台应用服务器使用</li>
+<li><u>单交换组网</u>：通过一台交换机将存储资源共享给多台服务器，一条链路</li>
+<li><u>双交换组网</u>：两台或主备交换机，提供两条链路（服务器-交换机-存储）</li>
+</ul>
+<p><strong>组成部分</strong>：主机总线设备卡、 光纤通道或IP线缆、交换机、存储阵列设备</p>
+<p><strong>FC-SAN架构</strong></p>
+<p>更多应用在<strong>企业内部，高速数据传输</strong></p>
+<p>FC协议栈：FC0：物理交换，定义物理层介质；FC1，编码解码；FC2，结构协议，帧流控制；FC3，加密；FC4，协议封装</p>
+<p>三种拓扑结构：</p>
+<ul>
+<li>FC-PTP点对点直连：只能连接</li>
+<li>FC-AL 仲裁环：通过光纤集线器在一条环路上工作，最多127个设备；安全性低，一障全障</li>
+<li>FC-SW 交换：冗余设计，两条链路最多支持一千六百万</li>
+</ul>
+<p><strong>IP-SAN架构</strong></p>
+<p>更多应用在<strong>备份容灾</strong></p>
+<p>基于TCP/IP协议</p>
+<p>三种实现方式：</p>
+<ul>
+<li>以太网卡+initiator软件：主机侧安装软件，软件完成SCSI–&gt;iSCSI,以太网卡完成数据包传输到外界</li>
+<li>TOE网卡+软件：数据传输由TOE（TCP卸载引擎）网卡完成，分摊以太网卡的功能</li>
+<li>iSCSI HBA卡：既完成协议封装，又完成数据传输，不占用主机资源，最常用</li>
+</ul>
+<h4 id="NAS网络附加存储"><a href="#NAS网络附加存储" class="headerlink" title="NAS网络附加存储"></a>NAS网络附加存储</h4><p>一种特殊的专用数据存储服务器，包括存储器件和内嵌系统软件，可以供跨平台文件共享功能，通常在LAN上占有自己的节点，无需应用服务器的干预，允许用户在网络上存取数据。NAS集中管理和处理网络上的数据，将负载从应用或企业服务器上卸载，降低总拥有成本，保护用户投资。</p>
+<p>是将分布独立的数据进行整合集中化管理，以便不同的主机和应用服务器进行访问的技术。</p>
+<p><strong>与SAN的区别：SAN利用专用网络搭建存储环境，存储过程中所有的文件系统都是在主机侧完成；NAS在内部实现自己的文件系统、操作系统，管理内部数据。</strong></p>
+<p><strong>CIFS协议</strong>（通用INTERNET文件系统）：使程序可以远程访问internet计算机上的文件并要求此计算机的服务，可以视作是ftp或http的一个实现。<strong>主要用于windows操作系统</strong>，采用C/S架构，windows本身集成客户端软件，不需安装新的软件，TCP/IP协议，对网络性能要求高；</p>
+<p><strong>NFS协议</strong>，网络文件系统：应用于UNIX/LINUX系统，实现文件共享，用户和程序可以像访问本地文件一样访问远端系统的文件， C/S架构，TCP或UDP协议</p>
+<p>另外还支持ftp、http协议支持对外文件共享。</p>
+<p><strong>NAS内部结构</strong></p>
+<ul>
+<li>NAS引擎：提供文件系统和操作系统，接收用户发起的请求以及内部数据管理</li>
+<li>网络接口：提供用户交互的网络协议（CIFS/NFS）</li>
+<li>存储：存储阵列，可以包容SAN存储环境</li>
+</ul>
+<p><strong>NAS文件系统IO性能影响因素</strong>：主机/客户端 、网络传输性能 、NAS内部</p>
+<p>NAS和SAN比较</p>
+<p>【图】</p>
+<h4 id="存储部署与运维管理"><a href="#存储部署与运维管理" class="headerlink" title="存储部署与运维管理"></a>存储部署与运维管理</h4><p>存储配置流程：</p>
+<p>1.创建存储空间（创建RAID、创建热备盘、创建LUN（存储资源映射给不同主机使用））；</p>
+<p>2.分配存储空间（创建主机组、创建主机、添加映射）；</p>
+<p>3.建立连接（FC添加启动器/ iSCSI，配置启动器、添加启动器）</p>
+<p>4.使用存储空间（格式化、建立分区）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/03/27/ICT学习笔记之存储原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -376,414 +2419,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/03/26/ICT学习笔记之服务器操作系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liling">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="lilililing">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/26/ICT学习笔记之服务器操作系统/" itemprop="url">
-                  ICT学习笔记之服务器操作系统
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-26T13:02:24+08:00">
-                2017-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/26/ICT学习笔记之服务器操作系统/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/26/ICT学习笔记之服务器操作系统/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="服务器类型"><a href="#服务器类型" class="headerlink" title="服务器类型"></a>服务器类型</h1><p>按CPU数量：一路服务器 双路服务器 多路服务器<br>按指令集：精简指令集RISC（非x86架构）代表IBM；复杂指令集CISC（典型x86）intel<br>unix服务器（小型机） x86服务器<br>按应用：数据库 web 文件等<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/26/ICT学习笔记之服务器操作系统/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/03/24/校招准备之前端刷题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liling">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="lilililing">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/24/校招准备之前端刷题/" itemprop="url">
-                  校招准备之前端刷题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-24T14:28:11+08:00">
-                2017-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/24/校招准备之前端刷题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/24/校招准备之前端刷题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Q:浏览器作为PC端上网的入口，是我们日常使用最频繁的软件之一；但你知道一个网页经历了怎样的过程才能呈现在我们面前吗？请尽可能详细地描述一下从输入网站地址，到页面呈现在我们面前这一过程都发生了什么。（提示：越详细越好，可以从DNS，HTTP,<br>TCP/IP, web服务器，HTML/CSS/JS等方面展开，并针对某一项做深入描述。）<br>A:<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/24/校招准备之前端刷题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/03/20/春分/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="liling">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="lilililing">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/20/春分/" itemprop="url">
-                  春分
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T15:47:38+08:00">
-                2017-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/20/春分/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/20/春分/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="练习基本markdown语法"><a href="#练习基本markdown语法" class="headerlink" title="练习基本markdown语法"></a>练习基本markdown语法</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/20/春分/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
           
           </div>
@@ -826,7 +2468,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

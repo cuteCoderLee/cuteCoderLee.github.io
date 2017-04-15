@@ -1,0 +1,834 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="虚拟化物理架构存在的问题：
+
+难以复制和移动
+受制于硬件组件
+生命周期短
+服务器资源利用率低
+
+虚拟化
+服务器硬件上安装虚拟化层，在虚拟化层上再安装操作系统和应用；虚拟出的逻辑计算机即为虚拟机
+虚拟机间的资源共享（虚拟机使用的CPU、内存、网卡、磁盘都是由主机的物理结构提供的）
+
+CPU虚拟化，实现过量使用
+内存复用或压缩等技术，实现内存的过量分配
+虚拟网络，使用虚拟交换机，将虚拟机的虚拟网卡与网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lilililing">
+<meta property="og:url" content="http://cuteCoderLee.github.io/2017/04/15/虚拟化/index.html">
+<meta property="og:site_name" content="lilililing">
+<meta property="og:description" content="虚拟化物理架构存在的问题：
+
+难以复制和移动
+受制于硬件组件
+生命周期短
+服务器资源利用率低
+
+虚拟化
+服务器硬件上安装虚拟化层，在虚拟化层上再安装操作系统和应用；虚拟出的逻辑计算机即为虚拟机
+虚拟机间的资源共享（虚拟机使用的CPU、内存、网卡、磁盘都是由主机的物理结构提供的）
+
+CPU虚拟化，实现过量使用
+内存复用或压缩等技术，实现内存的过量分配
+虚拟网络，使用虚拟交换机，将虚拟机的虚拟网卡与网">
+<meta property="og:image" content="http://cuteCoderLee.github.io/D:\Picture\markdown\ESXi.png">
+<meta property="og:image" content="http://cuteCoderLee.github.io/D:\Picture\markdown\vcenter structure.png">
+<meta property="og:image" content="http://cuteCoderLee.github.io/D:\Picture\markdown\esxi-vcenter.png">
+<meta property="og:image" content="http://cuteCoderLee.github.io/D:\Picture\markdown\管理角色.png">
+<meta property="og:image" content="http://cuteCoderLee.github.io/D:\Picture\markdown\movetype.png">
+<meta property="og:image" content="http://cuteCoderLee.github.io/D:\Picture\markdown\vmware容灾.png">
+<meta property="og:image" content="http://cuteCoderLee.github.io/D:\Picture\markdown\HA.png">
+<meta property="og:updated_time" content="2017-04-06T07:31:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lilililing">
+<meta name="twitter:description" content="虚拟化物理架构存在的问题：
+
+难以复制和移动
+受制于硬件组件
+生命周期短
+服务器资源利用率低
+
+虚拟化
+服务器硬件上安装虚拟化层，在虚拟化层上再安装操作系统和应用；虚拟出的逻辑计算机即为虚拟机
+虚拟机间的资源共享（虚拟机使用的CPU、内存、网卡、磁盘都是由主机的物理结构提供的）
+
+CPU虚拟化，实现过量使用
+内存复用或压缩等技术，实现内存的过量分配
+虚拟网络，使用虚拟交换机，将虚拟机的虚拟网卡与网">
+<meta name="twitter:image" content="http://cuteCoderLee.github.io/D:\Picture\markdown\ESXi.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/04/15/虚拟化/"/>
+
+
+
+
+
+  <title>  | lilililing </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lilililing</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/虚拟化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/虚拟化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/虚拟化/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="虚拟化"><a href="#虚拟化" class="headerlink" title="虚拟化"></a>虚拟化</h3><p>物理架构存在的问题：</p>
+<ul>
+<li>难以复制和移动</li>
+<li>受制于硬件组件</li>
+<li>生命周期短</li>
+<li>服务器资源利用率低</li>
+</ul>
+<p>虚拟化</p>
+<p>服务器硬件上安装虚拟化层，在虚拟化层上再安装操作系统和应用；虚拟出的逻辑计算机即为虚拟机</p>
+<p>虚拟机间的资源共享（虚拟机使用的CPU、内存、网卡、磁盘都是由主机的物理结构提供的）</p>
+<ul>
+<li>CPU虚拟化，实现过量使用</li>
+<li>内存复用或压缩等技术，实现内存的过量分配</li>
+<li>虚拟网络，使用虚拟交换机，将虚拟机的虚拟网卡与网络网卡连接，并接入外部网络</li>
+<li>VMFS磁盘资源虚拟化，数据存储池划分虚拟磁盘供给虚拟机使用</li>
+</ul>
+<h3 id="VMware组件介绍"><a href="#VMware组件介绍" class="headerlink" title="VMware组件介绍"></a>VMware组件介绍</h3><p>1.VMware ESXi</p>
+<p>核心组件，也即ESXi主机虚拟化层</p>
+<p>作用：用于协调物理计算机的资源，同时通过ESXi管理其上的虚拟机，如部署、迁移等操作；还可以通过ESXi管理物理计算机上的网络存储资源，通过配置虚拟交换机上的vSwitch管理配置网络资源，通过VMfs和nfs管理虚拟存储资源。</p>
+<p>2.vCenter Server</p>
+<p>作用：提供集中的管理接口，供管理员管理整套的虚拟化环境；也可以为虚拟化提供更高级的功能，如虚拟机迁移，分布式服务，快速部署虚拟机等。（构成图）</p>
+<p>vCenter配置和清单信息保存在数据库中–&gt;数据库服务器</p>
+<p>在管理主机时，有部分服务需要在各个主机上，如分布式虚拟交换机需要一定的分布式服务，同时在管理虚拟化环境时，需要相应的权限管理及用户访问控制；统一的身份验证以方便管理，vCenter提供了一些接口，供第三方程序连接。</p>
+<p>3.其他组件</p>
+<p>Vsphere client：客户端的管理工具，用户连接并管理ESXi主机和vCenter Server时，为其提供图形化管理界面。</p>
+<p>Update Manager：更新管理</p>
+<p>VMware Data Protection（VDP）：数据保护</p>
+<p>VMware vRealize Orchestrator：实现一系列的自动化工作流（如检测到存储不足时自动迁移等）</p>
+<p>vCloud Director：云平台组件，适用于部署私有云，发布云环境</p>
+<h3 id="ESXi"><a href="#ESXi" class="headerlink" title="ESXi"></a>ESXi</h3><p>1.VMware发展历程</p>
+<p>2006年，GSX。物理机上安装操作系统，再将VMware作为应用程序安装在主机上，VMware通过宿主操作系统进行资源和操作系统管理，此为寄居式虚拟化（过度依赖宿主操作系统）</p>
+<p>2009年，ESX。将ESX安装在物理计算机上，称为裸机安装。其将虚拟化程序与操作系统整合在一起，将虚拟化程序写入linux系统中，ESX通过linux系统的servers console运行，资源和虚拟机的管理通过合作代理伙伴或脚本执行。缺陷是虚拟化程序包含linux系统，系统的非虚拟化部分进程会占用主机资源，造成资源浪费；其次在管理资源和虚拟机时，只能通过脚本和代理，不方便。</p>
+<p>2011年，ESXi。改进一，提出linux层，只保留VMkernel对虚拟化内核进行管理，减小了虚拟化层的大小；改进二，将控制台从虚拟化程序中提出，变成独立组件–Vsphere client，方便快捷管理。ESXi独立于通用的操作系统运行。（虚拟化管理程序的黄金级标准）</p>
+<p>优点：精简的体系结构；更小的安全占用空间；简化的部署和配置；简化的修补和更新模式。</p>
+<p>体系结构</p>
+<p><img src="D:\Picture\markdown\ESXi.png" alt=""></p>
+<h3 id="vCenter-Server"><a href="#vCenter-Server" class="headerlink" title="vCenter Server"></a>vCenter Server</h3><p>充当ESXi主机及其虚拟化中心管理点的服务</p>
+<p>作用：1）提供集中管理的接口；2）实现虚拟化的高级功能，如虚拟机迁移的vMotion、分布式虚拟交换机等</p>
+<p>体系结构</p>
+<p>通过vCenter Server管理虚拟环境的ESXi主机，需要客户端来连接和管理vCenter Server（如vSphere Client），其配置和清单信息存在数据库中，需要数据库服务器；当架构庞大时，需要统一的身份验证，AD域。</p>
+<p><img src="D:\Picture\markdown\vcenter structure.png" alt=""></p>
+<p>与ESXi通信</p>
+<p><img src="D:\Picture\markdown\esxi-vcenter.png" alt=""></p>
+<p>管理角色</p>
+<p><img src="D:\Picture\markdown\管理角色.png" alt=""></p>
+<h3 id="虚拟机及虚拟机管理"><a href="#虚拟机及虚拟机管理" class="headerlink" title="虚拟机及虚拟机管理"></a>虚拟机及虚拟机管理</h3><p><strong>1.什么是虚拟机？</strong><br>虚拟机是一个逻辑的计算机，可以在其上运行受支持的客户端操作系统和应用程序的虚拟硬件集；<br>从本质上来说，或者是从存储的角度来看，是一组离散的文件。<br><strong>2.虚拟机文件</strong><br>VM文件夹包括：配置文件、交换文件、BIOS文件，日志文件、虚拟磁盘文件【重中之重】。<br>此外，还有快照文件，锁定文件，挂起状态的文件等，分别具有不同的作用，在不同的场景下出现。<br><strong>3.虚拟机的模板</strong><br>通过虚拟机的模板快速的部署虚拟机<br>模板是虚拟机的主副本，用于创建和部署新的虚拟机。<br>模板通常包括一个客户操作系统，一组应用程序和一个特定的虚拟机配置的映像。<br><strong>4.管理模板</strong><br>在制作模板时，我们可以选择将虚拟机转化为模板，也可以选择克隆为模板。<br>若是转换为模板，则是选择为该虚拟机添加模板标记，并转化为模板，效率很快，此时虚拟机必须处于关闭状态才可以进行。<br>若选择克隆为模板，则是先克隆虚拟机，再制作模板，所以，耗时很长，但是克隆为模板时，虚拟机的电源是可以开启的，也可以是关闭的。<br>在选择用模板部署虚拟机时，可以选择通过模板部署虚拟机，也可以选择转换为虚拟机，来修改模板。同时，在部署虚拟机的过程中，我们可以选择使用规范或者自定义的向导完成部署后的自定义工作。比如，刷新SID，加入域等，以减少部署虚拟机后的后续工作。<br><strong>5.克隆虚拟机</strong><br>克隆是虚拟机的一个精确副本，被克隆的虚拟机的电源是可以开启的，也可以是关闭的。<br><strong>6.动态的增加磁盘大小</strong><br><strong>7.虚拟机的快照</strong><br>通过快照保留虚拟机的状态，以便可以反复的回到同一状态。<br>快照提供了一种<em>临时</em>的容错解决方案<br>快照的工作原理：当为虚拟机拍摄快照时，回生成快照的状态文件，保留拍摄快照时虚拟机运行的状态信息，同时，将元虚拟机的磁盘变为只读磁盘，并且新建一块新的增量虚拟磁盘，拍摄快照后的变更数据，写入增量虚拟磁盘中；恢复快照时，将增量虚拟磁盘删除，清除所有变更后的快照信息，并再次新建增量磁盘；如果想删除快照，则上块增量虚拟磁盘中的数据写入到只读磁盘中，并删除增量虚拟磁盘，这样就保留了快照后的信息，删除了快照节点，可以在开启、关闭和挂起时拍摄快照。拍摄快照也可以选择是否捕获虚拟机内存状态，设置状态和虚拟的磁盘状态<br>但是，虚拟机快照只是一种临时的容错方案，不能替代备份方案，如果虚拟机的数据损坏，快照无法完成修复。所以，依然需要规划虚拟机的数据保护。同时，为了比避免增量磁盘过大，需要对虚拟机的快照做及时的删除。</p>
+<h3 id="vmware-vMotion-amp-storage-vMotion"><a href="#vmware-vMotion-amp-storage-vMotion" class="headerlink" title="vmware vMotion &amp; storage vMotion"></a>vmware vMotion &amp; storage vMotion</h3><p>虚拟机迁移：将虚拟机从一台主机或数据存储移到另一台主机或数据存储。</p>
+<p>类型及描述</p>
+<ul>
+<li>冷迁移：迁移处于关闭状态的虚拟机</li>
+<li>挂起迁移：处于挂起状态的虚拟机</li>
+<li>迁移主机(vMotion)：开启状态的虚拟机</li>
+<li>迁移存储(storage vMotion)：虚拟机处于开启状态时将其文件存储迁移到另一个数据存储中</li>
+</ul>
+<p><img src="D:\Picture\markdown\movetype.png" alt=""></p>
+<p><strong>vMotion-迁移主机</strong></p>
+<p><strong>作用：</strong>可以提高整体硬件的利用率;使得迅即在计划内硬件停机期间能够继续运行;实现跨主机平衡虚拟机负载;通过vMotion，可以实现虚拟机的动态迁移，而服务不中断。为客户带来诸多的优势，比如，零宕机时间，可以进行有计划的服务器的维护和升级迁移工作负载，使得资源的利用率最大化，确保服务器的持续可用性。实现完整的交易集成。</p>
+<p><strong>vMotion支持广泛的存储格式</strong>，支持iSCSI和ip SAN环境，以及NAS</p>
+<p><strong>需要注意的地方：</strong>进行vMotion时，虚拟机需要进行一系列的要求才可以进行迁移：</p>
+<ul>
+<li>虚拟机不能与内部交换机相连接；(内部交换机不连接任何物理网卡，目标计算机上无法完成相同的配置。所以，无法进行迁移)</li>
+<li>虚拟机不能与装载了本地映像的虚拟设备相连接；(目标主机由于无法访问本地映像，而导致迁移失败)</li>
+<li>虚拟机也不能配置CPU的关联性；如果虚拟机使用的时RDM映射磁盘，目标主机必须能够访问该RDM。</li>
+</ul>
+<p><strong>Storage vMotion</strong></p>
+<p><strong>定义：</strong>Storage vMotion将虚拟机从一个数据存储迁移到另外一个数据存储，源和目标的类型可以不同。</p>
+<p><strong>作用：</strong>通过存储迁移，我们可以进行存储的维护集合重新分配；重新分配存储的负载；清除即将淘汰的存储；执行存储的分层。</p>
+<p><strong>在进行Storage vMotion之前，需要注意：</strong>迁移工作需要和系统管理员一同规划和协调，避免因系统的特殊需求和配置等在迁移过程中影响业务，同时，尽量在非高峰时段运行，避免因为迁移消耗过多的主机网络资源，从而影响业务。最后，需要确保源主机可以访问数据存储和目标的数据存储</p>
+<h3 id="VMware可用性及扩展性"><a href="#VMware可用性及扩展性" class="headerlink" title="VMware可用性及扩展性"></a>VMware可用性及扩展性</h3><p>纵深防御，逐层规划</p>
+<p>VMware各级容灾方案</p>
+<p><img src="D:\Picture\markdown\vmware容灾.png" alt=""></p>
+<p><strong>HA</strong> 高可用解决方案</p>
+<p><img src="D:\Picture\markdown\HA.png" alt=""></p>
+<p>适用故障情况：主机故障，客户OS故障，应用程序故障</p>
+<p>实现高可用的方式：当服务器发生故障时，HA自动到其他虚拟机上进行虚拟机的重启，保障虚拟机的可用性及业务的连续性。</p>
+<p>优势：是一套经济有效的适用于所有应用的高可用解决方案（不需要stand-by硬件；没有集群软件的成本和复杂性，只需在集群中启用HA功能）</p>
+<p>缺陷：通过重启虚拟机来实现服务器运行关键业务和应用程序的能力，有些虚拟机重启速度慢，使得业务连续性低；仅仅自动重启，难以满足高可用性。</p>
+<p><strong>FT</strong>  Fault Tolerance 设计目标：出现计划外的中断时，某个备份的虚拟机可以立即接管任务，确保不出现服务的中断。</p>
+<p>提供了比HA更高的业务连续性，实现了应用程序的零停机和零数据丢失。</p>
+<p><strong>工作原理</strong>：启用FT时，VMware会在其他主机上为该虚拟机创建辅助虚拟机后备，该热备虚拟机运行状态与原虚拟机相同，但不对外提供服务；当原虚拟机出现故障时，该虚拟机替代原虚拟机进行工作而不中断业务，并在其他主机上再次创建辅助虚拟机。</p>
+<p><strong>DRS</strong> Distributed Resource Scheduler</p>
+<p>虚拟化的可扩展性，实现了动态负载均衡和连续的智能优化，保证了应用需要的资源；实现跨资源池的动态调整计算资源和基于预定义规则，智能分配资源。</p>
+<p>规划DRS时，是围绕业务进行组织规划的，而不是硬件。</p>
+<p>工作过程（当有新主机加入时）：DRS自动扩展资源池，经过计算后，将虚拟机迁移到新主机上。有利于添加更多的资源，避免业务繁忙时，出现过载现象。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/15/题目/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/15/网络基础/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/15/虚拟化/"
+           data-title="" data-url="http://cuteCoderLee.github.io/2017/04/15/虚拟化/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG"
+               alt="liling" />
+          <p class="site-author-name" itemprop="name">liling</p>
+           
+              <p class="site-description motion-element" itemprop="description">做一个有趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cuteCoderLee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟化"><span class="nav-number">1.</span> <span class="nav-text">虚拟化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VMware组件介绍"><span class="nav-number">2.</span> <span class="nav-text">VMware组件介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ESXi"><span class="nav-number">3.</span> <span class="nav-text">ESXi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vCenter-Server"><span class="nav-number">4.</span> <span class="nav-text">vCenter Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机及虚拟机管理"><span class="nav-number">5.</span> <span class="nav-text">虚拟机及虚拟机管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vmware-vMotion-amp-storage-vMotion"><span class="nav-number">6.</span> <span class="nav-text">vmware vMotion & storage vMotion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VMware可用性及扩展性"><span class="nav-number">7.</span> <span class="nav-text">VMware可用性及扩展性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liling</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cuteCoderLee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -87,16 +87,19 @@
 
 
 
-<meta name="description" content="存储的主要体系结构：DAS NAS SAN">
+<meta name="description" content="NFV架构NFV (Network Function Virtualization) 网络功能虚拟化，ETSI组织下组建的。
+希望通过采用通用服务器 交换机和存储设备实现传统电信网络的功能。通过IT的虚拟化技术，许多类型的网络设备可以合并到工业界标准中，servers switchs  storages 需要用软件实现网络功能并能在一系列工业标准服务器硬件上运行，可以根据需要迁移，实例化部署在网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ICT学习笔记之存储原理">
-<meta property="og:url" content="http://cuteCoderLee.github.io/2017/03/27/ICT学习笔记之存储原理/index.html">
+<meta property="og:title" content="lilililing">
+<meta property="og:url" content="http://cuteCoderLee.github.io/2017/04/15/NFV/index.html">
 <meta property="og:site_name" content="lilililing">
-<meta property="og:description" content="存储的主要体系结构：DAS NAS SAN">
-<meta property="og:updated_time" content="2017-03-29T12:31:11.751Z">
+<meta property="og:description" content="NFV架构NFV (Network Function Virtualization) 网络功能虚拟化，ETSI组织下组建的。
+希望通过采用通用服务器 交换机和存储设备实现传统电信网络的功能。通过IT的虚拟化技术，许多类型的网络设备可以合并到工业界标准中，servers switchs  storages 需要用软件实现网络功能并能在一系列工业标准服务器硬件上运行，可以根据需要迁移，实例化部署在网络">
+<meta property="og:updated_time" content="2017-04-15T12:24:47.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ICT学习笔记之存储原理">
-<meta name="twitter:description" content="存储的主要体系结构：DAS NAS SAN">
+<meta name="twitter:title" content="lilililing">
+<meta name="twitter:description" content="NFV架构NFV (Network Function Virtualization) 网络功能虚拟化，ETSI组织下组建的。
+希望通过采用通用服务器 交换机和存储设备实现传统电信网络的功能。通过IT的虚拟化技术，许多类型的网络设备可以合并到工业界标准中，servers switchs  storages 需要用软件实现网络功能并能在一系列工业标准服务器硬件上运行，可以根据需要迁移，实例化部署在网络">
 
 
 
@@ -124,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/03/27/ICT学习笔记之存储原理/"/>
+  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/04/15/NFV/"/>
 
 
 
 
 
-  <title> ICT学习笔记之存储原理 | lilililing </title>
+  <title>  | lilililing </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +252,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/03/27/ICT学习笔记之存储原理/">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/NFV/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="liling">
@@ -270,7 +273,7 @@
             
             
               
-                ICT学习笔记之存储原理
+                
               
             
           </h1>
@@ -285,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T16:35:23+08:00">
-                2017-03-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
               </time>
             
 
@@ -304,8 +307,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/27/ICT学习笔记之存储原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/ICT学习笔记之存储原理/" itemprop="commentCount"></span>
+                <a href="/2017/04/15/NFV/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/NFV/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -331,58 +334,41 @@
       
 
       
-        <p>存储的主要体系结构：DAS NAS SAN<br><a id="more"></a>  </p>
-<h2 id="存储介质与存储接口"><a href="#存储介质与存储接口" class="headerlink" title="存储介质与存储接口"></a>存储介质与存储接口</h2><h3 id="存储介质"><a href="#存储介质" class="headerlink" title="存储介质"></a>存储介质</h3><ul>
-<li>机械硬盘（主要参数）  <ul>
-<li>容量=柱面×磁头×扇区×512bytes</li>
-<li>转速：盘片转动圈数/分钟（rpm）越高性能越好</li>
-<li>缓存（cache）：越大越好</li>
-<li>平均访问时间：平均寻道时间 平均等待时间</li>
-<li>数据传输率：内部传输率；外部传输率（通过接口）</li>
-<li>IOPS:每秒输入输出量（衡量性能的主要指标之一）</li>
-<li>Throughput吞吐量：单位时间内可以传输成功的数据量  </li>
-</ul>
-</li>
-<li>SSD（固态硬盘）<br>DDR芯片 <em>FLASH芯片(多数采用）</em><br>响应时间短 读写效率高 能耗低 …<h3 id="存储接口"><a href="#存储接口" class="headerlink" title="存储接口"></a>存储接口</h3></li>
-<li>ATA（Advanced Technology Attachment）高级技术附加装置，最高133<ul>
-<li>IDE硬盘（Integrated Drive Electronics）</li>
-<li>并行ATA技术</li>
-</ul>
-</li>
-<li>SCSI（Small Computer System Interface）小型计算机系统接口，主流320</li>
-<li>SATA（serial ATA）串行ATA：150MBps-600MBps，商用主流300；点对点，热插拔（多应用于可移动设备）</li>
-<li><em>SAS</em>（serial attached SCSI）串行连接SCSI，支持全双工、双端口</li>
-<li><p><em>FC</em>：FC-AL（fiber channel arbitrated loop）光纤通道仲裁环；大存储应用<br>NL SAS：采用SAS接口、SATA盘体，也称进线SAS<br>硬盘接口比较<br><img src="" alt=""></p>
-<h2 id="RAID技术"><a href="#RAID技术" class="headerlink" title="RAID技术"></a>RAID技术</h2><p>独立冗余磁盘阵列：更高效的数据组织（分条、并行）；数据安全保护（检验、热备）<br>实现方式：<br>硬件RAID：集成处理器的RAID适配卡实现，拥有自己的控制处理器、I/O处理芯片和存储器，减少对主机CPU运行时间的占用，提高传输效率<br>软件RAID：完全依赖主机CPU，占用CPU处理周期，且依赖于操作系统<br>分条<br>条带：<br>分条：多个磁盘的同一位置（同一磁道同一扇区）的条带<br>XOR检验–相同为假，相异为真<br>镜像<br>RAID状态：四种（创建 <strong>正常工作</strong> 降级 失效）<br>RAID级别：  </p>
-</li>
-<li><p>RAID0：条带化 </p>
-</li>
-<li>RAID1：镜像</li>
-<li>RAID3：条带化，单独校验盘，写入慢；失效数据可重计算恢复</li>
-<li>RAID5：条带化，校验信息分布在</li>
-<li>RAID6：两次校验，  <ul>
-<li>P+Q：</li>
-<li>DP：两个单独的专属盘存放校验信息；写入慢，读取快；允许两块盘故障  </li>
-</ul>
-</li>
-<li>RAID10：组合，先进性RAID1镜像，再进行RAID0..至少两块硬盘</li>
-<li>RAID50：至少六块硬盘<br>各级别比较<br><img src="" alt=""></li>
-</ul>
-<h2 id="存储阵列"><a href="#存储阵列" class="headerlink" title="存储阵列"></a>存储阵列</h2><p>硬盘框<br>控制框</p>
-<h2 id="SAN技术"><a href="#SAN技术" class="headerlink" title="SAN技术"></a>SAN技术</h2><p>存储结构：直接连接存储（DAS） 网络连接存储（NAS） 存储区域网络（SAN)<br>SAN组成部分（FC-SAN、IP-SAN）：</p>
-<ul>
-<li>主机总线设配卡（FC-HBA、ISCIS-HBA）  </li>
-<li>光纤线缆、IP线缆  </li>
-<li>光纤交换机、以太网交换机  </li>
-<li>存储阵列设备<br>比较<br><img src="" alt="">  </li>
-</ul>
-<h2 id="NAS技术"><a href="#NAS技术" class="headerlink" title="NAS技术"></a>NAS技术</h2><p>网络附属存储：一种特殊的专用数据存储<br>CIFS协议<br>NFS协议<br><strong>NAS系统:</strong></p>
-<ul>
-<li>NAS引擎  </li>
-<li>网络接口  </li>
-<li>存储  </li>
-</ul>
-<p>NAS文件系统IO与性能<br>SAN与NAS比较<br><img src="" alt=""></p>
+        <h4 id="NFV架构"><a href="#NFV架构" class="headerlink" title="NFV架构"></a>NFV架构</h4><p>NFV (Network Function Virtualization) 网络功能虚拟化，ETSI组织下组建的。</p>
+<p>希望通过采用通用服务器 交换机和存储设备实现传统电信网络的功能。通过IT的虚拟化技术，许多类型的网络设备可以合并到工业界标准中，servers switchs  storages 需要用软件实现网络功能并能在一系列工业标准服务器硬件上运行，可以根据需要迁移，实例化部署在网络的不同位置而不需要部署新设备，需要大容量Server存储和大容量以太网  不同应用以软件形式远程自动部署在统一的基础设施上。</p>
+<p>三个关键点：软硬件解耦  开放  自动化 </p>
+<p><strong>NFV将IP基因融入电信网络</strong></p>
+<p>传统电信网软硬件绑定，更新困难，管理维护困难。采用虚拟化技术和云计算的网络，硬件采用标准的服务器 存储设备和交换机，虚拟化之后  上层业务通过软件形式运行在统一的标准的硬件基础之上 。</p>
+<p>虚拟化后的网络好处：易于更新、硬件通用化 支持异构，资源归一  简化管理与运维</p>
+<p><strong>NFV框架主要包括3大组件：NFVI、VNF、和MANO</strong><br>解释：<br>框架中<strong>最底层的是硬件</strong>，包括计算、存储、和网络资源；<br>往上的<strong>云操作系统</strong>，完成虚拟化和云化的相关的功能，<strong>硬件和云操作系统成为NFVI。</strong>I指的是infrastruction，设施的意思，由VIM来管理；<br>再往上是<strong>虚拟网络功能</strong>，比如vIMS提供IMS的语音业务，vEPC提供4G的数据网络功能。虚拟网络功能由VNFM来管理，提供VNF的声明周期管理；<br>再往上是<strong>网络管理层即网管</strong>，可以配套NFVO进行网络业务生命周期的管理。<br><strong>NFV三大组件的关键要求</strong><br><strong>【1】组件MANO：</strong>包括NFVO、VNFM和VIM，<br>要求VNFM适配不同厂商NFVO和VIM；并且MANO系统应该尽量减少对现有的OSS/BSS的冲击。比如要求MANO支持和现有传统平台（如U2000）的对接<br><strong>【2】组件VNF(虚拟化网络功能)：</strong><br>要求它可以运行在不同厂商的NFVI；<br>对应传统的电信业务网络，每个物理网元映射为一个虚拟网元VNF。<br><strong>【3】组件NFVI-云操作系统</strong><br>要求优选基于OpenStack的云操作系统<br>将<strong>物理</strong>计算/存储/交换网络资源通过虚拟化计算转换为<strong>虚拟</strong>的计算/存储/交换网络资源池<br><strong>【4】组件NFVI-硬件</strong><br>要求它优选具有虚拟化辅助功能的芯片的COTS<br>同时具备高IOPS与高可靠性的磁阵<br>低RAID等级的磁阵建议冗余组网</p>
+<h4 id="NFV关键能力"><a href="#NFV关键能力" class="headerlink" title="NFV关键能力"></a>NFV关键能力</h4><p><strong>开放</strong></p>
+<p>虚拟化网络功能运行在多厂商云平台</p>
+<p>NFV支持异构：在硬件基础上，可以支持厂商B的VNFM和厂商A的NFVO，并且可以在和现网的传统平台如U2000 OSS进行异构系统的集成；</p>
+<p>NFV可以广泛兼容不同厂商的硬件以及云化的操作系统</p>
+<p><strong>云化架构</strong></p>
+<p>云化架构是弹性和可靠性的基础。</p>
+<p>传统平台软件和硬件绑定–&gt; 虚拟化阶段，软硬件解耦，软件可以运行在标准的硬件基础上，但业务逻辑和业务数据还是绑定的—&gt; 云化架构阶段，继续解耦，同时业务逻辑和业务数据进行解耦，会话转发层和业务逻辑解耦，</p>
+<p><strong>弹性</strong></p>
+<p>分钟级的弹性扩容和秒级弹性缩容。</p>
+<p>当业务需要增加时，由主DB生成新的虚拟机以支持更多业务处理，DB中就保留了动态数据（如用户签约数据、链路局向配置数据、稳态呼叫会话数据等），因此用动态数据可以生成新的VM来支持业务需求；</p>
+<p>当业务量下降时，将业务迁移其他虚拟机，对相应的虚拟机下电，减少虚拟机设备的运行，而稳态话务可以在其他模块中重建。</p>
+<p><strong>高可靠性</strong></p>
+<p>应用层、云操作系统层、硬件层都有相应的冗余机制。</p>
+<p><strong>应用层的冗余</strong> 1）通过主备和负荷分担方式实现主备VM间的冗余：主VM故障，备VM接管业务；2）无状态的N+M冗余机制：当负荷分担的N个虚拟机中出现故障了，其他M个虚拟机将自动接管业务</p>
+<p><strong>云操作系统冗余</strong> 通过虚拟机快速重建 实现冗余机制</p>
+<p><strong>硬件层冗余</strong> 通过簇化及物料冗余来实现冗余机制</p>
+<p>各自独立，高度互补确保整体可用性（资源永远可用、应用层会话零中断）</p>
+<p><strong>高性能</strong></p>
+<p>FusionSphere华为</p>
+<p>呼叫处理方面华为的FusionSphere比第二名的Vmware高17%。</p>
+<p>高性能技术的关键技术：NUMA亲和性、CPU绑定、DPDK、透明巨页、虚拟中断优化等</p>
+<p>NFV存在的问题</p>
+<p>（1）标准不成熟，技术架构实现上有分歧；</p>
+<p>（2）多供应商、集成复杂。</p>
+<p>（3）部件兼容性风险大。</p>
+<p>（4）NFV工程难度大。</p>
+<p>（5）网络功能虚拟化技术滞后</p>
+<p>（6）虚拟化可靠性不足。</p>
 
       
     </div>
@@ -419,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/26/ICT学习笔记之服务器操作系统/" rel="next" title="ICT学习笔记之服务器操作系统">
-                <i class="fa fa-chevron-left"></i> ICT学习笔记之服务器操作系统
+              <a href="/2017/04/15/docker&微服务/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -429,7 +415,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/15/存储/" rel="prev" title="">
+              <a href="/2017/04/15/SDN/" rel="prev" title="">
                  <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -457,8 +443,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/27/ICT学习笔记之存储原理/"
-           data-title="ICT学习笔记之存储原理" data-url="http://cuteCoderLee.github.io/2017/03/27/ICT学习笔记之存储原理/">
+      <div class="ds-thread" data-thread-key="2017/04/15/NFV/"
+           data-title="" data-url="http://cuteCoderLee.github.io/2017/04/15/NFV/">
       </div>
     
   </div>
@@ -566,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储介质与存储接口"><span class="nav-number">1.</span> <span class="nav-text">存储介质与存储接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储介质"><span class="nav-number">1.1.</span> <span class="nav-text">存储介质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储接口"><span class="nav-number">1.2.</span> <span class="nav-text">存储接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RAID技术"><span class="nav-number">2.</span> <span class="nav-text">RAID技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储阵列"><span class="nav-number">3.</span> <span class="nav-text">存储阵列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SAN技术"><span class="nav-number">4.</span> <span class="nav-text">SAN技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAS技术"><span class="nav-number">5.</span> <span class="nav-text">NAS技术</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#NFV架构"><span class="nav-number">1.</span> <span class="nav-text">NFV架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NFV关键能力"><span class="nav-number">2.</span> <span class="nav-text">NFV关键能力</span></a></li></ol></div>
             
 
           </div>

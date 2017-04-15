@@ -1,0 +1,818 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="IP路由技术路由表
+IP路由的过程
+路由协议
+IPv6技术1.为什么学习IPv6？
+海量地址需求；57B，家庭（2B）移动（5B）M2M（machine to machine，物联网，50B）
+2.IPv6地址格式
+IPv6地址 （128位）= 前缀（前64位）+接口标识（后64位）；前缀相当于IPv4的网络ID，接口标识相当于IPv4的主机ID。
+本地链路地址：fe80开头；相当于IPv4的私网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lilililing">
+<meta property="og:url" content="http://cuteCoderLee.github.io/2017/04/15/网络基础/index.html">
+<meta property="og:site_name" content="lilililing">
+<meta property="og:description" content="IP路由技术路由表
+IP路由的过程
+路由协议
+IPv6技术1.为什么学习IPv6？
+海量地址需求；57B，家庭（2B）移动（5B）M2M（machine to machine，物联网，50B）
+2.IPv6地址格式
+IPv6地址 （128位）= 前缀（前64位）+接口标识（后64位）；前缀相当于IPv4的网络ID，接口标识相当于IPv4的主机ID。
+本地链路地址：fe80开头；相当于IPv4的私网">
+<meta property="og:updated_time" content="2017-04-15T06:25:25.275Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lilililing">
+<meta name="twitter:description" content="IP路由技术路由表
+IP路由的过程
+路由协议
+IPv6技术1.为什么学习IPv6？
+海量地址需求；57B，家庭（2B）移动（5B）M2M（machine to machine，物联网，50B）
+2.IPv6地址格式
+IPv6地址 （128位）= 前缀（前64位）+接口标识（后64位）；前缀相当于IPv4的网络ID，接口标识相当于IPv4的主机ID。
+本地链路地址：fe80开头；相当于IPv4的私网">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cuteCoderLee.github.io/2017/04/15/网络基础/"/>
+
+
+
+
+
+  <title>  | lilililing </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lilililing</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://cuteCoderLee.github.io/2017/04/15/网络基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liling">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lilililing">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-15T20:56:39+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/15/网络基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/15/网络基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="IP路由技术"><a href="#IP路由技术" class="headerlink" title="IP路由技术"></a>IP路由技术</h3><p>路由表</p>
+<p>IP路由的过程</p>
+<p><strong>路由协议</strong></p>
+<h3 id="IPv6技术"><a href="#IPv6技术" class="headerlink" title="IPv6技术"></a>IPv6技术</h3><p><strong>1.为什么学习IPv6？</strong></p>
+<p>海量地址需求；57B，家庭（2B）移动（5B）M2M（machine to machine，物联网，50B）</p>
+<p><strong>2.IPv6地址格式</strong></p>
+<p>IPv6地址 （128位）= 前缀（前64位）+接口标识（后64位）；前缀相当于IPv4的网络ID，接口标识相当于IPv4的主机ID。</p>
+<p>本地链路地址：fe80开头；相当于IPv4的私网地址，不上因特网</p>
+<p>全球单播地址：2001开头；相当于IPv4的公网地址</p>
+<p><strong>标准书写格式</strong> </p>
+<p>首选格式，用16进制表示，四个数字一组，中间用<code>：</code>隔开</p>
+<blockquote>
+<p>如 2001:0410:0000:0001:0000:0000:0000:45ff/64</p>
+</blockquote>
+<p>压缩格式，若以零开头可以省略，连续全零的组用 <code>::</code>表示，一个地址中<code>::</code>只能出现一次</p>
+<blockquote>
+<p>如 2001:410:0:1::45ff/64</p>
+</blockquote>
+<p><strong>地址分类</strong></p>
+<p>单播地址（unicast）：标识一个接口，单播地址的报文会被送到被标识的接口</p>
+<p>组播（multicast）：标识多个接口，组播地址的保温会被送被标识的所有接口</p>
+<p>任意播（anycast）：标识多个接口，任意播…最近的一个被标识接口，最近节点由路由协议定义</p>
+<p><strong>单播地址分类</strong></p>
+<p>未指定地址：全0地址 ::</p>
+<p>回环地址： ::1</p>
+<p>全球单播地址：2001开头</p>
+<p>内嵌IPv4的IPv6地址： 例 <code>::10.153.70.200</code></p>
+<p>链路本地地址： 以fe80开头，不上因特网，例 <code>FE80::E0:F726:4E58</code></p>
+<h3 id="VLAN技术"><a href="#VLAN技术" class="headerlink" title="VLAN技术"></a>VLAN技术</h3><p>virtual local area network，虚拟局域网</p>
+<p>传统以太网交换机在转发数据时，采用源地址学习的方式，自动学习各个端口连接的主机的MAC地址，形成转发表；缺乏转发控制手段</p>
+<p>存在的问题：网络安全性差；网络效率低；业务扩展性差</p>
+<p>VLAN 技术 逻辑上分成网络组，组内可以通信，组间不允许通信</p>
+<p><strong>VLAN实现</strong></p>
+<p>通过打标签隔离组与组间的通信</p>
+<p><strong>VLAN标签应用规则</strong></p>
+<p>Access端口：交换机用来连接用户主机的接口；收，标准以太网数据帧； 发     PVID（管理员赋予）</p>
+<p>Trunk端口：交换机用来连接其他交换机的接口；</p>
+<p>Hybrid端口：连接用户主机及其他交换机；可以剥离多个VLAN标签</p>
+<h3 id="QoS技术"><a href="#QoS技术" class="headerlink" title="QoS技术"></a>QoS技术</h3><p>语音业务 视频服务 上网业务（网络拥塞）</p>
+<p>衡量因素：带宽[短板理论]；时延（一端到一端）；抖动（同个网络同一业务，你好-&gt;好你）；丢包（你好-&gt;好）</p>
+<p><strong>常见QoS服务模型</strong></p>
+<p>best-effort service[尽力而为]</p>
+<p>integrated service[集中服务]</p>
+<p>differentiated service[区分服务模型]：常用，根据不同业务提供不同服务</p>
+<ul>
+<li>业务分类方式，如对流量进行分类和标记</li>
+</ul>
+<p>复杂流分类：根据业务的IP地址、端口号、服务类型等进行区分，相同的业务具有相同的特点，进行标记——在报文里设置优先级的值</p>
+<p>简单流分类：根据已经标记的优先级，对报文进行调度</p>
+<ul>
+<li>业务管理方式</li>
+</ul>
+<p>令牌桶机制</p>
+<p>流量监管：没有令牌的报文，直接被丢弃；优点：不会引入时延</p>
+<p>流量整形：没有令牌超出的报文，先进行缓存，在网络空闲时转发；优点：丢包率低；缺点：引入时延</p>
+<ul>
+<li><strong>报文调度方法</strong></li>
+</ul>
+<p>FIFO[先进先出]：</p>
+<p>PQ[优先级队列]：对高优先级报文优先转发，减少时延；缺点（饿死现象）</p>
+<p>WFQ[加权公平队列]：按队列权重分配流出口的带宽，不出现饿死现象</p>
+<p>一般采用PQ+WFQ方式，对于在线游戏、语音等关键业务，将其放在PQ队列中，但限制带宽速率</p>
+<p>如果网络中出现较大程度的拥塞，报文都要进行排队，排队满了之后的报文都会被丢弃，无论优先级高低。</p>
+<p><strong>防止高优先级的报文被丢弃</strong>：WRED（加权随机早期检测丢弃）排队时丢弃报文，优先级高丢弃率低，保证队列不满，关键业务端到端的服务</p>
+<p><strong>QoS应用</strong></p>
+<p>流分类    流行为（设置带宽、优先级等）  流量策略（关联流分类和流行为）  策略应用</p>
+<h3 id="NAT技术"><a href="#NAT技术" class="headerlink" title="NAT技术"></a>NAT技术</h3><p>network address translation，网络地址转换。是将IP数据报头中的IP地址转换为另一个IP地址的过程，实际应用中主要用于<strong>实现私有网络访问公共网络</strong>的功能；通过<strong>使用少量的公网IP地址代表较多的私网IP地址</strong>的方式，有助于减缓可用IP地址空间的枯竭。（扩展到实现任意两个网络间进行访问时的地址转换）</p>
+<p>私网IP地址是指内部网络或主机的IP地址；公网IP是指因特网上全球唯一的IP地址。               </p>
+<p>服务器（公网）  用户（私网）/服务器（私网）  用户（公网） 路由没有私网IP地址信息，无法实现互访</p>
+<p>NAT session 在网络地址转换时，设备会对报文转换前的源IP地址以及端口号和转换后的源IP地址及端口号的对应关系做记录。</p>
+<ul>
+<li><p><strong>NAT No-PAT</strong>，一对一地址转换，在地址转换过程中，数据包的源IP地址由私网地址转换为公网地址 ，端口号不做转换。</p>
+<p>进行网络地址转换时，NAT设备会对报文转换前的源IP地址以及端口号和转换后的源IP地址以及端口号的对应关系做记录（NAT session）</p>
+<p>一个私网地址对应一个公网地址，并不节省公网地址</p>
+</li>
+<li><p><strong>NAPT</strong>(network address port translation，网络地址端口转换)，多对一地址转换，允许多个内部地址映射到同一个公有地址上，同时映射IP地址和端口号，<strong>可以实现多个内网用户公用一个公网IP</strong>。</p>
+<p>服务器在私网，用户在公网访问私网服务器</p>
+</li>
+<li><p><strong>NAT server</strong>，网络管理员手动建立映射（静态配置），得到私网服务器地址转换得到的公网服务器地址及端口号，使公网用户通过访问转换后的公网地址及端口号来实现访问私网服务器;公网用户访问私网服务器。服务器回应方式与NAPT类似。</p>
+</li>
+<li><p><strong>NAT ALG（应用级网关）</strong>，设备通过应用级协议的协商报文的分析，在双方的新通道建立前，提前获取相关信息，为其自动建立相应的NAT转换规则。<strong>实现网络级和应用级对应</strong> 对一些常见的特殊协议支持其应用层的IP地址替换，如FTP、FTP（File Transfer Protocol，文件传输协议）、ICMP（Internet Control Message Protocol，因特网控制消息协议）、DNS（Domain Name System，域名系统）、ILS（Internet Locator Service，Internet定位服务）、H.323、SIP（Session Initiation Protocol，会话发起协议）、NetMeeting 3.01、NBT（NetBIOS over TCP/IP，基于TCP/IP的网络基本输入输出系统）等。</p>
+</li>
+</ul>
+<h3 id="NE40E-X系列路由器产品概述"><a href="#NE40E-X系列路由器产品概述" class="headerlink" title="NE40E-X系列路由器产品概述"></a>NE40E-X系列路由器产品概述</h3><p>NE40E-X3</p>
+<p>NE40E-X8</p>
+<p>NE40E-X16</p>
+<p>NE40E-X2</p>
+<p>NE40E-X1</p>
+<h3 id="S9300交换机产品概述"><a href="#S9300交换机产品概述" class="headerlink" title="S9300交换机产品概述"></a>S9300交换机产品概述</h3><h3 id="NE系列路由器日常维护"><a href="#NE系列路由器日常维护" class="headerlink" title="NE系列路由器日常维护"></a>NE系列路由器日常维护</h3><p>维护项目，五个</p>
+<p>机房环境：温度 湿度</p>
+<p>设备环境：单板温度和电压</p>
+<p>日志和告警：及时处理和上告</p>
+<p>设备运行状况：单板 CPU 风扇</p>
+<p>业务运行状况：检查相关数据配置</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/15/虚拟化/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/15/云计算/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/15/网络基础/"
+           data-title="" data-url="http://cuteCoderLee.github.io/2017/04/15/网络基础/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://on8z3w9l6.bkt.clouddn.com/avatar.JPG"
+               alt="liling" />
+          <p class="site-author-name" itemprop="name">liling</p>
+           
+              <p class="site-description motion-element" itemprop="description">做一个有趣的人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/cuteCoderLee" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP路由技术"><span class="nav-number">1.</span> <span class="nav-text">IP路由技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv6技术"><span class="nav-number">2.</span> <span class="nav-text">IPv6技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VLAN技术"><span class="nav-number">3.</span> <span class="nav-text">VLAN技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QoS技术"><span class="nav-number">4.</span> <span class="nav-text">QoS技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NAT技术"><span class="nav-number">5.</span> <span class="nav-text">NAT技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NE40E-X系列路由器产品概述"><span class="nav-number">6.</span> <span class="nav-text">NE40E-X系列路由器产品概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#S9300交换机产品概述"><span class="nav-number">7.</span> <span class="nav-text">S9300交换机产品概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NE系列路由器日常维护"><span class="nav-number">8.</span> <span class="nav-text">NE系列路由器日常维护</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liling</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cuteCoderLee"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
